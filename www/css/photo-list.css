@@ -1,0 +1,24 @@
+.photo-list { font-family: 'Open Sans', sans-serif;}
+.photo-list input[type="text"]{ height: 30px;}
+.photo-list .icon{ font-size: 16px !important;}
+.photo-list .title, .bar-nav>a{ color: #fff; text-transform: uppercase;}
+.photo-list .blue-nav{ background-color: #3481b3;}
+.photo-list .blue-nav .icon{ color: #fff;}
+.photo-list .bar > a.icon, .bar > span > a.icon{ font-size: 20px !important;}
+.photo-list .bar-header-secondary{background-color: #e9e9e9; top: 0;}
+.photo-list .bar-standard{ border-bottom: none !important; height: 60px; padding: 10px;}
+.photo-list .input-row{ height: 30px !important; border-bottom: none !important;}
+.photo-list .input-row input{ float: left !important; width: 80%; font-size: 13px;}
+.photo-list .input-row>.btn, .input-row span.icon{ padding: 7px; color: #cecece;}
+.photo-list .icon-grid{ font-size: 22px; margin-right: 5px;}
+.photo-list .icon-disable{ color: #4894c7 !important;}
+.photo-list .content > .table-view:first-child{ margin-top: 14px;}
+.photo-list .content > .table-view{ border: none !important;}
+.photo-list .table-view-cell{ padding-right: 15px !important; padding-top: 13px; border: none;}
+.photo-list .media > img{ width: 35%; padding: 0px 5px;}
+.photo-list .media-body{ letter-spacing: 1px;}
+.photo-list .media-body>h4{ color: #3481b3; margin-bottom: 2px; font-size: 14px !important; font-weight: normal;}
+.photo-list .media-body>h5{ color: #c6c6c6; margin-top: 4px; margin-bottom: 3px; font-size: 9px !important; font-weight: normal; text-transform: uppercase;}
+.photo-list .media-body>p{ font-size: 11px; line-height: 1.5;}
+.photo-list .content { padding-top: 60px; }
+.photo-list .input-group { width: 100%; padding: 5px 0; }

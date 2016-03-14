@@ -1,0 +1,14 @@
+.contact-list { font-family: 'Open Sans', sans-serif;}
+.contact-list .title, .bar-nav>a{ color: #fff; text-transform: uppercase;}
+.contact-list .bar{ border-bottom: 0px; }
+.contact-list .blue-nav{ background-color: #3481b3;}
+.contact-list .blue-nav>span>a{ color: #fff; margin-left: 7px;}
+.contact-list .table-view{ border-top: none !important; margin-top: 5px !important;}
+.contact-list .right-group{ top: 50%; right: 15px; position: absolute; -webkit-transform: translateY(-50%); -ms-transform: translateY(-50%); transform: translateY(-50%); }
+.contact-list .right-group > .btn{ margin-left: 5px; padding: 4px 7px !important; font-size: 16px; border-radius: 50% !important; }
+.contact-list .right-group > .btn-email{ padding: 5px 5px !important; font-size: 15px !important;}
+.contact-list .media{ font-family: 'PT Sans', sans-serif;}
+.contact-list .media > img{ max-width: 22%;}
+.contact-list .media-body{ color: #3481b3; font-weight: 600; margin-top: 5px;}
+.contact-list .media-body>h4{ font-size: 14px; margin-bottom: 2px !important; }
+.contact-list .media-body>p{ font-size: 10px; font-weight: normal; line-height: 1.5; margin-bottom: -4px !important; }

@@ -1,0 +1,27 @@
+.search-grid { font-family: 'Open Sans', sans-serif;}
+.search-grid input[type="text"]{ height: 30px;}
+.search-grid .title, .bar-nav>a{ color: #fff; text-transform: uppercase;}
+.search-grid .text-center{ text-align: center; }
+.search-grid .blue-nav{ background-color: #3481b3;}
+.search-grid .blue-nav .icon{ color: #fff;}
+.search-grid .bar-header-secondary{background-color: #e9e9e9; top: 0;}
+.search-grid .bar-standard{ border-bottom: none !important; height: 60px; padding: 10px;}
+.search-grid .bar-header-secondary ~ .content{ padding-top: 65px; }
+.search-grid .bar-button{ border-bottom: 1px solid #e4eff5; width: 100%; text-align: center; vertical-align: middle; padding: 10px; }
+.search-grid .bar-button .btn{ margin: 0px 2px 0px 2px; border-radius: 5px !important;}
+.search-grid .bar-button .icon{ font-size: 24px !important; }
+.search-grid .input-row{ height: 30px !important; border-bottom: none !important;}
+.search-grid .input-row input{ float: left !important; width: 80%;font-size: 13px; }
+.search-grid .input-row span.icon{ padding: 7px; color: #cecece;  font-size: 16px !important; }
+.search-grid .icon-grid{ font-size: 22px; }
+.search-grid .icon-disable{ color: #3071a9 !important; }
+.search-grid .icon-pin{/* margin-left: 6px; margin-right: 6px; */}
+.search-grid ul.rig{ font-size: 0px; list-style: none; padding: 0px !important; margin-left: -2.5%; }
+.search-grid ul.rig li{ display: inline-block; padding: 10px; margin: 0 0 0 2.5%; background: #fff;	font-size: 16px; font-size: 1rem; vertical-align: top; }
+.search-grid ul.rig li img{ max-width: 100%; height: auto; margin: 0 0 5px; }
+.search-grid ul.rig li h4{ font-size: 14px; color: #3481b3; margin-bottom: 5px;	}
+.search-grid ul.rig li h5{ color: #e29652; font-size: 6px; margin: 2px 0 0 0; }
+.search-grid ul.rig li h5 .icon{ font-size: 16px !important; }
+.search-grid ul.rig.col-2 li{ width: 47.5%; }
+.search-grid .content { padding-top: 60px; }
+.search-grid .input-group { width: 100%; padding: 5px 0; }
