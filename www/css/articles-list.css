@@ -12,7 +12,7 @@
 .article-list .no-border{border: none !important;}
 .article-list .text-center{ text-align: center;}
 .article-list .table-view-cell-full:first-child{ padding-top: 10px; }
-.article-list .table-view-cell-full{ position: relative; padding: 20px 0 3px 0; overflow: hidden; border-bottom: 1px solid #ddd; }
+.article-list .table-view-cell-full{ position: relative; padding: 20px 0 10px 0; overflow: hidden; border-bottom: 1px solid #ddd; }
 .article-list .table-view-cell-social{ position: relative; padding: 2px 15px 0 15px; overflow: hidden; }
 .article-list .navigate-cell{	padding-left: 12px; /* border-bottom: 1px solid #ddd; */ }
 .article-list .article-title{ font-size: 18px; font-weight: 800; line-height: 1; }

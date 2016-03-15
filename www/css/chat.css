@@ -1,9 +1,9 @@
 .chat { font-family: 'Open Sans', sans-serif; }
 .chat .bar{ border-bottom: 0px; }
 .chat .title, .bar-nav>a{ color: #fff; text-transform: uppercase;}
-.chat .bar-block{ background-color: #333333; padding: 0px; height: 48px !important;}
+.chat .bar-block{ background-color: #333333; padding: 0px; height: 52px !important;}
 .chat .bar-block a.icon{ color: #bbb; font-size: 22px !important; top: 0px !important; }
-.chat .bar-block > .btn-block{ background-color: #333333 !important; border-color: #333333; border-radius: 0px; margin-bottom: 2px; }
+.chat .bar-block > .btn-block{ background-color: #333333 !important; border-color: #333333; border-radius: 0px; }
 .chat .btn-block > a > span{ font-family: 'Open Sans', sans-serif; font-size: 14px; word-spacing: .5px; display: inline-block; position: relative; top: -5px;}
 .chat .bar-footer{ height: 52px !important; padding: 8px;}
 .chat .blue-nav{ background-color: #3481b3;}
@@ -26,4 +26,4 @@
 .chat .icon-right-tight-arrow{ top: 0px !important; color: #ddd; font-size: 24px; font-weight: bold;}
 .chat .input-group { width: 100%; }
 .chat .bar-header-secondary { top: 0; }
-.chat .content { padding-top: 52px; }
+.chat .content { padding-top: 57px; }

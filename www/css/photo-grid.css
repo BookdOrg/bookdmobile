@@ -13,7 +13,8 @@
 .photo-grid .icon-grid{ font-size: 22px; margin-right: 5px;}
 .photo-grid .icon-list{ font-size: 24px;}
 .photo-grid .icon-disable{ color: #4894c7 !important; }
-.photo-grid #photos{ line-height: 0; -webkit-column-count: 3; -webkit-column-gap: 0px; -moz-column-count: 3; -moz-column-gap: 0px; column-count: 3; column-gap: 0px;}
-.photo-grid #photos img{ width: 100% !important; height: auto !important; }
+/*.photo-grid #photos{ line-height: 0; -webkit-column-count: 3; -webkit-column-gap: 0px; -moz-column-count: 3; -moz-column-gap: 0px; column-count: 3; column-gap: 0px;}*/
+.photo-grid #photos { width: 100%; position: relative; }
+.photo-grid #photos img{ width: 33.33% !important; height: auto !important; float: left; padding: 0; margin: 0; line-height: 0; }
 .photo-grid .content { padding-top: 60px; }
 .photo-grid .input-group { width: 100%; padding: 5px 0; }
