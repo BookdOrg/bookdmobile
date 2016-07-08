@@ -2,16 +2,148 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="6f1cac29-0c94-4347-9a74-3c3f94d01cab" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/app.css" afterPath="$PROJECT_DIR$/www/css/app.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/app.js" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/.name" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/ionic theme.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/vcs.xml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/android/splash/drawable-port-hdpi-screen.png" afterPath="$PROJECT_DIR$/resources/android/splash/drawable-port-hdpi-screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/android/splash/drawable-port-ldpi-screen.png" afterPath="$PROJECT_DIR$/resources/android/splash/drawable-port-ldpi-screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/android/splash/drawable-port-mdpi-screen.png" afterPath="$PROJECT_DIR$/resources/android/splash/drawable-port-mdpi-screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/android/splash/drawable-port-xhdpi-screen.png" afterPath="$PROJECT_DIR$/resources/android/splash/drawable-port-xhdpi-screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/android/splash/drawable-port-xxhdpi-screen.png" afterPath="$PROJECT_DIR$/resources/android/splash/drawable-port-xxhdpi-screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/android/splash/drawable-port-xxxhdpi-screen.png" afterPath="$PROJECT_DIR$/resources/android/splash/drawable-port-xxxhdpi-screen.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/icon.png" afterPath="$PROJECT_DIR$/resources/icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/icon/icon-40.png" afterPath="$PROJECT_DIR$/resources/ios/icon/icon-40.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/icon/icon-40@2x.png" afterPath="$PROJECT_DIR$/resources/ios/icon/icon-40@2x.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/icon/icon-40@3x.png" afterPath="$PROJECT_DIR$/resources/ios/icon/icon-40@3x.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/icon/icon-50.png" afterPath="$PROJECT_DIR$/resources/ios/icon/icon-50.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/icon/icon-50@2x.png" afterPath="$PROJECT_DIR$/resources/ios/icon/icon-50@2x.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/icon/icon-60.png" afterPath="$PROJECT_DIR$/resources/ios/icon/icon-60.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/icon/icon-60@2x.png" afterPath="$PROJECT_DIR$/resources/ios/icon/icon-60@2x.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/icon/icon-60@3x.png" afterPath="$PROJECT_DIR$/resources/ios/icon/icon-60@3x.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/icon/icon-72.png" afterPath="$PROJECT_DIR$/resources/ios/icon/icon-72.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/icon/icon-72@2x.png" afterPath="$PROJECT_DIR$/resources/ios/icon/icon-72@2x.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/icon/icon-76.png" afterPath="$PROJECT_DIR$/resources/ios/icon/icon-76.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/icon/icon-76@2x.png" afterPath="$PROJECT_DIR$/resources/ios/icon/icon-76@2x.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/icon/icon-83.5@2x.png" afterPath="$PROJECT_DIR$/resources/ios/icon/icon-83.5@2x.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/icon/icon-small-50.png" afterPath="$PROJECT_DIR$/resources/ios/icon/icon-small-50.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/icon/icon-small-50@2x.png" afterPath="$PROJECT_DIR$/resources/ios/icon/icon-small-50@2x.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/icon/icon-small.png" afterPath="$PROJECT_DIR$/resources/ios/icon/icon-small.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/icon/icon-small@2x.png" afterPath="$PROJECT_DIR$/resources/ios/icon/icon-small@2x.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/icon/icon-small@3x.png" afterPath="$PROJECT_DIR$/resources/ios/icon/icon-small@3x.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/icon/icon.png" afterPath="$PROJECT_DIR$/resources/ios/icon/icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/icon/icon@2x.png" afterPath="$PROJECT_DIR$/resources/ios/icon/icon@2x.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/splash/Default-568h@2x~iphone.png" afterPath="$PROJECT_DIR$/resources/ios/splash/Default-568h@2x~iphone.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/splash/Default-667h.png" afterPath="$PROJECT_DIR$/resources/ios/splash/Default-667h.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/splash/Default-736h.png" afterPath="$PROJECT_DIR$/resources/ios/splash/Default-736h.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/splash/Default-Landscape~ipad.png" afterPath="$PROJECT_DIR$/resources/ios/splash/Default-Landscape~ipad.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/splash/Default-Portrait@2x~ipad.png" afterPath="$PROJECT_DIR$/resources/ios/splash/Default-Portrait@2x~ipad.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/splash/Default-Portrait~ipad.png" afterPath="$PROJECT_DIR$/resources/ios/splash/Default-Portrait~ipad.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/splash/Default@2x~iphone.png" afterPath="$PROJECT_DIR$/resources/ios/splash/Default@2x~iphone.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/ios/splash/Default~iphone.png" afterPath="$PROJECT_DIR$/resources/ios/splash/Default~iphone.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/splash.png" afterPath="$PROJECT_DIR$/resources/splash.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/article/skyline.png" afterPath="$PROJECT_DIR$/www/img/article/skyline.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/articles-list/grapes_pic.png" afterPath="$PROJECT_DIR$/www/img/articles-list/grapes_pic.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/articles-list/road_pic.png" afterPath="$PROJECT_DIR$/www/img/articles-list/road_pic.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/chat/gwen_profile_pic.png" afterPath="$PROJECT_DIR$/www/img/chat/gwen_profile_pic.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/chat/jj_profile_pic.png" afterPath="$PROJECT_DIR$/www/img/chat/jj_profile_pic.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/contact-list/anna_profile_pic_small.png" afterPath="$PROJECT_DIR$/www/img/contact-list/anna_profile_pic_small.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/contact-list/jj_profile_pic_small.png" afterPath="$PROJECT_DIR$/www/img/contact-list/jj_profile_pic_small.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/contact-list/justin_profile_pic_small.png" afterPath="$PROJECT_DIR$/www/img/contact-list/justin_profile_pic_small.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/contact-list/kiera_profile_pic_small.png" afterPath="$PROJECT_DIR$/www/img/contact-list/kiera_profile_pic_small.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/contact-list/rebecca_profile_pic_small.png" afterPath="$PROJECT_DIR$/www/img/contact-list/rebecca_profile_pic_small.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/contact-list/ryan_profile_pic_small.png" afterPath="$PROJECT_DIR$/www/img/contact-list/ryan_profile_pic_small.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/contact-list/theresa_profile_pic_small.png" afterPath="$PROJECT_DIR$/www/img/contact-list/theresa_profile_pic_small.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/photo-grid/boat.png" afterPath="$PROJECT_DIR$/www/img/photo-grid/boat.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/photo-grid/bottles.png" afterPath="$PROJECT_DIR$/www/img/photo-grid/bottles.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/photo-grid/building.png" afterPath="$PROJECT_DIR$/www/img/photo-grid/building.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/photo-grid/camping.png" afterPath="$PROJECT_DIR$/www/img/photo-grid/camping.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/photo-grid/door.png" afterPath="$PROJECT_DIR$/www/img/photo-grid/door.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/photo-grid/food.png" afterPath="$PROJECT_DIR$/www/img/photo-grid/food.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/photo-grid/greyhound.png" afterPath="$PROJECT_DIR$/www/img/photo-grid/greyhound.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/photo-grid/guitar.png" afterPath="$PROJECT_DIR$/www/img/photo-grid/guitar.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/photo-grid/houses.png" afterPath="$PROJECT_DIR$/www/img/photo-grid/houses.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/photo-grid/love.png" afterPath="$PROJECT_DIR$/www/img/photo-grid/love.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/photo-grid/mountain.png" afterPath="$PROJECT_DIR$/www/img/photo-grid/mountain.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/photo-grid/nails.png" afterPath="$PROJECT_DIR$/www/img/photo-grid/nails.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/photo-grid/oranges.png" afterPath="$PROJECT_DIR$/www/img/photo-grid/oranges.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/photo-grid/pigeon.png" afterPath="$PROJECT_DIR$/www/img/photo-grid/pigeon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/photo-grid/trees.png" afterPath="$PROJECT_DIR$/www/img/photo-grid/trees.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/photo-list/bird_small.png" afterPath="$PROJECT_DIR$/www/img/photo-list/bird_small.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/photo-list/building_small.png" afterPath="$PROJECT_DIR$/www/img/photo-list/building_small.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/photo-list/greyhound_small.png" afterPath="$PROJECT_DIR$/www/img/photo-list/greyhound_small.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/photo-list/love_small.png" afterPath="$PROJECT_DIR$/www/img/photo-list/love_small.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/photo-list/mountain_small.png" afterPath="$PROJECT_DIR$/www/img/photo-list/mountain_small.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/photo-list/nails_small.png" afterPath="$PROJECT_DIR$/www/img/photo-list/nails_small.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/photo-list/trees_small.png" afterPath="$PROJECT_DIR$/www/img/photo-list/trees_small.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/product/pencils_big.png" afterPath="$PROJECT_DIR$/www/img/product/pencils_big.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/product/thumbnail_1.png" afterPath="$PROJECT_DIR$/www/img/product/thumbnail_1.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/product/thumbnail_2.png" afterPath="$PROJECT_DIR$/www/img/product/thumbnail_2.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/product/thumbnail_3.png" afterPath="$PROJECT_DIR$/www/img/product/thumbnail_3.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/product/thumbnail_4.png" afterPath="$PROJECT_DIR$/www/img/product/thumbnail_4.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/background.png" afterPath="$PROJECT_DIR$/www/img/profile/background.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/dog.png" afterPath="$PROJECT_DIR$/www/img/profile/dog.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/drinking.png" afterPath="$PROJECT_DIR$/www/img/profile/drinking.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/drinks.png" afterPath="$PROJECT_DIR$/www/img/profile/drinks.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/forest.png" afterPath="$PROJECT_DIR$/www/img/profile/forest.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/hat.png" afterPath="$PROJECT_DIR$/www/img/profile/hat.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/in-nature.png" afterPath="$PROJECT_DIR$/www/img/profile/in-nature.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/leaf.png" afterPath="$PROJECT_DIR$/www/img/profile/leaf.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/on_a_boat.png" afterPath="$PROJECT_DIR$/www/img/profile/on_a_boat.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/people.png" afterPath="$PROJECT_DIR$/www/img/profile/people.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/puppy.png" afterPath="$PROJECT_DIR$/www/img/profile/puppy.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/strawberries.png" afterPath="$PROJECT_DIR$/www/img/profile/strawberries.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/tmp/background.png" afterPath="$PROJECT_DIR$/www/img/profile/tmp/background.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/tmp/dog.png" afterPath="$PROJECT_DIR$/www/img/profile/tmp/dog.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/tmp/drinking.png" afterPath="$PROJECT_DIR$/www/img/profile/tmp/drinking.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/tmp/drinks.png" afterPath="$PROJECT_DIR$/www/img/profile/tmp/drinks.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/tmp/forest.png" afterPath="$PROJECT_DIR$/www/img/profile/tmp/forest.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/tmp/hat.png" afterPath="$PROJECT_DIR$/www/img/profile/tmp/hat.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/tmp/in-nature.png" afterPath="$PROJECT_DIR$/www/img/profile/tmp/in-nature.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/tmp/leaf.png" afterPath="$PROJECT_DIR$/www/img/profile/tmp/leaf.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/tmp/on_a_boat.png" afterPath="$PROJECT_DIR$/www/img/profile/tmp/on_a_boat.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/tmp/people.png" afterPath="$PROJECT_DIR$/www/img/profile/tmp/people.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/tmp/puppy.png" afterPath="$PROJECT_DIR$/www/img/profile/tmp/puppy.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/tmp/strawberries.png" afterPath="$PROJECT_DIR$/www/img/profile/tmp/strawberries.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/tmp/user_photo.png" afterPath="$PROJECT_DIR$/www/img/profile/tmp/user_photo.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/tmp/white-pup.png" afterPath="$PROJECT_DIR$/www/img/profile/tmp/white-pup.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/user_photo.png" afterPath="$PROJECT_DIR$/www/img/profile/user_photo.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/profile/white-pup.png" afterPath="$PROJECT_DIR$/www/img/profile/white-pup.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/search-grid/beachside.png" afterPath="$PROJECT_DIR$/www/img/search-grid/beachside.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/search-grid/grand_house.png" afterPath="$PROJECT_DIR$/www/img/search-grid/grand_house.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/search-grid/hidden_retreat.png" afterPath="$PROJECT_DIR$/www/img/search-grid/hidden_retreat.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/search-grid/julian.png" afterPath="$PROJECT_DIR$/www/img/search-grid/julian.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/search-grid/sur_la_mer.png" afterPath="$PROJECT_DIR$/www/img/search-grid/sur_la_mer.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/search-grid/valleywag.png" afterPath="$PROJECT_DIR$/www/img/search-grid/valleywag.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/search-list/grand_house_photo.png" afterPath="$PROJECT_DIR$/www/img/search-list/grand_house_photo.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/search-list/julian_photo.png" afterPath="$PROJECT_DIR$/www/img/search-list/julian_photo.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/search-list/valleywag_photo.png" afterPath="$PROJECT_DIR$/www/img/search-list/valleywag_photo.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/shop-list/glitter_photo.png" afterPath="$PROJECT_DIR$/www/img/shop-list/glitter_photo.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/shop-list/highlighers_photo.png" afterPath="$PROJECT_DIR$/www/img/shop-list/highlighers_photo.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/shop-list/interlocking_pencils.png" afterPath="$PROJECT_DIR$/www/img/shop-list/interlocking_pencils.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/shop-list/marker_color_rows.png" afterPath="$PROJECT_DIR$/www/img/shop-list/marker_color_rows.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/shop-list/markers_top_view.png" afterPath="$PROJECT_DIR$/www/img/shop-list/markers_top_view.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/shop-list/pencils_circle.png" afterPath="$PROJECT_DIR$/www/img/shop-list/pencils_circle.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/shop-list/zigzag_pencils.png" afterPath="$PROJECT_DIR$/www/img/shop-list/zigzag_pencils.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/sign-in/background_pic.png" afterPath="$PROJECT_DIR$/www/img/sign-in/background_pic.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/sign-in/facebook.png" afterPath="$PROJECT_DIR$/www/img/sign-in/facebook.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/sign-in/gmail.png" afterPath="$PROJECT_DIR$/www/img/sign-in/gmail.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/sign-in/lock_icon.png" afterPath="$PROJECT_DIR$/www/img/sign-in/lock_icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/sign-in/masc.jpg" afterPath="$PROJECT_DIR$/www/img/sign-in/masc.jpg" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/sign-in/twitter.png" afterPath="$PROJECT_DIR$/www/img/sign-in/twitter.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/sign-in/user_icon.png" afterPath="$PROJECT_DIR$/www/img/sign-in/user_icon.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/img/sign-in/your_logo.png" afterPath="$PROJECT_DIR$/www/img/sign-in/your_logo.png" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config.xml" afterPath="$PROJECT_DIR$/config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers.js" afterPath="$PROJECT_DIR$/www/js/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/menu.html" afterPath="$PROJECT_DIR$/www/templates/menu.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/search-list.html" afterPath="$PROJECT_DIR$/www/templates/search-list.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/css/sign-in.css" afterPath="$PROJECT_DIR$/www/css/sign-in.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/templates/sign-in.html" afterPath="$PROJECT_DIR$/www/templates/sign-in.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/index.html" afterPath="$PROJECT_DIR$/www/index.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/app.js" afterPath="$PROJECT_DIR$/www/js/app.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/controllers.js" afterPath="$PROJECT_DIR$/www/js/controllers.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/www/js/factories.js" afterPath="$PROJECT_DIR$/www/js/factories.js" />
     </list>
     <ignored path="ionic theme.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -31,12 +163,42 @@
     <favorites_list name="ionic theme" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="controllers.js" pinned="false" current-in-tab="true">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="controllers.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5033557">
-              <caret line="21" column="83" selection-start-line="21" selection-start-column="83" selection-end-line="21" selection-end-column="83" />
+            <state relative-caret-position="240">
+              <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="factories.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/js/factories.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="60">
+              <caret line="4" column="114" selection-start-line="4" selection-start-column="114" selection-end-line="4" selection-end-column="114" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="app.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/www/js/app.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="52" selection-start-line="14" selection-start-column="52" selection-end-line="14" selection-end-column="52" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/www/index.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
               <folding />
             </state>
           </provider>
@@ -50,11 +212,16 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
+        <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/www/js/controllers.js" />
+        <option value="$PROJECT_DIR$/www/index.html" />
+        <option value="$PROJECT_DIR$/www/js/factories.js" />
+        <option value="$PROJECT_DIR$/www/js/app.js" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" />
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
   <component name="JsGulpfileManager">
     <detection-done>true</detection-done>
     <gulpfiles>
@@ -62,15 +229,12 @@
         <gulpfile-path>$PROJECT_DIR$/gulpfile.js</gulpfile-path>
       </GulpfileState>
     </gulpfiles>
-  </component>
-  <component name="NamedScopeManager">
-    <order />
+    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="247" />
-    <option name="y" value="26" />
-    <option name="width" value="1179" />
-    <option name="height" value="768" />
+    <option name="y" value="23" />
+    <option name="width" value="1440" />
+    <option name="height" value="873" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -93,9 +257,11 @@
       <autoscrollToSource />
       <autoscrollFromSource />
       <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -110,7 +276,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ionic theme" />
+              <option name="myItemId" value="bookdmobile" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -120,7 +286,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ionic theme" />
+              <option name="myItemId" value="bookdmobile" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -134,7 +300,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="ionic theme" />
+              <option name="myItemId" value="bookdmobile" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
@@ -148,7 +314,7 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -159,8 +325,17 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="HbShouldOpenHtmlAsHb" value="" />
+    <property name="editor.config.accepted" value="true" />
+    <property name="nodejs_interpreter_path" value="/usr/local/bin/node" />
   </component>
-  <component name="ShelveChangesManager" show_recycled="false" />
+  <component name="RunManager">
+    <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" path-to-node="project" working-dir="">
+      <method />
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -169,32 +344,37 @@
       <changelist id="6f1cac29-0c94-4347-9a74-3c3f94d01cab" name="Default" comment="" />
       <created>1465858798076</created>
       <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
       <updated>1465858798076</updated>
+      <workItem from="1468018798636" duration="814000" />
     </task>
     <servers />
   </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="814000" />
+  </component>
   <component name="ToolWindowManager">
-    <frame x="247" y="26" width="1179" height="768" extended-state="0" />
+    <frame x="0" y="23" width="1440" height="873" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2478411" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24722221" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -215,8 +395,64 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5033557">
-          <caret line="21" column="83" selection-start-line="21" selection-start-column="83" selection-end-line="21" selection-end-column="83" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/bower.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="5" selection-start-line="6" selection-start-column="5" selection-end-line="6" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/gulpfile.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="24" selection-start-line="9" selection-start-column="24" selection-end-line="9" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/controllers.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="16" column="16" selection-start-line="16" selection-start-column="16" selection-end-line="16" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/factories.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="114" selection-start-line="4" selection-start-column="114" selection-end-line="4" selection-end-column="114" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/www/js/app.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="52" selection-start-line="14" selection-start-column="52" selection-end-line="14" selection-end-column="52" />
           <folding />
         </state>
       </provider>
