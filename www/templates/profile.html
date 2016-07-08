@@ -7,28 +7,31 @@
 				<ul class="table-view">
 					<li class="table-view-cell media text-center">
 						<div class="user-photo-frame">
-							<img src="img/profile/user_photo.png" class="user-photo" alt=""/>
+							<img ng-if="currentUser.provider === 'facebook'"
+								 ng-src="{{currentUser.providerInfo}}"/>
+							<img ng-if="currentUser.provider === 'bookd' || currentUser.provider === 'business'"
+								 ng-src="{{avatar}}"/>
 						</div>
-						<h4>Marissa Kennedy</h4>
+						<h4>{{currentUser.name}}</h4>
 						<a href="#" class="btn btn-outlined">FOLLOW</a>
 					</li>
 					<li class="table-view-cell media text-center no-padding backdrop-background">
 						<section class="social-panel">
 							<div class="social-info backdrop-background-6">
-								<h3>481</h3>
-								<p>followers</p>
+								<h3>{{currentUser.appointments.length}}</h3>
+								<p>Appointments</p>
 							</div>
 							<div class="social-info backdrop-background-5">
-								<h3>96</h3>
-								<p>photos</p>
+								<h3>0</h3>
+								<p>Personal Photos</p>
 							</div>
 							<div class="social-info backdrop-background-4">
 								<h3>391</h3>
 								<p>comments</p>
 							</div>
 							<div class="social-info">
-								<h3>82</h3>
-								<p>favorites</p>
+								<h3>10.3</h3>
+								<p>Rating</p>
 							</div>
 						</section>
 					</li>
@@ -49,6 +52,6 @@
 				<img src="img/profile/strawberries.png" />
 			</section>
 		</div>
-	
+
     </ion-content>
 </ion-view>
