@@ -1,13 +1,14 @@
 <ion-view style="" view-title="Search Grid" hide-back-button="true" class="search-grid">
 
     <ion-content class="has-header" overflow-scroll="true" padding="true">
-    
+
 		<div class="bar bar-standard bar-header-secondary">
 			<form class="input-group">
 				<div class="input-row">
 					<span class="icon icon-search pull-left"></span>
-					<input type="text" name="filter" class="pull-left" placeholder="Search">
-				</div>	
+          <input type="text" name="filter" class="pull-left" placeholder="Search" ng-model="vm.query.term"
+                 g-places-autocomplete options="autocompleteOptions">
+        </div>
 			</form>
 		</div>
 		<div class="content">
@@ -105,6 +106,6 @@
 				</ul>
 			</div>
 		</div>
-	
+
     </ion-content>
 </ion-view>

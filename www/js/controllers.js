@@ -129,4 +129,42 @@ angular.module('bookd.controllers', [])
 
       }
     }
-  });
+  }).controller('SearchCtrl', ['$scope', 'business', 'search', function ($scope, business, search) {
+  var vm = this;
+
+  vm.query = {
+    location: null,
+    term: null
+  };
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function (position) {
+      var lat = position.coords.latitude;
+      var lng = position.coords.longitude;
+      console.log(lat, lng);
+      // This returns an 8 part array where the 0th index is the most accurate and the 7th is least accurate.
+      search.getLocationInfo(lat, lng).then(
+        function (data) {
+          console.log(data);
+          vm.query.location = data['results'][0]['formatted_address'];
+        }, function (err) {
+          console.log(err);
+        });
+    }, function (err) {
+      console.log(err);
+    });
+  } else {
+    //TODO HANDLE THIS CASE
+    console.log('Geolocation is not supported by this browser.');
+  }
+
+  vm.search = function () {
+    var formattedQuery;
+    formattedQuery = vm.query.term + ' ' + vm.query.location;
+
+    business.search(formattedQuery)
+      .then(function (data) {
+        console.log(data);
+      });
+  };
+}]);

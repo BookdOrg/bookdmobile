@@ -2,7 +2,7 @@
  * Created by khalilbrown on 6/5/16.
  */
 angular.module('bookd.factories', [])
-  .factory('auth', ['$http', '$window', '$rootScope', '$state', '$q', function ($http, $window, $rootScope, $state) {
+  .factory('auth', ['$http', '$window', '$rootScope', '$state', 'remoteHost', function ($http, $window, $rootScope, $state, remoteHost) {
     var auth = {
       /**
        * Save the users authentication token
@@ -65,7 +65,7 @@ angular.module('bookd.factories', [])
         }
       },
       register: function (user, info) {
-        return $http.post('http://localhost:3002/register', user)
+        return $http.post(remoteHost + '/register', user)
           .then(function (data) {
             auth.saveUser(data.data.token, data.data.user);
             if (info) {
@@ -79,7 +79,7 @@ angular.module('bookd.factories', [])
           });
       },
       logIn: function (user, info) {
-        return $http.post('http://localhost:3002/login', user)
+        return $http.post(remoteHost + '/login', user)
           .then(function (data) {
             auth.saveUser(data.data.token, data.data.user);
             if (info) {
@@ -113,7 +113,7 @@ angular.module('bookd.factories', [])
         var data = {
           email: email
         };
-        return $http.post('http://localhost:3002/user/reset', data)
+        return $http.post(remoteHost + '/user/reset', data)
           .then(function (data) {
             console.log(data);
           }, function (error) {
@@ -125,7 +125,7 @@ angular.module('bookd.factories', [])
           password: password,
           token: token
         };
-        return $http.post('http://localhost:3002/user/reset/new', data)
+        return $http.post(remoteHost + '/user/reset/new', data)
           .then(function (data) {
             console.log(data);
           }, function (error) {
@@ -155,6 +155,57 @@ angular.module('bookd.factories', [])
     };
     return o;
   })
+  .factory('business', ['$http', 'auth', '$q', 'remoteHost', function ($http, auth, $q, remoteHost) {
+    return {
+      /**
+       *   Queries & returns google places for a business based on a
+       *   text search.
+       *
+       **/
+      search: function (query) {
+        return $http.get(remoteHost + '/business/search', {
+          params: {
+            'query': query
+          },
+          headers: {Authorization: 'Bearer ' + auth.getToken()}
+        }).then(function (data) {
+          return data.data;
+        }, function (err) {
+          handleError(err);
+        });
+      }
+    };
+
+    // I transform the error response, unwrapping the application dta from
+    // the API response payload.
+    function handleError(response) {
+      // The API response from the server should be returned in a
+      // normalized format. However, if the request was not handled by the
+      // server (or what not handles properly - ex. server error), then we
+      // may have to normalize it on our end, as best we can.
+      if (!angular.isObject(response.data) || !response.data.message) {
+        return ( $q.reject('An unknown error occurred.') );
+      }
+      // Otherwise, use expected error message.
+      return ( $q.reject(response.data.message) );
+    }
+  }]).factory('search', ['$http', function ($http) {
+  return {
+    getLocationInfo: function (lat, lng) {
+      return $http.get('https://maps.googleapis.com/maps/api/geocode/json?&key=AIzaSyAK1BOzJxHB8pOFmPFufYdcVdAuLr_6z2U&latlng='
+        + lat + ',' + lng)
+        .then(function (data) {
+          if (data) {
+            return data.data;
+          }
+        }, function (error) {
+          //TODO Google wants us to access this API from a server, not a client.
+          console.log('If seeing this, probably CORS error with googleapis geocode');
+          console.log(error);
+        });
+    }
+  }
+}])
   .factory('notificationFactory', function ($http, auth, $q) {
     var o = {};
     o.addNotification = function (id, content, type, sendEmail, date) {

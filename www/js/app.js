@@ -34,6 +34,7 @@ app.constant('devHost', 'dev.bookd.me');
 app.constant('devPort', '8112');
 app.constant('facebookApi', 'https://graph.facebook.com/');
 app.constant('googleApi', 'https://www.googleapis.com/plus/v1/people/');
+app.constant('remoteHost', 'https://dev.bookd.me'); // https://dev.bookd.me https://bookd.me http://localhost:3002
 app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('auth', {
@@ -123,7 +124,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         url: '/search-grid',
         views: {
           'menuContent': {
-            templateUrl: 'templates/search-grid.html'
+            templateUrl: 'templates/search-grid.html',
+            controller: 'SearchCtrl',
+            controllerAs: 'vm'
           }
         }
       })
@@ -132,7 +135,9 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         url: '/search-list',
         views: {
           'menuContent': {
-            templateUrl: 'templates/search-list.html'
+            templateUrl: 'templates/search-list.html',
+            controller: 'SearchCtrl',
+            controllerAs: 'vm'
           }
         }
       })

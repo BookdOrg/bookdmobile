@@ -3,10 +3,11 @@
     <ion-content class="has-header" overflow-scroll="true" padding="true">
 
 		<div class="bar bar-standard bar-header-secondary">
-			<form class="input-group">
+      <form class="input-group" ng-submit="vm.search()">
 				<div class="input-row">
 					<span class="icon icon-search pull-left"></span>
-					<input type="text" name="filter" class="pull-left" placeholder="Search">
+          <input type="text" placeholder="Chief's Barbershop" ng-model="vm.query.term"
+                 g-places-autocomplete options="autocompleteOptions">
 				</div>
 			</form>
 		</div>
