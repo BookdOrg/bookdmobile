@@ -4,9 +4,15 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('bookd', ['ionic', 'bookd.controllers', 'bookd.factories', 'ngCordovaOauth'])
+//var angular = require('angular');
+var app = angular.module('bookd', ['ionic','bookd.controllers','bookd.factories','ngCordovaOauth']);
+//
+//require('./services');
+//require('./controllers');
+//require('./directives');
+//require('./filters');
 
-  .run(function ($ionicPlatform, $rootScope) {
+app.run(function ($ionicPlatform, $rootScope) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -20,30 +26,31 @@ angular.module('bookd', ['ionic', 'bookd.controllers', 'bookd.factories', 'ngCor
         StatusBar.styleDefault();
       }
     });
-  })
-  .constant('CLOUDINARY_BASE', 'https://res.cloudinary.com/dvvtn4u9h/image/upload/c_thumb,h_300,w_300/v')
-  .constant('CLOUDINARY_Default', 'https://res.cloudinary.com/dvvtn4u9h/image/upload/c_thumb,h_300,w_300/v1432411957/profile/placeholder.jpg')
-  .constant('localDevHost', 'localhost')
-  .constant('devHost', 'dev.bookd.me')
-  .constant('devPort', '8112')
-  .constant('facebookApi', 'https://graph.facebook.com/')
-  .constant('googleApi', 'https://www.googleapis.com/plus/v1/people/')
-  .config(function ($stateProvider, $urlRouterProvider) {
+  });
+
+app.constant('CLOUDINARY_BASE', 'https://res.cloudinary.com/dvvtn4u9h/image/upload/c_thumb,h_300,w_300/v');
+app.constant('CLOUDINARY_Default', 'https://res.cloudinary.com/dvvtn4u9h/image/upload/c_thumb,h_300,w_300/v1432411957/profile/placeholder.jpg');
+app.constant('localDevHost', 'localhost');
+app.constant('devHost', 'dev.bookd.me');
+app.constant('devPort', '8112');
+app.constant('facebookApi', 'https://graph.facebook.com/');
+app.constant('googleApi', 'https://www.googleapis.com/plus/v1/people/');
+app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
       .state('signin', {
         url: '/sign-in',
         templateUrl: 'templates/sign-in.html',
-        controller: 'authCtrl'
+        controller: 'AuthCtrl'
       })
       .state('create-account', {
         url: '/create-account',
         templateUrl: 'templates/create-account.html',
-        controller: 'authCtrl'
+        controller: 'AuthCtrl'
       })
       .state('lost-password', {
         url: '/lost-password',
         templateUrl: 'templates/lost-password.html',
-        controller: 'authCtrl'
+        controller: 'AuthCtrl'
       })
       .state('app', {
         url: '/app',
