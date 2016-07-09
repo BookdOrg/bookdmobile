@@ -16,7 +16,27 @@
 .sign-in .icon-facebook{ background: url(../img/sign-in/facebook.png) no-repeat scroll center center; color: transparent !important; display: inline-block; background-size: 48px; height: 50px; width: 50px; }
 .sign-in .icon-twitter{ background: url(../img/sign-in/twitter.png) no-repeat scroll center center; color: transparent !important; display: inline-block; background-size: 48px; height: 50px; width: 50px; }
 .sign-in .icon-gplus{ background: url(../img/sign-in/gmail.png) no-repeat scroll center center; color: transparent !important; display: inline-block; background-size: 48px; height: 50px; width: 50px; }
-.sign-in #sign-in-form{ margin: 3px .8em; margin-bottom: 17px; }
-.sign-in #sign-in-form a{ font-size: 12px; font-weight: 700; padding: 0 5px; }
-.sign-in #sign-in-form>button{ color: #fff; margin: 17px 0; font-weight: bold; border-color: #333; background-color: #333; text-transform: uppercase;}
-.sign-in #sign-in-form>input{ margin-top: 17px; }
+
+.sign-in .sign-in-form {
+  margin: 3px .8em;
+  margin-bottom: 17px;
+}
+
+.sign-in .sign-in-form a {
+  font-size: 12px;
+  font-weight: 700;
+  padding: 0 5px;
+}
+
+.sign-in .sign-in-form > button {
+  color: #fff;
+  margin: 17px 0;
+  font-weight: bold;
+  border-color: #333;
+  background-color: #333;
+  text-transform: uppercase;
+}
+
+.sign-in .sign-in-form > input {
+  margin-top: 17px;
+}

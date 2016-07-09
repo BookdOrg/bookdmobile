@@ -16,11 +16,10 @@ app.run(function ($ionicPlatform, $rootScope) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
-      //if (window.cordova && window.cordova.plugins.Keyboard) {
-      //  cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-      //  cordova.plugins.Keyboard.disableScroll(true);
-      //
-      //}
+      if (window.cordova && window.cordova.plugins.Keyboard) {
+        //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        cordova.plugins.Keyboard.disableScroll(true);
+      }
       if (window.StatusBar) {
         // org.apache.cordova.statusbar required
         StatusBar.styleDefault();
@@ -37,19 +36,9 @@ app.constant('facebookApi', 'https://graph.facebook.com/');
 app.constant('googleApi', 'https://www.googleapis.com/plus/v1/people/');
 app.config(function ($stateProvider, $urlRouterProvider) {
     $stateProvider
-      .state('signin', {
-        url: '/sign-in',
-        templateUrl: 'templates/sign-in.html',
-        controller: 'AuthCtrl'
-      })
-      .state('create-account', {
-        url: '/create-account',
-        templateUrl: 'templates/create-account.html',
-        controller: 'AuthCtrl'
-      })
-      .state('lost-password', {
-        url: '/lost-password',
-        templateUrl: 'templates/lost-password.html',
+      .state('auth', {
+        url: '/auth',
+        templateUrl: 'templates/auth.html',
         controller: 'AuthCtrl'
       })
       .state('app', {
@@ -190,5 +179,5 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         }
       });
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/sign-in');
+  $urlRouterProvider.otherwise('/auth');
   });

@@ -137,7 +137,9 @@ angular.module('bookd.factories', [])
     return auth;
   }])
   .factory('appointmentFactory', function ($http, auth, $q) {
-    var o = {};
+    var o = {
+      appointments: null
+    };
     o.getInfiniteAppointment = function (lastSeen) {
       return $http.get('http://localhost:3002/appointments-scroll', {
         params: {
@@ -145,7 +147,8 @@ angular.module('bookd.factories', [])
         },
         headers: {Authorization: 'Bearer ' + auth.getToken()}
       }).then(function (data) {
-        return data;
+        o.appointments = data.data.docs;
+        return o.appointments;
       }, function (err) {
         return err.data
       })
