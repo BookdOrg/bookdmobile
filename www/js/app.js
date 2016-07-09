@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 //var angular = require('angular');
-var app = angular.module('bookd', ['ionic','bookd.controllers','bookd.factories','ngCordovaOauth']);
+var app = angular.module('bookd', ['ionic', 'bookd.controllers', 'bookd.factories', 'ngCordovaOauth']);
 //
 //require('./services');
 //require('./controllers');
@@ -26,7 +26,7 @@ app.run(function ($ionicPlatform, $rootScope) {
         StatusBar.styleDefault();
       }
     });
-  });
+});
 
 app.constant('CLOUDINARY_BASE', 'https://res.cloudinary.com/dvvtn4u9h/image/upload/c_thumb,h_300,w_300/v');
 app.constant('CLOUDINARY_Default', 'https://res.cloudinary.com/dvvtn4u9h/image/upload/c_thumb,h_300,w_300/v1432411957/profile/placeholder.jpg');
@@ -176,7 +176,8 @@ app.config(function ($stateProvider, $urlRouterProvider) {
         url: '/appointments',
         views: {
           'menuContent': {
-            templateUrl: 'templates/appointments.html'
+            templateUrl: 'templates/appointments.html',
+            controller: 'appointmentCtrl'
           }
         }
       })

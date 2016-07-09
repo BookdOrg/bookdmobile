@@ -96,4 +96,31 @@ angular.module('bookd.controllers', [])
     //        }
     //    );
     //};
+  })
+  .controller('appointmentCtrl', function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_BASE, CLOUDINARY_Default, appointmentFactory) {
+    appointmentFactory.getInfiniteAppointment(0)
+      .then(function (response) {
+        $scope.appointments = response.data.docs;
+      }, function (error) {
+        alert(error);
+      });
+    $scope.loadMore = function () {
+      if ($scope.appointments) {
+        var lastIndex = $scope.appointments.length;
+        appointmentFactory.getInfiniteAppointment(lastIndex)
+          .then(function (response) {
+            for (var appointmentIndex = 0; appointmentIndex < response.data.docs.length; appointmentIndex++) {
+              $scope.appointments.push(response.data.docs[appointmentIndex]);
+            }
+            $scope.$broadcast('scroll.infiniteScrollComplete');
+          }, function (error) {
+            alert(error);
+          });
+      }
+    };
+    function pushAppointments(appointments) {
+      for (var appointmentIndex = 0; appointmentIndex < appointments.length; appointmentIndex++) {
+
+      }
+    }
   });

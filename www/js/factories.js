@@ -136,6 +136,22 @@ angular.module('bookd.factories', [])
 
     return auth;
   }])
+  .factory('appointmentFactory', function ($http, auth, $q) {
+    var o = {};
+    o.getInfiniteAppointment = function (lastSeen) {
+      return $http.get('http://localhost:3002/appointments-scroll', {
+        params: {
+          lastSeen: lastSeen
+        },
+        headers: {Authorization: 'Bearer ' + auth.getToken()}
+      }).then(function (data) {
+        return data;
+      }, function (err) {
+        return err.data
+      })
+    };
+    return o;
+  })
   .factory('notificationFactory', function ($http, auth, $q) {
     var o = {};
     o.addNotification = function (id, content, type, sendEmail, date) {

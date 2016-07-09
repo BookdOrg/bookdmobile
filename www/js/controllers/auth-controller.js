@@ -1,22 +1,22 @@
-module.exports =  function ($scope, $ionicPopup, auth, $state, $cordovaOauth, $http, $rootScope, CLOUDINARY_BASE, CLOUDINARY_Default) {
+module.exports = function ($scope, $ionicPopup, auth, $state, $cordovaOauth, $http, $rootScope, CLOUDINARY_BASE, CLOUDINARY_Default) {
   $scope.doLogIn = function (user) {
     user.provider = 'bookd';
     auth.logIn(user).then(function () {
-        if ($rootScope.currentUser.avatarVersion) {
-          $rootScope.avatar = CLOUDINARY_BASE + $rootScope.currentUser.avatarVersion + '/profile/' + $rootScope.currentUser._id;
-        } else {
-          $rootScope.avatar = CLOUDINARY_Default;
+      if ($rootScope.currentUser.avatarVersion) {
+        $rootScope.avatar = CLOUDINARY_BASE + $rootScope.currentUser.avatarVersion + '/profile/' + $rootScope.currentUser._id;
+      } else {
+        $rootScope.avatar = CLOUDINARY_Default;
 
-        }
-        $state.go('app.searchlist');
+      }
+      $state.go('app.searchlist');
     }).then(function (error) {
-        $scope.error = error;
-        if (error) {
-          $ionicPopup.alert({
-            title: 'Oops!',
-            template: $scope.error.message
-          })
-        }
+      $scope.error = error;
+      if (error) {
+        $ionicPopup.alert({
+          title: 'Oops!',
+          template: $scope.error.message
+        })
+      }
     })
   };
   $scope.facebookLogin = function () {

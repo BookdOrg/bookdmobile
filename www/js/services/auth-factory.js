@@ -133,4 +133,4 @@ module.exports = function ($http, $window, $rootScope, $state) {
     }
   };
 };
-  //return auth;
+//return auth;

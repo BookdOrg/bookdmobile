@@ -1,15 +1,41 @@
-<ion-view class="bookmarks-view">
-    <ion-nav-title>
-        <span>Appointments</span>
-    </ion-nav-title>
-    <ion-content>
-        <div class="row bookmarks-container">
-            <div class="col col-center">
-                <div class="empty-results">
-                    <i class="icon ion-ios-calendar-outline"></i>
-                    <h3 class="no-bookmarks">There's nothing here yet. Book an Appointment!</h3>
-                </div>
+<ion-view view-title="Appointments" class="shop-list">
+  <ion-nav-buttons side="right">
+    <button class="button button-icon button-clear ion-ios-search"></button>
+    <!--<button class="button button-icon button-clear ion-ios-cart-outline"></button>-->
+  </ion-nav-buttons>
+  <ion-content class="has-header" overflow-scroll="true" padding="true">
+    <ion-list>
+      <!--<div class="content">-->
+
+      <ion-item ng-repeat="appointment in appointments">
+        <ul class="table-view">
+          <li class="table-view-cell media">
+            <div class="right-group">
+              <a class="icon icon-plus-rounded pull-left"></a>
+              <a class="icon icon-hearth pull-right"></a>
             </div>
-        </div>
-    </ion-content>
+            <!--<img class="media-object pull-left" src="img/shop-list/interlocking_pencils.png">-->
+            <div class="media-body">
+              <h4>{{appointment.title}}</h4>
+
+              <p>Status: {{appointment.status}}</p>
+
+              <p>Date: {{appointment.start.date}}</p>
+
+              <p>Time: {{appointment.start.time}}</p>
+            </div>
+          </li>
+        </ul>
+      </ion-item>
+
+      <!--</div>-->
+    </ion-list>
+    <ion-infinite-scroll
+      immediate-check="false"
+      on-infinite="loadMore()"
+      icon="ion-loading-c"
+      distance="1%"
+      spinner="spiral">
+    </ion-infinite-scroll>
+  </ion-content>
 </ion-view>
