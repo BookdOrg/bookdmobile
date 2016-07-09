@@ -101,19 +101,30 @@ angular.module('bookd.controllers', [])
     //    );
     //};
   })
-  .controller('appointmentCtrl', function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_BASE, CLOUDINARY_Default, appointmentFactory) {
+  .controller('appointmentCtrl', function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_BASE, CLOUDINARY_Default, appointmentFactory, $ionicModal) {
     appointmentFactory.getInfiniteAppointment(0)
       .then(function (response) {
         $scope.appointments = response;
+        $scope.lastIndex = $scope.appointments.length;
       }, function (error) {
         alert(error);
       });
     //$scope.appointments = appointmentFactory.appointments;
-
+    $scope.doRefresh = function () {
+      appointmentFactory.getInfiniteAppointment(0)
+        .then(function (response) {
+          $scope.appointments = response;
+          $scope.lastIndex = $scope.appointments.length;
+          $scope.$broadcast('scroll.refreshComplete');
+        }, function (error) {
+          alert(error);
+          $scope.$broadcast('scroll.refreshComplete');
+        });
+    };
     $scope.loadMore = function () {
       if ($scope.appointments) {
-        var lastIndex = $scope.appointments.length;
-        appointmentFactory.getInfiniteAppointment(lastIndex)
+        $scope.lastIndex = $scope.appointments.length;
+        appointmentFactory.getInfiniteAppointment($scope.lastIndex)
           .then(function (response) {
             for (var appointmentIndex = 0; appointmentIndex < response.length; appointmentIndex++) {
               $scope.appointments.push(response[appointmentIndex]);
@@ -124,6 +135,27 @@ angular.module('bookd.controllers', [])
           });
       }
     };
+    $scope.moreDataCanBeLoaded = function () {
+      if ($scope.lastIndex < $rootScope.currentUser.appointments.length) {
+        return true;
+      } else {
+        return false;
+      }
+    };
+    $ionicModal.fromTemplateUrl('appointment-modal.html', function (modal) {
+      $scope.modalCtrl = modal;
+    }, {
+      scope: $scope,  /// GIVE THE MODAL ACCESS TO PARENT SCOPE
+      animation: 'slide-in-up'//'slide-left-right', 'slide-in-up', 'slide-right-left'
+    });
+    $scope.appointmentClicked = function (index) {
+      $scope.appointmentIndex = index;
+      $scope.modalCtrl.show();
+    };
+    $scope.closeModal = function () {
+      $scope.modalCtrl.hide();
+    };
+
     function pushAppointments(appointments) {
       for (var appointmentIndex = 0; appointmentIndex < appointments.length; appointmentIndex++) {
 

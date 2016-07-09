@@ -1,39 +1,76 @@
-<ion-view view-title="Appointments" class="shop-list">
+<ion-view view-title="Appointments" class="appointment-list">
   <ion-nav-buttons side="right">
-    <button class="button button-icon button-clear ion-ios-search"></button>
-    <!--<button class="button button-icon button-clear ion-ios-cart-outline"></button>-->
+    <!--<button class="button button-icon button-clear ion-ios-search"></button>-->
   </ion-nav-buttons>
   <ion-content class="has-header" overflow-scroll="true" padding="true">
-    <ion-list>
-      <!--<div class="content">-->
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="doRefresh()">
+    </ion-refresher>
+    <div class="row bookmarks-container" ng-if="appointments.length==0">
+      <div class="col col-center">
+        <div class="empty-results">
+          <i class="icon ion-ios-calendar-outline"></i>
 
-      <ion-item ng-repeat="appointment in appointments">
+          <h3 class="no-bookmarks">There's nothing here yet. Book an Appointment!</h3>
+        </div>
+      </div>
+    </div>
+    <ion-list>
+      <ion-item ng-repeat="appointment in appointments track by $index">
         <ul class="table-view">
           <li class="table-view-cell media">
-            <div class="right-group">
-              <a class="icon icon-plus-rounded pull-left"></a>
-              <a class="icon icon-hearth pull-right"></a>
-            </div>
+            <!--<div class="right-group">-->
+            <!--<a class="icon icon-plus-rounded pull-left"></a>-->
+            <!--<a class="icon icon-hearth pull-right"></a>-->
+            <!--</div>-->
             <!--<img class="media-object pull-left" src="img/shop-list/interlocking_pencils.png">-->
             <div class="media-body">
-              <h4>{{appointment.title}}</h4>
+              <h3>{{appointment.title}}</h3>
 
-              <p>Status: {{appointment.status}}</p>
+              <p>Status: {{appointment.status | uppercase}}</p>
 
               <p>Date: {{appointment.start.date}}</p>
 
               <p>Time: {{appointment.start.time}}</p>
             </div>
+            <table class="media-foot">
+              <tr>
+                <td>
+                  <button class="btn btn-primary" ng-click="appointmentClicked($index)">
+                    <span class="icon ion-ios-calendar-outline"></span> Re-Schedule
+                  </button>
+                </td>
+                <td>
+                  <button class="btn btn-danger">
+                    <span class="icon ion-close"></span> Cancel
+                  </button>
+                </td>
+              </tr>
+            </table>
           </li>
         </ul>
       </ion-item>
-
-      <!--</div>-->
     </ion-list>
     <ion-infinite-scroll
       immediate-check="false"
       on-infinite="loadMore()"
-      spinner="ion-loading-c">
+      icon="ion-loading-c"
+      distance="1%"
+      ng-if="moreDataCanBeLoaded()">
     </ion-infinite-scroll>
   </ion-content>
 </ion-view>
+<script id="appointment-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <ion-header-bar>
+      <h1 class="title">{{appointments[appointmentIndex].title}}</h1>
+    </ion-header-bar>
+
+    <ion-content>
+      {{appointments[appointmentIndex].start.date}}
+      {{appointments[appointmentIndex].start.time}}
+      <button class="btn btn-primary ion-ios-close" ng-click="closeModal()"></button>
+    </ion-content>
+  </ion-modal-view>
+</script>
