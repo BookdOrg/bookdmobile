@@ -1,5 +1,5 @@
 angular.module('bookd.controllers', [])
-  .controller('authCtrl', function ($scope, $ionicPopup, auth, $state, $cordovaOauth, $http, $rootScope, CLOUDINARY_BASE, CLOUDINARY_Default) {
+  .controller('AuthCtrl', function ($scope, $ionicPopup, auth, $state, $cordovaOauth, $http, $rootScope, CLOUDINARY_BASE, CLOUDINARY_Default) {
     $scope.doLogIn = function (user) {
       user.provider = 'bookd';
       auth.logIn(user)

@@ -65,7 +65,7 @@ angular.module('bookd.factories', [])
         }
       },
       register: function (user, info) {
-        return $http.post('https://dev.bookd.me/register', user)
+        return $http.post('http://localhost:3002/register', user)
           .then(function (data) {
             auth.saveUser(data.data.token, data.data.user);
             if (info) {
@@ -79,7 +79,7 @@ angular.module('bookd.factories', [])
           });
       },
       logIn: function (user, info) {
-        return $http.post('https://dev.bookd.me/login', user)
+        return $http.post('http://localhost:3002/login', user)
           .then(function (data) {
             auth.saveUser(data.data.token, data.data.user);
             if (info) {
@@ -113,7 +113,7 @@ angular.module('bookd.factories', [])
         var data = {
           email: email
         };
-        return $http.post('https://dev.bookd.me/user/reset', data)
+        return $http.post('http://localhost:3002/user/reset', data)
           .then(function (data) {
             console.log(data);
           }, function (error) {
@@ -125,7 +125,7 @@ angular.module('bookd.factories', [])
           password: password,
           token: token
         };
-        return $http.post('https://dev.bookd.me/user/reset/new', data)
+        return $http.post('http://localhost:3002/user/reset/new', data)
           .then(function (data) {
             console.log(data);
           }, function (error) {
