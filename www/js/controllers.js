@@ -101,7 +101,7 @@ angular.module('bookd.controllers', [])
     //    );
     //};
   })
-  .controller('appointmentCtrl', function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_BASE, CLOUDINARY_Default, appointmentFactory, $ionicModal) {
+  .controller('appointmentCtrl', function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_BASE, CLOUDINARY_Default, appointmentFactory, $ionicModal, businessFactory) {
     appointmentFactory.getInfiniteAppointment(0)
       .then(function (response) {
         $scope.appointments = response;
@@ -150,7 +150,25 @@ angular.module('bookd.controllers', [])
     });
     $scope.appointmentClicked = function (index) {
       $scope.appointmentIndex = index;
-      $scope.modalCtrl.show();
+      $scope.modalCtrl.show().then(function () {
+        businessFactory.serviceDetails($scope.appointments[index].service)
+          .then(function (data) {
+            //set the service to the $scope property
+            $scope.service = data;
+            //grab the employee details from the services list of employees based on the appointments employeeID
+            if ($scope.appointments[index].employee._id) {
+              $scope.employee = _.findWhere($scope.service.employees, {_id: $scope.appointments[appointments[index]].employee._id});
+            } else {
+              $scope.employee = _.findWhere($scope.service.employees, {_id: $scope.appointments[appointments[index]].employee});
+            }
+
+            //if there's no employee we set this flag to true
+            if (!$scope.employee) {
+              $scope.showNoEmployee = true;
+            }
+            $scope.stripePrice = $scope.service.price * 100;
+          });
+      });
     };
     $scope.closeModal = function () {
       $scope.modalCtrl.hide();
@@ -161,7 +179,7 @@ angular.module('bookd.controllers', [])
 
       }
     }
-  }).controller('SearchCtrl', ['$scope', 'business', 'search', function ($scope, business, search) {
+  }).controller('SearchCtrl', ['$scope', 'businessFactory', 'search', function ($scope, businessFactory, search) {
   var vm = this;
 
   vm.query = {
@@ -194,7 +212,7 @@ angular.module('bookd.controllers', [])
     var formattedQuery;
     formattedQuery = vm.query.term + ' ' + vm.query.location;
 
-    business.search(formattedQuery)
+    businessFactory.search(formattedQuery)
       .then(function (data) {
         console.log(data);
       });

@@ -68,9 +68,25 @@
     </ion-header-bar>
 
     <ion-content>
-      {{appointments[appointmentIndex].start.date}}
-      {{appointments[appointmentIndex].start.time}}
-      <button class="btn btn-primary ion-ios-close" ng-click="closeModal()"></button>
+      <h3>Service: {{service.name}}</h3>
+      <h4>Description: {{service.description}}</h4>
+      <h4>Duration: {{service.duration}}</h4>
+      <h4>Price: {{service.price}}</h4>
+
+      <h1>Current Appointment</h1>
+
+      <p>Date: {{appointments[appointmentIndex].start.date}}</p>
+
+      <p>Time: {{appointments[appointmentIndex].start.time}}</p>
+
+      <h3>Service Employees:</h3>
+
+      <div ng-repeat="employee in service.employees">
+        <h3>{{employee.name}}</h3>
+      </div>
+      <button class="btn btn-primary" ng-click="closeModal()">
+        <span class="icon ion-ios-close"></span> Close
+      </button>
     </ion-content>
   </ion-modal-view>
 </script>

@@ -483,7 +483,7 @@ angular.module('bookd.factories', [])
       return ( $q.reject(response.data.message) );
     }
   })
-  .factory('business', ['$http', 'auth', '$q', 'remoteHost', function ($http, auth, $q, remoteHost) {
+  .factory('businessFactory', ['$http', 'auth', '$q', 'remoteHost', function ($http, auth, $q, remoteHost) {
     return {
       /**
        *   Queries & returns google places for a business based on a
@@ -501,6 +501,91 @@ angular.module('bookd.factories', [])
         }, function (err) {
           handleError(err);
         });
+      },
+      /**
+       *   Creates a new appointment for both the Employee and Customer.
+       *   Takes in the appointment object.
+       *
+       *    Parameters:
+       *               businessId -
+       *  employee -
+       *  customer -
+       *  start -
+       *  end -
+       *  title -
+       *  timestamp -
+       *  card -
+       **/
+      addAppointment: function (appt) {
+        return $http.post(remoteHost + '/business/appointments/create', appt, {
+          headers: {Authorization: 'Bearer ' + auth.getToken()}
+        }).then(function (response) {
+          return response.data;
+        }, function (err) {
+          return err.data;
+        });
+      },
+      updateAppointment: function (appt) {
+        return $http.post(remoteHost + '/business/appointments/update', appt, {
+          headers: {Authorization: 'Bearer ' + auth.getToken()}
+        }).then(function (response) {
+          return response.data;
+        }, function (err) {
+          return err.data;
+        });
+      },
+      cancelAppointment: function (appt) {
+        return $http.post(remoteHost + '/business/appointments/cancel', appt, {
+          headers: {Authorization: 'Bearer ' + auth.getToken()}
+        }).then(function (response) {
+          return response.data;
+        }, function (err) {
+          return err.data;
+        });
+      },
+      getBusiness: function (id) {
+        return $http.get(remoteHost + '/business/details', {
+          params: {
+            'placesId': id
+          },
+          headers: {Authorization: 'Bearer ' + auth.getToken()}
+        }).then(function (data) {
+          //angular.copy(data.data, o.business);
+          return data.data;
+        }, handleError);
+      },
+      /**
+       *   Returns all Bookd information about a specific Business.
+       *
+       *  Parameters:
+       *  placeId -
+       *
+       **/
+      getBusinessInfo: function (id) {
+        return $http.get(remoteHost + '/business/info', {
+          params: {
+            'id': id
+          },
+          headers: {Authorization: 'Bearer ' + auth.getToken()}
+        }).then(function (data) {
+          return data.data;
+        }, handleError);
+      },
+      /**
+       *
+       * Get the details for a specific service
+       *
+       */
+      serviceDetails: function (serviceId) {
+        return $http.get(remoteHost + '/business/service-detail', {
+          params: {
+            'service': serviceId
+          },
+          headers: {Authorization: 'Bearer ' + auth.getToken()}
+        }).then(function (data) {
+          //angular.copy(data.data, o.service);
+          return data.data;
+        }, handleError);
       }
     };
 
