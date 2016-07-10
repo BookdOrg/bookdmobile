@@ -602,7 +602,8 @@ angular.module('bookd.factories', [])
       // Otherwise, use expected error message.
       return ( $q.reject(response.data.message) );
     }
-  }]).factory('search', ['$http', function ($http) {
+  }])
+  .factory('search', ['$http', function ($http) {
   return {
     getLocationInfo: function (lat, lng) {
       return $http.get('https://maps.googleapis.com/maps/api/geocode/json?&key=AIzaSyAK1BOzJxHB8pOFmPFufYdcVdAuLr_6z2U&latlng='
@@ -699,4 +700,27 @@ angular.module('bookd.factories', [])
       // Otherwise, use expected error message.
       return ( $q.reject(response.data.message) );
     }
-  });
+  })
+  .factory('locationFactory', ['$q', function ($q) {
+    return {
+      checkLocationAvailable: function () {
+        var deferred = $q.defer();
+        if (window.cordova) {
+          cordova.plugins.diagnostic.isLocationEnabled(function (enabled) {
+            if (!enabled) {
+              deferred.reject(false);
+            } else {
+              deferred.resolve(true);
+            }
+          }, function (err) {
+            deferred.reject(err);
+          });
+        } else {
+          // For web environments don't do anything, just return true
+          deferred.resolve(true);
+        }
+
+        return deferred.promise;
+      }
+    }
+  }]);

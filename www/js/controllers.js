@@ -180,7 +180,8 @@ angular.module('bookd.controllers', [])
       }
     }
   })
-  .controller('SearchCtrl', ['$scope', 'businessFactory', 'search', function ($scope, businessFactory, search) {
+  .controller('SearchCtrl', ['$scope', 'businessFactory', 'search', 'locationFactory', '$ionicPopup',
+    function ($scope, businessFactory, search, locationFactory, $ionicPopup) {
     var vm = this;
     vm.loading = false;
     vm.query = {
@@ -189,17 +190,22 @@ angular.module('bookd.controllers', [])
     };
 
     if (navigator.geolocation) {
+      locationFactory.checkLocationAvailable().then(function (isEnabled) {
+        if (!isEnabled) {
+          var confirmPopup = $ionicPopup.confirm({
+            title: 'Enable GPS',
+            template: 'Please enable high accuracy location tracking.'
+          });
 
-      if (window.cordova) {
-        cordova.plugins.diagnostic.isLocationEnabled(function (enabled) {
-          if (!enabled) {
-            //TODO Don't just go to the location section without a prompt.
-            cordova.plugins.diagnostic.switchToLocationSettings();
-          }
-        }, function (err) {
-          console.log(err);
-        });
-      }
+          confirmPopup.then(function (res) {
+            if (res) {
+              cordova.plugins.diagnostic.switchToLocationSettings();
+            } else {
+              //TODO Prompt for address
+            }
+          });
+        }
+      });
 
       navigator.geolocation.getCurrentPosition(function (position) {
         var lat = position.coords.latitude;
