@@ -5,7 +5,7 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
 //var angular = require('angular');
-var app = angular.module('bookd', ['ionic', 'bookd.controllers', 'bookd.factories', 'bookd.directives', 'ngCordovaOauth']);
+var app = angular.module('bookd', ['ionic', 'bookd.controllers', 'bookd.factories', 'ngCordovaOauth']);
 //
 //require('./services');
 //require('./controllers');

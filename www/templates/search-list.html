@@ -1,31 +1,62 @@
 <ion-view style="" view-title="Search List" hide-back-button="true" class="search-list">
 
-    <ion-content class="has-header" overflow-scroll="true" padding="true">
+  <ion-content class="has-header" overflow-scroll="true" padding="true">
 
-		<div class="bar bar-standard bar-header-secondary">
+    <div class="bar bar-standard bar-header-secondary">
       <form class="input-group" ng-submit="vm.search()">
-				<div class="input-row">
-					<span class="icon icon-search pull-left"></span>
-          <input type="text" placeholder="Chief's Barbershop" ng-model="vm.query.term"
+        <div class="input-row">
+          <span class="icon icon-search pull-left"></span>
+          <input type="text" placeholder="Chief Barbershop" ng-model="vm.query.term"
                  g-places-autocomplete options="autocompleteOptions">
-				</div>
-			</form>
-		</div>
-		<div class="content">
-			<div class="bar-button">
-				<button class="btn btn-primary">
-					<span class="icon icon-list"></span>
-				</button>
-				<button class="btn btn-primary btn-outlined">
-					<span class="icon icon-grid"></span>
-				</button>
-			</div>
-			<ul class="table-view">
-				<li class="table-view-cell media">
-          <search-result></search-result>
-				</li>
-			</ul>
-		</div>
+        </div>
+      </form>
+    </div>
+    <div class="content">
+      <div class="bar-button">
+        <button class="btn btn-primary">
+          <span class="icon icon-list"></span>
+        </button>
+        <button class="btn btn-primary btn-outlined">
+          <span class="icon icon-grid"></span>
+        </button>
+      </div>
+      <ul class="table-view">
+        <li class="table-view-cell media" ng-repeat="location in vm.locations">
+          <img class="media-object pull-left" src="img/shop-list/glitter_photo.png">
+          <div class="media-body">
+            <h4>{{location.name}}</h4>
+            <h5>
+              <span class="icon icon-star-filled"></span>
+              <span class="icon icon-star-filled"></span>
+              <span class="icon icon-star-filled"></span>
+              <span class="icon icon-star-filled"></span>
+              <span class="icon icon-star"></span>
+            </h5>
+            <p>{{location.rating}}</p>
+            <p>{{location.formatted_phone_number}}</p>
+          </div>
+          <table class="media-foot">
+            <tr>
+              <td>
+                <button class="btn btn-default btn-block">
+                  <span class="icon icon-mobile"></span> Call
+                </button>
+              </td>
+              <td>
+                <button class="btn btn-default btn-block">
+                  <span class="icon icon-bell"></span> Book
+                </button>
+              </td>
+              <td>
+                <button class="btn btn-default btn-block">
+                  <span class="icon icon-plus-rounded"></span> Save
+                </button>
+              </td>
+            </tr>
+          </table>
+        </li>
+      </ul>
+    </div>
 
-    </ion-content>
+  </ion-content>
 </ion-view>
