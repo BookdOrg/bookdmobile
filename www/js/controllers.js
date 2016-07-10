@@ -179,8 +179,9 @@ angular.module('bookd.controllers', [])
 
       }
     }
-  }).controller('SearchCtrl', ['$scope', 'businessFactory', 'search', function ($scope, businessFactory, search) {
-  var vm = this;
+  })
+  .controller('SearchCtrl', ['$scope', 'businessFactory', 'search', function ($scope, businessFactory, search) {
+    var vm = this;
 
     vm.query = {
       location: null,
@@ -223,7 +224,7 @@ angular.module('bookd.controllers', [])
       var formattedQuery;
       formattedQuery = vm.query.term + ' ' + vm.query.location;
 
-      business.search(formattedQuery)
+      businessFactory.search(formattedQuery)
         .then(function (data) {
           console.log(data);
           vm.locations = data;

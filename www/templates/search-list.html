@@ -22,9 +22,10 @@
       </div>
       <ul class="table-view">
         <li class="table-view-cell media" ng-repeat="location in vm.locations">
+          <!--TODO GET IMAGES FOR THE BUSINESS-->
           <img class="media-object pull-left" src="img/shop-list/glitter_photo.png">
           <div class="media-body">
-            <h4>{{location.name}}</h4>
+            <h4><a ng-href="{{location.website}}">{{location.name}}</a></h4>
             <h5>
               <span class="icon icon-star-filled"></span>
               <span class="icon icon-star-filled"></span>
