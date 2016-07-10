@@ -33,3 +33,19 @@
 .search-list .btn-default:active, .btn-default.active { color: #000; background-color: #cecece; border: 1px solid #cecece; }
 .search-list .content { padding-top: 60px; }
 .search-list .input-group { width: 100%; padding: 5px 0; }
+
+.search-list .empty-list {
+  font-style: italic;
+  margin-top: 2em;
+}
+
+/* https://stackoverflow.com/questions/11206109/how-to-put-image-in-center-of-html-page */
+.image-container {
+  position: absolute;
+  width: 60px; /*the image width*/
+  height: 60px; /*the image height*/
+  left: 50%;
+  top: 50%;
+  margin-left: -30px; /*half the image width*/
+  margin-top: -30px; /*half the image height*/
+}
