@@ -102,6 +102,7 @@ angular.module('bookd.controllers', [])
     //};
   })
   .controller('appointmentCtrl', function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_BASE, CLOUDINARY_Default, appointmentFactory, $ionicModal, businessFactory) {
+    $scope.appointments = $rootScope.currentUser.appointments;
     appointmentFactory.getInfiniteAppointment(0)
       .then(function (response) {
         $scope.appointments = response;
@@ -136,7 +137,7 @@ angular.module('bookd.controllers', [])
       }
     };
     $scope.moreDataCanBeLoaded = function () {
-      if ($scope.lastIndex < $rootScope.currentUser.appointments.length) {
+      if ($rootScope.currentUser.appointments && $scope.lastIndex < $rootScope.currentUser.appointments.length) {
         return true;
       } else {
         return false;

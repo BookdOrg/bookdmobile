@@ -136,12 +136,12 @@ angular.module('bookd.factories', [])
 
     return auth;
   }])
-  .factory('appointmentFactory', function ($http, auth, $q) {
+  .factory('appointmentFactory', function ($http, auth, $q, remoteHost) {
     var o = {
       appointments: null
     };
     o.getInfiniteAppointment = function (lastSeen) {
-      return $http.get('http://localhost:3002/appointments-scroll', {
+      return $http.get(remoteHost + '/appointments-scroll', {
         params: {
           lastSeen: lastSeen
         },
@@ -335,7 +335,7 @@ angular.module('bookd.factories', [])
     };
     return o;
   })
-  .factory('userFactory', function ($http, auth, $q) {
+  .factory('userFactory', function ($http, auth, $q, remoteHost) {
     var o = {
       appointments: [],
       dashboard: [],
@@ -347,7 +347,7 @@ angular.module('bookd.factories', [])
      *   Returns the profile of a specified user.
      **/
     o.get = function (id) {
-      return $http.get('/user/profile', {
+      return $http.get(remoteHost + '/user/profile', {
         params: {
           id: id
         },
@@ -364,7 +364,7 @@ angular.module('bookd.factories', [])
      *   Upload a users profile picture
      **/
     o.postPicture = function () {
-      return $http.post('/upload', {
+      return $http.post(remoteHost + '/upload', {
         headers: {
           Authorization: 'Bearer ' + auth.getToken(),
           'Content-Type': 'application/x-www-form-urlencoded'
@@ -389,7 +389,7 @@ angular.module('bookd.factories', [])
      * @returns {*}
      */
     o.getUserAppts = function (id, start, end) {
-      return $http.get('/user/appointments-all', {
+      return $http.get(remoteHost + '/user/appointments-all', {
         params: {
           id: id,
           start: start,
@@ -406,7 +406,7 @@ angular.module('bookd.factories', [])
      *  auth middleware.
      **/
     o.getAppts = function (object) {
-      return $http.get('/user/appointments', {
+      return $http.get(remoteHost + '/user/appointments', {
         params: {
           'startDate': object.startDate,
           'employeeId': object.employeeId,
@@ -426,7 +426,7 @@ angular.module('bookd.factories', [])
      *  id - The id of the employee.
      **/
     o.search = function (email) {
-      return $http.get('/user/search', {
+      return $http.get(remoteHost + '/user/search', {
         params: {
           'email': email
         },
@@ -437,7 +437,7 @@ angular.module('bookd.factories', [])
       }, handleError);
     };
     o.updateProfile = function (data) {
-      return $http.post('/user/profile/update', data, {
+      return $http.post(remoteHost + '/user/profile/update', data, {
         headers: {
           Authorization: 'Bearer ' + auth.getToken()
         }
@@ -453,7 +453,7 @@ angular.module('bookd.factories', [])
      *
      **/
     o.updateAvailability = function (availability) {
-      return $http.post('/user/availability/update', availability, {
+      return $http.post(remoteHost + '/user/availability/update', availability, {
         headers: {Authorization: 'Bearer ' + auth.getToken()}
       }).then(function (data) {
         return data.data;
@@ -461,7 +461,7 @@ angular.module('bookd.factories', [])
     };
 
     o.updateDescription = function (description) {
-      return $http.post('/user/description/update', description, {
+      return $http.post(remoteHost + '/user/description/update', description, {
         headers: {Authorization: 'Bearer ' + auth.getToken()}
       }).then(function (data) {
         return data.data;
