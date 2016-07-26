@@ -38,13 +38,6 @@
     "ios",
     "android"
   ],
-  "scripts": {
-    "install": "napa"
-  },
-  "napa": {
-    "angular": "angular/bower-angular#v1.5.7",
-    "ionic": "driftyco/ionic-bower#v1.0.0"
-  },
   "browser": {
     "ionic": "./node_modules/ionic/js/ionic.min.js",
     "angular": "./node_modules/angular/angular.min.js"
