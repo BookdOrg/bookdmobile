@@ -2,27 +2,37 @@
 
 module.exports = function ($scope, $ionicPopup, auth, $state, $cordovaOauth, $http, $rootScope, CLOUDINARY_BASE, CLOUDINARY_Default) {
   $scope.state = 'signIn';
+  $scope.authSpinner = false;
+
+  $scope.switchState = function (state) {
+    $scope.state = state;
+  }
   $scope.doLogIn = function (user) {
     user.provider = 'bookd';
-    auth.logIn(user).then(function () {
-      if ($rootScope.currentUser.avatarVersion) {
-        $rootScope.avatar = CLOUDINARY_BASE + $rootScope.currentUser.avatarVersion + '/profile/' + $rootScope.currentUser._id;
-      } else {
-        $rootScope.avatar = CLOUDINARY_Default;
+    $scope.authSpinner = true;
+    auth.logIn(user).then(function (response) {
+      if (response.status == 200) {
+        $scope.authSpinner = false;
+        if ($rootScope.currentUser.avatarVersion) {
+          $rootScope.avatar = CLOUDINARY_BASE + $rootScope.currentUser.avatarVersion + '/profile/' + $rootScope.currentUser._id;
+        } else {
+          $rootScope.avatar = CLOUDINARY_Default;
 
+        }
+        $state.go('app.searchlist');
       }
-      $state.go('app.searchlist');
-    }).then(function (error) {
-      $scope.error = error;
-      if (error) {
+      if (response.status !== 200) {
+        $scope.authSpinner = false;
+        $scope.error = response.data.message;
         $ionicPopup.alert({
           title: 'Oops!',
-          template: $scope.error.message
+          template: $scope.error
         })
       }
-    })
+    });
   };
   $scope.facebookLogin = function () {
+    $scope.authSpinner = true;
     $cordovaOauth.facebook("1652611575018107", ["email", "public_profile"])
       .then(function (result) {
         $http.get('https://graph.facebook.com/me?fields=id,name,picture.type(large),email', {
@@ -37,6 +47,7 @@ module.exports = function ($scope, $ionicPopup, auth, $state, $cordovaOauth, $ht
           };
           auth.logIn(user, success.data.picture.data.url)
             .then(function (result) {
+              $scope.authSpinner = false;
               if ($rootScope.currentUser.avatarVersion) {
                 $rootScope.avatar = CLOUDINARY_BASE + $rootScope.currentUser.avatarVersion + '/profile/' + $rootScope.currentUser._id;
               } else {
@@ -49,13 +60,29 @@ module.exports = function ($scope, $ionicPopup, auth, $state, $cordovaOauth, $ht
               //$state.go(state, {tier: tier});
               //getNotifications();
             }, function (error) {
+              $scope.authSpinner = false;
               $scope.error = error.message;
+              $ionicPopup.alert({
+                title: 'Oops!',
+                template: $scope.error
+              })
             });
         }, function (error) {
+          $scope.authSpinner = false;
+          $scope.error = error;
+          $ionicPopup.alert({
+            title: 'Oops!',
+            template: $scope.error
+          })
           console.log(error);
         });
 
       }, function (error) {
+        $scope.error = error;
+        $ionicPopup.alert({
+          title: 'Oops!',
+          template: $scope.error
+        })
         console.log(error);
       })
   };
@@ -72,19 +99,25 @@ module.exports = function ($scope, $ionicPopup, auth, $state, $cordovaOauth, $ht
       'provider': 'bookd'
     };
     auth.register(user)
-      .then(function () {
-        if ($rootScope.currentUser.avatarVersion) {
-          $rootScope.avatar = CLOUDINARY_BASE + $rootScope.currentUser.avatarVersion + '/profile/' + $rootScope.currentUser._id;
-        } else {
-          $rootScope.avatar = CLOUDINARY_Default;
+      .then(function (response) {
+        if (response.status == 200) {
+          $scope.authSpinner = false;
+          if ($rootScope.currentUser.avatarVersion) {
+            $rootScope.avatar = CLOUDINARY_BASE + $rootScope.currentUser.avatarVersion + '/profile/' + $rootScope.currentUser._id;
+          } else {
+            $rootScope.avatar = CLOUDINARY_Default;
 
+          }
+          $state.go('app.searchlist');
         }
-        //onlineData.user = $rootScope.currentUser._id;
-        //socketService.emit('online', onlineData);
-        $state.go('app.searchlist');
-        //$rootScope.currentUser.notifications = [];
-      }, function (error) {
-        $scope.error = error.message;
+        if (response.status !== 200) {
+          $scope.authSpinner = false;
+          $scope.error = response.data.message;
+          $ionicPopup.alert({
+            title: 'Oops!',
+            template: $scope.error
+          })
+        }
       });
   };
   $scope.user = {};

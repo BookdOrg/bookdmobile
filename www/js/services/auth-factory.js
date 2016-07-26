@@ -75,7 +75,7 @@ module.exports = function ($http, $window, $rootScope, $state) {
           $rootScope.currentUser.providerInfo = auth.getProviderInfo();
           //socketService.emit('authorizationRes', $rootScope.currentUser._id);
         }, function (error) {
-          throw error.data;
+          return error;
         });
     },
     logIn: function (user, info) {
@@ -93,8 +93,9 @@ module.exports = function ($http, $window, $rootScope, $state) {
           $rootScope.currentUser = angular.fromJson(auth.currentUser());
           $rootScope.currentUser.providerInfo = auth.getProviderInfo();
           //socketService.emit('authorizationRes', $rootScope.currentUser._id);
+          return 'Success';
         }, function (error) {
-          throw error.data;
+          return error;
         });
     },
     logOut: function () {
@@ -117,7 +118,7 @@ module.exports = function ($http, $window, $rootScope, $state) {
         .then(function (data) {
           console.log(data);
         }, function (error) {
-          throw error.data;
+          return error;
         });
     },
     newPassword: function (password, token) {
@@ -129,7 +130,7 @@ module.exports = function ($http, $window, $rootScope, $state) {
         .then(function (data) {
           console.log(data);
         }, function (error) {
-          throw error.data;
+          return error;
         });
     }
   };

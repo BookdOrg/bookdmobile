@@ -14,7 +14,10 @@
           <form class="input-group sign-in-form" ng-if="state == 'signIn'">
 						<input type="text" class="icon-username" ng-model="user.username" name="email" placeholder="email">
 						<input type="password" class="icon-password" ng-model="user.password" name="password" placeholder="password">
-						<button class="btn btn-block" ng-click="doLogIn(user)">sign in</button>
+            <button class="btn btn-block" ng-click="doLogIn(user)">
+              <span ng-if="!authSpinner">sign in</span>
+              <ion-spinner ng-if="authSpinner" icon="spiral"></ion-spinner>
+            </button>
             <a ng-click="switchState('createAccount')">Create an Account</a> | <a ng-click="switchState('lostPass')">Lost
             Password?</a>
 					</form>
@@ -26,7 +29,10 @@
             <input type="text" class="icon-username" ng-model="user.username" name="regEmail" placeholder="email">
             <input type="password" class="icon-password" ng-model="user.password" name="regPassword"
                    placeholder="password">
-            <button class="btn btn-block" ng-click="register(user)">sign up</button>
+            <button class="btn btn-block" ng-click="register(user)">
+              <span ng-if="!authSpinner">sign up</span>
+              <ion-spinner ng-if="authSpinner" icon="spiral"></ion-spinner>
+            </button>
             <a ng-click="switchState('signIn')">Login</a> | <a ng-click="switchState('lostPass')">Lost Password?</a>
           </form>
           <form class="input-group sign-in-form" ng-if="state =='lostPass'">
