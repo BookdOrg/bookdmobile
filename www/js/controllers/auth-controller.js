@@ -11,7 +11,7 @@ module.exports = function ($scope, $ionicPopup, auth, $state, $cordovaOauth, $ht
     user.provider = 'bookd';
     $scope.authSpinner = true;
     auth.logIn(user).then(function (response) {
-      if (response.status == 200) {
+      if (response === 'Success') {
         $scope.authSpinner = false;
         if ($rootScope.currentUser.avatarVersion) {
           $rootScope.avatar = CLOUDINARY_BASE + $rootScope.currentUser.avatarVersion + '/profile/' + $rootScope.currentUser._id;
@@ -21,7 +21,7 @@ module.exports = function ($scope, $ionicPopup, auth, $state, $cordovaOauth, $ht
         }
         $state.go('app.searchlist');
       }
-      if (response.status !== 200) {
+      if (response.status) {
         $scope.authSpinner = false;
         $scope.error = response.data.message;
         $ionicPopup.alert({
@@ -46,26 +46,25 @@ module.exports = function ($scope, $ionicPopup, auth, $state, $cordovaOauth, $ht
             'provider': 'facebook'
           };
           auth.logIn(user, success.data.picture.data.url)
-            .then(function (result) {
-              $scope.authSpinner = false;
-              if ($rootScope.currentUser.avatarVersion) {
-                $rootScope.avatar = CLOUDINARY_BASE + $rootScope.currentUser.avatarVersion + '/profile/' + $rootScope.currentUser._id;
-              } else {
-                $rootScope.avatar = CLOUDINARY_Default;
+            .then(function (response) {
+              if (response === 'Success') {
+                $scope.authSpinner = false;
+                if ($rootScope.currentUser.avatarVersion) {
+                  $rootScope.avatar = CLOUDINARY_BASE + $rootScope.currentUser.avatarVersion + '/profile/' + $rootScope.currentUser._id;
+                } else {
+                  $rootScope.avatar = CLOUDINARY_Default;
 
+                }
+                $state.go('app.searchlist');
               }
-              $state.go('app.searchlist');
-              //onlineData.user = $rootScope.currentUser._id;
-              //socketService.emit('online', onlineData);
-              //$state.go(state, {tier: tier});
-              //getNotifications();
-            }, function (error) {
-              $scope.authSpinner = false;
-              $scope.error = error.message;
-              $ionicPopup.alert({
-                title: 'Oops!',
-                template: $scope.error
-              })
+              if (response.status) {
+                $scope.authSpinner = false;
+                $scope.error = response.data.message;
+                $ionicPopup.alert({
+                  title: 'Oops!',
+                  template: $scope.error
+                })
+              }
             });
         }, function (error) {
           $scope.authSpinner = false;
@@ -73,8 +72,7 @@ module.exports = function ($scope, $ionicPopup, auth, $state, $cordovaOauth, $ht
           $ionicPopup.alert({
             title: 'Oops!',
             template: $scope.error
-          })
-          console.log(error);
+          });
         });
 
       }, function (error) {
@@ -82,8 +80,7 @@ module.exports = function ($scope, $ionicPopup, auth, $state, $cordovaOauth, $ht
         $ionicPopup.alert({
           title: 'Oops!',
           template: $scope.error
-        })
-        console.log(error);
+        });
       })
   };
   /**
@@ -100,7 +97,7 @@ module.exports = function ($scope, $ionicPopup, auth, $state, $cordovaOauth, $ht
     };
     auth.register(user)
       .then(function (response) {
-        if (response.status == 200) {
+        if (response === 'Success') {
           $scope.authSpinner = false;
           if ($rootScope.currentUser.avatarVersion) {
             $rootScope.avatar = CLOUDINARY_BASE + $rootScope.currentUser.avatarVersion + '/profile/' + $rootScope.currentUser._id;
@@ -110,7 +107,7 @@ module.exports = function ($scope, $ionicPopup, auth, $state, $cordovaOauth, $ht
           }
           $state.go('app.searchlist');
         }
-        if (response.status !== 200) {
+        if (response.status) {
           $scope.authSpinner = false;
           $scope.error = response.data.message;
           $ionicPopup.alert({
