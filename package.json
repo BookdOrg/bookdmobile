@@ -17,6 +17,7 @@
     "gulp-uglify": "^1.5.4",
     "gulp-util": "^3.0.7",
     "ionic": "^1.2.4",
+    "lodash": "^4.14.0",
     "node-notifier": "^4.6.0",
     "shelljs": "^0.7.2",
     "vinyl-buffer": "^1.0.0",
