@@ -4,7 +4,6 @@
   <meta charset="utf-8">
   <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
   <title>Bookd</title>
-
   <!-- UI Deck specific CSS. Note, fonts may have to be embedded for production deployments -->
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
   <link href='https://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
@@ -39,10 +38,11 @@
   <script src="cordova.js"></script>
 
   <!-- your app's js -->
-  <script src="js/vendor/ng-cordova.min.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/controllers.js"></script>
-  <script src="js/factories.js"></script>
+  <script src="js/vendor/ng-cordova.min.js" defer></script>
+  <!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular-route.js" defer></script>-->
+  <!--<script src="js/app.js"></script>-->
+  <!--<script src="js/controllers.js"></script>-->
+  <!--<script src="js/factories.js"></script>-->
   <script src="js/vendor/moment.min.js"></script>
   <script src="js/vendor/lodash.min.js"></script>
 
@@ -50,5 +50,6 @@
 
 <body ng-app="bookd">
 <ion-nav-view></ion-nav-view>
+<script src="js/dist/app.js" defer></script>
 </body>
 </html>

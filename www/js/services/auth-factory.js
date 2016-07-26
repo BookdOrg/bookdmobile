@@ -1,6 +1,7 @@
 /**
  * Created by khalilbrown on 7/8/16.
  */
+'use strict';
 module.exports = function ($http, $window, $rootScope, $state) {
   var auth = {
     /**
@@ -132,5 +133,5 @@ module.exports = function ($http, $window, $rootScope, $state) {
         });
     }
   };
+  return auth;
 };
-//return auth;

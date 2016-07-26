@@ -1,4 +1,7 @@
+'use strict';
+
 module.exports = function ($scope, $ionicPopup, auth, $state, $cordovaOauth, $http, $rootScope, CLOUDINARY_BASE, CLOUDINARY_Default) {
+  $scope.state = 'signIn';
   $scope.doLogIn = function (user) {
     user.provider = 'bookd';
     auth.logIn(user).then(function () {

@@ -1,4 +1,4 @@
-<ion-view view-title="Appointments" class="appointment-list">
+<ion-view view-title="Appointments" class="search-list">
   <ion-nav-buttons side="right">
     <!--<button class="button button-icon button-clear ion-ios-search"></button>-->
   </ion-nav-buttons>
@@ -16,8 +16,8 @@
         </div>
       </div>
     </div>
-    <ion-list>
-      <ion-item ng-repeat="appointment in appointments track by $index">
+    <!--<ion-list>-->
+    <div ng-repeat="appointment in appointments track by $index">
         <ul class="table-view">
           <li class="table-view-cell media">
             <!--<div class="right-group">-->
@@ -26,7 +26,7 @@
             <!--</div>-->
             <!--<img class="media-object pull-left" src="img/shop-list/interlocking_pencils.png">-->
             <div class="media-body">
-              <h3>{{appointment.title}}</h3>
+              <h3 class="text-center">{{appointment.title}}</h3>
 
               <p>Status: {{appointment.status | uppercase}}</p>
 
@@ -37,21 +37,45 @@
             <table class="media-foot">
               <tr>
                 <td>
-                  <button class="btn btn-primary" ng-click="appointmentClicked($index)">
-                    <span class="icon ion-ios-calendar-outline"></span> Re-Schedule
+                  <button class="btn btn-default btn-block" ng-click="appointmentClicked($index)">
+                    <span class="icon ion-ios-calendar-outline"></span> View
                   </button>
                 </td>
                 <td>
-                  <button class="btn btn-danger">
-                    <span class="icon ion-close"></span> Cancel
+                  <button class="btn btn-default btn-block">
+                    <span class="icon ion-close"> Cancel Appointment</span>
                   </button>
                 </td>
+                <!--<td>-->
+                <!--<button class="btn btn-default btn-block">-->
+                <!--<span class="icon icon-plus-rounded"></span> Save-->
+                <!--</button>-->
+                <!--</td>-->
               </tr>
             </table>
+            <!--<div class="media-foot">-->
+            <!--<div class="row">-->
+            <!--<div class="col">-->
+            <!-- -->
+            <!--</div>-->
+            <!--</div>-->
+            <!--&lt;!&ndash;<tr>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<button class="btn btn-primary" ng-click="appointmentClicked($index)">&ndash;&gt;-->
+            <!--&lt;!&ndash;<span class="icon ion-ios-calendar-outline"></span> Re-Schedule&ndash;&gt;-->
+            <!--&lt;!&ndash;</button>&ndash;&gt;-->
+            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<td>&ndash;&gt;-->
+            <!--&lt;!&ndash;<button class="btn btn-danger">&ndash;&gt;-->
+            <!--&lt;!&ndash;<span class="icon ion-close"></span> Cancel&ndash;&gt;-->
+            <!--&lt;!&ndash;</button>&ndash;&gt;-->
+            <!--&lt;!&ndash;</td>&ndash;&gt;-->
+            <!--&lt;!&ndash;</tr>&ndash;&gt;-->
+            <!--</div>-->
           </li>
         </ul>
-      </ion-item>
-    </ion-list>
+    </div>
+    <!--</ion-list>-->
     <ion-infinite-scroll
       immediate-check="false"
       on-infinite="loadMore()"
@@ -68,7 +92,6 @@
     </ion-header-bar>
 
     <ion-content>
-      <h3>Service: {{service.name}}</h3>
       <h4>Description: {{service.description}}</h4>
       <h4>Duration: {{service.duration}}</h4>
       <h4>Price: {{service.price}}</h4>
@@ -78,6 +101,8 @@
       <p>Date: {{appointments[appointmentIndex].start.date}}</p>
 
       <p>Time: {{appointments[appointmentIndex].start.time}}</p>
+
+      <p>Employee {{appointments[appointmentIndex].employee.name}}</p>
 
       <h3>Service Employees:</h3>
 
