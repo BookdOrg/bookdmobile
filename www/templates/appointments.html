@@ -1,4 +1,4 @@
-<ion-view view-title="Appointments" class="search-list">
+<ion-view view-title="Appointments" class="appointment-list">
   <ion-nav-buttons side="right">
     <!--<button class="button button-icon button-clear ion-ios-search"></button>-->
   </ion-nav-buttons>
@@ -105,10 +105,21 @@
       <p>Employee {{appointments[appointmentIndex].employee.name}}</p>
 
       <h3>Service Employees:</h3>
-
-      <div ng-repeat="employee in service.employees">
-        <h3>{{employee.name}}</h3>
-      </div>
+      <ion-scroll direction="x" style="width:110%; height:150px;">
+        <div class="row" style="width:5000px">
+          <div ng-repeat="employee in service.employees">
+            <img class="employeeAvatar" ng-if="employee.provider === 'facebook'"
+                 ng-src="{{facebookApi}}{{employee.providerId}}/picture?type=large"/>
+            <img class="employeeAvatar"
+                 ng-if="!employee.avatarVersion && employee.provider === 'bookd' || employee.provider === 'business'"
+                 ng-src="{{cloudinaryDefaultPic}}">
+            <img class="employeeAvatar"
+                 ng-if="employee.avatarVersion && employee.provider === 'bookd' || employee.provider === 'business'"
+                 ng-src="{{cloudinaryBaseUrl}}{{employee.avatarVersion}}/profile/{{employee._id}}">
+            <h5>{{employee.name}}</h5>
+          </div>
+        </div>
+      </ion-scroll>
       <button class="btn btn-primary" ng-click="closeModal()">
         <span class="icon ion-ios-close"></span> Close
       </button>

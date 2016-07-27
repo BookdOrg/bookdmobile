@@ -3,8 +3,11 @@
  */
 'use strict';
 
-module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_BASE, CLOUDINARY_Default, appointmentFactory, $ionicModal, businessFactory) {
+module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_BASE, CLOUDINARY_Default, appointmentFactory, $ionicModal, businessFactory, facebookApi) {
   $scope.appointments = $rootScope.currentUser.appointments;
+  $scope.facebookApi = facebookApi;
+  $scope.cloudinaryBaseUrl = CLOUDINARY_BASE;
+  $scope.cloudinaryDefaultPic = CLOUDINARY_Default;
   appointmentFactory.getInfiniteAppointment(0)
     .then(function (response) {
       $scope.appointments = response;
