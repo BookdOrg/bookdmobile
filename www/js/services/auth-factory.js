@@ -2,7 +2,7 @@
  * Created by khalilbrown on 7/8/16.
  */
 'use strict';
-module.exports = function ($http, $window, $rootScope, $state) {
+module.exports = function ($http, $window, $rootScope, $state, remoteHost) {
   var auth = {
     /**
      * Save the users authentication token
@@ -65,7 +65,7 @@ module.exports = function ($http, $window, $rootScope, $state) {
       }
     },
     register: function (user, info) {
-      return $http.post('http://localhost:3002/register', user)
+      return $http.post(remoteHost + '/register', user)
         .then(function (data) {
           auth.saveUser(data.data.token, data.data.user);
           if (info) {
@@ -79,7 +79,7 @@ module.exports = function ($http, $window, $rootScope, $state) {
         });
     },
     logIn: function (user, info) {
-      return $http.post('http://localhost:3002/login', user)
+      return $http.post(remoteHost + '/login', user)
         .then(function (data) {
           auth.saveUser(data.data.token, data.data.user);
           if (info) {
@@ -114,7 +114,7 @@ module.exports = function ($http, $window, $rootScope, $state) {
       var data = {
         email: email
       };
-      return $http.post('http://localhost:3002/user/reset', data)
+      return $http.post(remoteHost + '/user/reset', data)
         .then(function (data) {
           console.log(data);
         }, function (error) {
@@ -126,7 +126,7 @@ module.exports = function ($http, $window, $rootScope, $state) {
         password: password,
         token: token
       };
-      return $http.post('http://localhost:3002/user/reset/new', data)
+      return $http.post(remoteHost + '/user/reset/new', data)
         .then(function (data) {
           console.log(data);
         }, function (error) {
