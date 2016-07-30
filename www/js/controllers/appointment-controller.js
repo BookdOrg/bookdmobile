@@ -8,6 +8,11 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
   $scope.facebookApi = facebookApi;
   $scope.cloudinaryBaseUrl = CLOUDINARY_BASE;
   $scope.cloudinaryDefaultPic = CLOUDINARY_Default;
+  $scope.appointmentState = 'standard';
+
+  $scope.switchState = function (state) {
+    $scope.appointmentState = state;
+  };
   appointmentFactory.getInfiniteAppointment(0)
     .then(function (response) {
       $scope.appointments = response;
@@ -15,7 +20,10 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
     }, function (error) {
       alert(error);
     });
-  //$scope.appointments = appointmentFactory.appointments;
+  /**
+   *
+   *
+   */
   $scope.doRefresh = function () {
     appointmentFactory.getInfiniteAppointment(0)
       .then(function (response) {
@@ -27,6 +35,10 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
         $scope.$broadcast('scroll.refreshComplete');
       });
   };
+  /**
+   *
+   *
+   */
   $scope.loadMore = function () {
     if ($scope.appointments) {
       $scope.lastIndex = $scope.appointments.length;
@@ -41,6 +53,11 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
         });
     }
   };
+  /**
+   *
+   *
+   * @returns {boolean}
+   */
   $scope.moreDataCanBeLoaded = function () {
     if ($rootScope.currentUser.appointments && $scope.lastIndex < $rootScope.currentUser.appointments.length) {
       return true;
@@ -54,6 +71,11 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
     scope: $scope,  /// GIVE THE MODAL ACCESS TO PARENT SCOPE
     animation: 'slide-in-up'//'slide-left-right', 'slide-in-up', 'slide-right-left'
   });
+  /**
+   *
+   *
+   * @param index
+   */
   $scope.appointmentClicked = function (index) {
     $scope.appointmentIndex = index;
     $scope.modalCtrl.show().then(function () {
@@ -63,9 +85,9 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
           $scope.service = data;
           //grab the employee details from the services list of employees based on the appointments employeeID
           if ($scope.appointments[index].employee._id) {
-            $scope.employee = _.findWhere($scope.service.employees, {_id: $scope.appointments[appointments[index]].employee._id});
+            $scope.employee = _.findWhere($scope.service.employees, {_id: $scope.appointments[index].employee._id});
           } else {
-            $scope.employee = _.findWhere($scope.service.employees, {_id: $scope.appointments[appointments[index]].employee});
+            $scope.employee = _.findWhere($scope.service.employees, {_id: $scope.appointments[index].employee});
           }
 
           //if there's no employee we set this flag to true
@@ -74,15 +96,14 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
           }
           $scope.stripePrice = $scope.service.price * 100;
         });
+
     });
   };
+  /**
+   *
+   *
+   */
   $scope.closeModal = function () {
     $scope.modalCtrl.hide();
   };
-
-  function pushAppointments(appointments) {
-    for (var appointmentIndex = 0; appointmentIndex < appointments.length; appointmentIndex++) {
-
-    }
-  }
 };

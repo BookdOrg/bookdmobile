@@ -17,7 +17,7 @@ var app = angular.module('bookd', ['ionic', 'ngCordovaOauth']);
 require('./services');
 require('./controllers');
 //require('./filters');
-window._ = require('lodash');
+window._ = require('underscore');
 
 app.run(function ($ionicPlatform, $rootScope) {
     $ionicPlatform.ready(function () {

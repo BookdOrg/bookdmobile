@@ -14,7 +14,8 @@ var browserify = require('browserify'),
   sass = require('gulp-sass'),
   rename = require('gulp-rename'),
   sh = require('shelljs'),
-  watchify = require('watchify');
+  watchify = require('watchify'),
+  _ = require('underscore');
 
 var paths = {
   sass: ['./scss/**/*.scss'],
