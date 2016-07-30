@@ -5,6 +5,7 @@
     <button class="button" ng-if="lastView" ng-click="myGoBack()">
       <i class="ion-arrow-left-c"></i> Back
     </button>
+    <button class="button button-icon button-clear ion-ios-drag" ng-if="!lastView" ng-click="toggleMenu()"></button>
   </ion-nav-buttons>
     <ion-content class="has-header" overflow-scroll="true" padding="true">
 		<div class="content">

@@ -1,7 +1,8 @@
 /**
  * Created by khalilbrown on 7/30/16.
  */
-module.exports = function ($scope, auth, userFactory, $sce, $state, $stateParams, facebookApi, socketService, CLOUDINARY_BASE, CLOUDINARY_Default, $ionicHistory) {
+module.exports = function ($scope, auth, userFactory, $sce, $state, $stateParams, facebookApi, socketService, CLOUDINARY_BASE,
+                           CLOUDINARY_Default, $ionicHistory, $ionicSideMenuDelegate) {
 //Settings for the ratings bar
   $scope.hoveringOver = function (value) {
     $scope.overStar = value;
@@ -31,6 +32,9 @@ module.exports = function ($scope, auth, userFactory, $sce, $state, $stateParams
   $scope.myGoBack = function () {
     $ionicHistory.goBack();
   };
+  $scope.toggleMenu = function () {
+    $ionicSideMenuDelegate.toggleLeft();
+  }
 
   $scope.lastView = $ionicHistory.backView();
 

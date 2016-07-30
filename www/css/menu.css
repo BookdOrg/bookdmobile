@@ -32,7 +32,7 @@ ion-side-menu ion-item.item:last-child {
     border-bottom: none;
 }
 ion-side-menu .heading-item .item-content {
-    height: 120px;
+  height: 130px;
     padding-top: 45px;
     padding-left: 115px;
     background-color: #272c30;
@@ -41,7 +41,7 @@ ion-side-menu .heading-item .item-content {
 ion-side-menu .heading-item .user-image-container {
     width: 90px;
     position: absolute;
-    top: 16px;
+  top: 25px;
     left: 12px;
 }
 ion-side-menu .heading-item .user-image-container .user-image {
@@ -52,6 +52,7 @@ ion-side-menu .heading-item .user-image-container .user-image {
 ion-side-menu .heading-item .greeting {
     color: #FFFFFF;
     font-weight: 500;
+  padding-top: 10px;
 }
 ion-side-menu .heading-item .message {
     color: #999999;
