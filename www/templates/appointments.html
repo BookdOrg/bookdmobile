@@ -17,7 +17,7 @@
       </div>
     </div>
     <div ng-repeat="appointment in appointments track by $index">
-        <ul class="table-view">
+      <ul class="table-view" ng-if="appointment.status !== 'canceled'">
           <li class="table-view-cell media">
             <div class="media-body">
               <h3 class="text-center">{{appointment.title}}</h3>
@@ -81,11 +81,24 @@
              ng-src="{{cloudinaryBaseUrl}}{{employee.avatarVersion}}/profile/{{employee._id}}">
 
         <p>{{employee.name}}</p>
+        <h4 class="text-danger"
+            ng-if="datePassed && appointments[appointmentIndex].status !== 'paid' && currentUser._id ===  appointments[appointmentIndex].customer._id">
+          The original appointment time has passed, this appointment can no longer be updated. If you would like
+          to reschedule you can
+          schedule a new appointment via the Business' home page.
+          Thank you.</h4>
+        <h4 class="text-danger"
+            ng-if="datePassed && appointments[appointmentIndex].status !== 'paid' && currentUser._id !==  appointments[appointmentIndex].customer._id">
+          The original appointment time has passed, this appointment can no longer be updated.
+        </h4>
+        <h4 class="text-danger" ng-if=" appointments[appointmentIndex].status === 'paid' && datePassed">This service has
+          been
+          fulfilled and paid for, therefore it can no longer be updated. Thank you. </h4>
 
-        <button class="button button-block button-positive" ng-click="switchState('reschedule')">
+        <button ng-if="!datePassed" class="button button-block button-positive" ng-click="switchState('reschedule')">
           Reschedule
         </button>
-        <button class="button button-block button-assertive">
+        <button ng-if="!datePassed" class="button button-block button-assertive" ng-click="cancel()">
           Cancel
         </button>
       </div>
@@ -95,21 +108,24 @@
           {{sseconds}} second{{secondsS}}
         </timer>
         <button class="button button-block button-positive" ng-click="openDatePicker()">
-          Select a date to see available times
+          Select a date to see {{employee.name}}'s availability.
         </button>
-
-        <h3>{{employee.name}}'s Available Times </h3>
-        <ion-scroll>
+        <ion-spinner class="text-center" ng-if="calculatingAppointments" icon="spiral"></ion-spinner>
+        <div ng-if="availableTimes.length>0">
+          <h3 class="text-center">{{employee.name}}'s Available Times </h3>
           <ion-item ng-repeat="time in availableTimes track by $index">
             <button class="button button-block" ng-click="createAppointmentObj(time,$index)"
                     ng-disabled="!time.available || time.status || time.toggled || time.hide"
                     ng-class="{'btn-faded-green':time.hide,'btn-gradient-red': !time.available && !time.hide
-                               || time.status,'btn-gradient-green':time.available && !time.toggled && !time.hide,'btn-gradient-blue':time.toggled}"
+                             || time.status,'btn-gradient-green':time.available && !time.toggled && !time.hide,'btn-gradient-blue':time.toggled}"
                     role="button" class="btn" style="margin-bottom:5px;">
               {{time.time}}
             </button>
           </ion-item>
-        </ion-scroll>
+        </div>
+        <button class="button button-block button-positive" ng-click="update()">
+          Update Appointment
+        </button>
         <button class="button button-block button-positive" ng-click="switchState('standard')">
           Back
         </button>

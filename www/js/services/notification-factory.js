@@ -3,7 +3,7 @@
  */
 'use strict';
 
-module.exports = function () {
+module.exports = function ($http, auth, $q, $interval, remoteHost) {
   var o = {};
   o.addNotification = function (id, content, type, sendEmail, date) {
     var body = {
@@ -13,7 +13,7 @@ module.exports = function () {
       sendEmail: sendEmail,
       date: date
     };
-    return $http.post('/user/notifications/create', body, {
+    return $http.post(remoteHost + '/user/notifications/create', body, {
       headers: {Authorization: 'Bearer ' + auth.getToken()}
     }).then(function (response) {
       return response.data;
@@ -24,7 +24,7 @@ module.exports = function () {
   };
 
   o.getNotifications = function () {
-    return $http.get('/user/notifications', {
+    return $http.get(remoteHost + '/user/notifications', {
       headers: {Authorization: 'Bearer ' + auth.getToken()}
     }).then(function (response) {
       return response.data;
@@ -39,7 +39,7 @@ module.exports = function () {
    * @returns {*}
    */
   o.notificationsViewed = function () {
-    return $http.get('/user/notifications/viewed', {
+    return $http.get(remoteHost + '/user/notifications/viewed', {
       headers: {Authorization: 'Bearer ' + auth.getToken()}
     }).then(function (response) {
       return response.data;
@@ -58,7 +58,7 @@ module.exports = function () {
     var body = {
       id: id
     };
-    return $http.post('/user/notification/viewed', body, {
+    return $http.post(remoteHost + '/user/notification/viewed', body, {
       headers: {Authorization: 'Bearer ' + auth.getToken()}
     }).then(function (response) {
       return response.data;

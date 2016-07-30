@@ -4,39 +4,37 @@
 'use strict';
 
 module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_BASE, CLOUDINARY_Default, appointmentFactory,
-                           $ionicModal, businessFactory, facebookApi, ionicDatePicker, socketService, userFactory) {
+                           $ionicModal, businessFactory, facebookApi, ionicDatePicker, socketService, userFactory, notificationFactory, $ionicLoading) {
   $scope.appointments = $rootScope.currentUser.appointments;
   $scope.facebookApi = facebookApi;
   $scope.cloudinaryBaseUrl = CLOUDINARY_BASE;
   $scope.cloudinaryDefaultPic = CLOUDINARY_Default;
   $scope.appointmentState = 'standard';
-  $scope.selectedDate = null;
 
   $scope.switchState = function (state) {
     $scope.appointmentState = state;
   };
-  appointmentFactory.getInfiniteAppointment(0)
-    .then(function (response) {
-      $scope.appointments = response;
-      $scope.lastIndex = $scope.appointments.length;
-    }, function (error) {
-      alert(error);
-    });
   /**
    *
    *
    */
   $scope.doRefresh = function () {
+    $ionicLoading.show({
+      template: 'Updating Appointments..'
+    })
     appointmentFactory.getInfiniteAppointment(0)
       .then(function (response) {
         $scope.appointments = response;
         $scope.lastIndex = $scope.appointments.length;
         $scope.$broadcast('scroll.refreshComplete');
+        $ionicLoading.hide();
       }, function (error) {
         alert(error);
         $scope.$broadcast('scroll.refreshComplete');
+        $ionicLoading.hide();
       });
   };
+  $scope.doRefresh();
   /**
    *
    *
@@ -97,6 +95,7 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
             $scope.showNoEmployee = true;
           }
           $scope.stripePrice = $scope.service.price * 100;
+          $scope.selectedDate = new Date($scope.appointments[index].start.date);
         });
     });
     var dateSelected = moment().set({
@@ -158,8 +157,8 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
       }
       $scope.selectedIndex = null;
       $scope.activeTime = null;
-      //$scope.showCount = false;
-      //$scope.$broadcast('timer-clear');
+      $scope.showCount = false;
+      $scope.$broadcast('timer-clear');
       $scope.previousDate = moment(new Date(oldVal)).format('MM/DD/YYYY');
       var selectedDate = new Date(newVal);
       //var roomId = moment(selectedDate).format('MM/YYYY') + $scope.appointments[$scope.appointmentIndex].employee._id;
@@ -374,12 +373,12 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
 
   var checkShowUpdate = function (timeObj) {
     $scope.showUpdate = false;
-    if (moment(new Date($scope.selectedDate)).date() !== moment(new Date($scope.dateObj.appointment.start.date)).date()) {
+    if (moment(new Date($scope.selectedDate)).date() !== moment(new Date($scope.appointments[$scope.appointmentIndex].start.date)).date()) {
       if (!$scope.datePassed) {
         $scope.showUpdate = true;
       }
-    } else if (moment(new Date($scope.selectedDate)).date() === moment(new Date($scope.dateObj.appointment.start.date)).date()) {
-      if (timeObj.time !== $scope.dateObj.appointment.start.time && !$scope.datePassed) {
+    } else if (moment(new Date($scope.selectedDate)).date() === moment(new Date($scope.appointments[$scope.appointmentIndex].start.date)).date()) {
+      if (timeObj.time !== $scope.appointments[$scope.appointmentIndex].start.time && !$scope.datePassed) {
         $scope.showUpdate = true;
       }
     }
@@ -447,9 +446,9 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
     var endTime = moment(timeObj.time, 'hh:mm a').add($scope.service.duration, 'minutes').format('hh:mm a');
     //The actual appointment object that will be sent to the backend
     $scope.appointment = {
-      _id: data.appointment._id,
-      businessId: data.appointment.businessId,
-      employee: data.appointment.employee,
+      _id: $scope.appointments[$scope.appointmentIndex]._id,
+      businessId: $scope.appointments[$scope.appointmentIndex].businessId,
+      employee: $scope.appointments[$scope.appointmentIndex].employee,
       start: {
         date: apptDate,
         monthYear: $scope.monthYear,
@@ -468,10 +467,10 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
       title: $scope.service.name,
       timestamp: moment()
     };
-    if (typeof(data.appointment.customer) === 'string') {
-      $scope.appointment.customer = data.appointment.customer;
-    } else if (data.appointment.customer !== null) {
-      $scope.appointment.customer = data.appointment.customer._id
+    if (typeof($scope.appointments[$scope.appointmentIndex].customer) === 'string') {
+      $scope.appointment.customer = $scope.appointments[$scope.appointmentIndex].customer;
+    } else if ($scope.appointments[$scope.appointmentIndex].customer !== null) {
+      $scope.appointment.customer = $scope.appointments[$scope.appointmentIndex].customer._id
     }
   };
   //If the appointment is being updated
@@ -493,12 +492,28 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
           'roomId': $scope.newRoomDate.toString() + $scope.employee._id
         };
         socketService.emit('apptUpdated', socketData);
-        //notifyReschedule(appointment, rescheduled);
+        notifyReschedule(appointment, rescheduled);
         if ($scope.activeTime) {
           socketService.emit('timeDestroyed', $scope.activeTime);
         }
-        //$scope.dateObj.appointment = appointment;
-        //$uibModalInstance.close($scope.dateObj);
+        $scope.closeModal();
+      });
+  };
+  //Cancel the appointment
+  $scope.cancel = function () {
+    if ($scope.activeTime) {
+      socketService.emit('timeDestroyed', $scope.activeTime);
+    }
+    businessFactory.cancelAppointment($scope.appointments[$scope.appointmentIndex])
+      .then(function () {
+        notifyCancel($scope.appointments[$scope.appointmentIndex]);
+        var socketData = {
+          'from': $rootScope.currentUser._id,
+          'appointment': $scope.appointments[$scope.appointmentIndex],
+          'roomId': $scope.newRoomDate.toString() + $scope.employee._id
+        };
+        socketService.emit('apptCanceled', socketData);
+        $scope.closeModal();
       });
   };
   /**
@@ -508,6 +523,118 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
   $scope.closeModal = function () {
     $scope.appointmentState = 'standard';
     $scope.selectedDate = null;
+    $scope.showCount = false;
+    $scope.$broadcast('timer-clear');
+
+    if ($scope.selectedDate) {
+      var roomId = $scope.newRoomDate.toString() + $scope.employee._id;
+      socketService.emit('leaveApptRoom', roomId);
+    }
+    socketService.removeListener('oldHold');
+    socketService.removeListener('destroyOld');
+    socketService.removeListener('newHold');
+    socketService.removeListener('update');
+    socketService.removeListener('newRoomAppt');
     $scope.modalCtrl.hide();
   };
+  $scope.$on('modal.hidden', function () {
+    $scope.doRefresh();
+  });
+  function notifyReschedule(appointment, rescheduled) {
+    var customerNotification = 'Your ' + $scope.service.name + ' scheduled for  ' + moment($scope.appointments[$scope.appointmentIndex].start.full).format('MMM Do YYYY, h:mm a')
+      + ' was rescheduled to ';
+    var employeeNotification = 'Your ' + $scope.service.name + ' scheduled for ' + moment($scope.appointments[$scope.appointmentIndex].start.full).format('MMM Do YYYY, h:mm a')
+      + ' was rescheduled to ';
+
+    if (rescheduled) {
+      employeeNotification = 'Your request to reschedule ' + $scope.service.name + ' originally scheduled for ' + moment($scope.appointments[$scope.appointmentIndex].start.full).format('MMM Do YYYY, h:mm a')
+        + ' was accepted and is now ';
+    }
+
+    var type = 'calendar';
+    if ($rootScope.currentUser._id === appointment.customer) {
+      // Customer rescheduled appointment, inform employee, no email.
+      notificationFactory.addNotification(appointment.employee, employeeNotification, type, false, appointment.start.full)
+        .then(function () {
+          var data = {
+            id: appointment.employee._id,
+            notification: employeeNotification,
+            type: type
+          };
+          socketService.emit('newNotifGenerated', data);
+        }, function (err) {
+          console.log(err);
+        });
+    } else if ($rootScope.currentUser._id === appointment.employee) {
+      // Employee rescheduled appointment, inform customer, with email.
+      notificationFactory.addNotification(appointment.customer, customerNotification, type, true, appointment.start.full)
+        .then(function () {
+          var data = {
+            id: appointment.employee._id,
+            notification: customerNotification,
+            type: type
+          };
+          socketService.emit('newNotifGenerated', data);
+        }, function (err) {
+          console.log(err);
+        });
+    } else {
+      // Business owner rescheduled appointment, inform customer and employee, with email.
+      notificationFactory.addNotification(appointment.customer, customerNotification, type, true, appointment.start.full)
+        .then(function () {
+          var data = {
+            id: appointment.employee._id,
+            notification: customerNotification,
+            type: type
+          };
+          socketService.emit('newNotifGenerated', data);
+        }, function (err) {
+          console.log(err);
+        });
+
+      notificationFactory.addNotification(appointment.employee, employeeNotification, type, true, appointment.start.full)
+        .then(function () {
+          var data = {
+            id: appointment.employee._id,
+            notification: employeeNotification,
+            type: type
+          };
+          socketService.emit('newNotifGenerated', data);
+        }, function (err) {
+          console.log(err);
+        });
+    }
+  }
+
+  function notifyCancel(appointment) {
+    var notification = 'Your ' + $scope.service.name + ' was canceled. It was originally scheduled for ',
+      type = 'calendar';
+    if ($rootScope.currentUser._id === appointment.customer) {
+      // Customer canceled appointment, inform employee, no email.
+      notificationFactory.addNotification(appointment.employee, notification, type, false, appointment.start.full)
+        .then(function () {
+          var data = {
+            id: appointment.employee._id,
+            notification: notification,
+            type: type
+          };
+          socketService.emit('newNotifGenerated', data);
+        }, function (err) {
+          console.log(err);
+        });
+    } else {
+      // Employee canceled appointment, inform customer, with email.
+      notificationFactory.addNotification(appointment.customer, notification, type, true, appointment.start.full)
+        .then(function () {
+          var data = {
+            id: appointment.employee._id,
+            notification: notification,
+            type: type
+          };
+          socketService.emit('newNotifGenerated', data);
+        }, function (err) {
+          console.log(err);
+        });
+    }
+  }
 };
