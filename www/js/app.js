@@ -12,12 +12,27 @@
 //require('ionic');
 //require('ng-cordova');
 //require('ngRoute');
+window._ = require('underscore');
+window.io = require('socket.io-client');
+window.moment = require('moment');
+window.humanizeDuration = require('humanize-duration');
+require('angular-socket-io');
+require('moment-range');
+require('angular-timer');
 
-var app = angular.module('bookd', ['ionic', 'ngCordovaOauth']);
+var app = angular.module('bookd', [
+  'ionic',
+  'ngCordovaOauth',
+  'ionic-datepicker',
+  'btford.socket-io',
+  'timer'
+]);
+
 require('./services');
 require('./controllers');
+
 //require('./filters');
-window._ = require('lodash');
+window._ = require('underscore');
 
 app.run(function ($ionicPlatform, $rootScope) {
     $ionicPlatform.ready(function () {

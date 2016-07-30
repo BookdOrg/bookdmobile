@@ -17,7 +17,7 @@
       </div>
     </div>
     <div ng-repeat="appointment in appointments track by $index">
-        <ul class="table-view">
+      <ul class="table-view" ng-if="appointment.status !== 'canceled'">
           <li class="table-view-cell media">
             <div class="media-body">
               <h3 class="text-center">{{appointment.title}}</h3>
@@ -81,31 +81,51 @@
              ng-src="{{cloudinaryBaseUrl}}{{employee.avatarVersion}}/profile/{{employee._id}}">
 
         <p>{{employee.name}}</p>
+        <h4 class="text-danger"
+            ng-if="datePassed && appointments[appointmentIndex].status !== 'paid' && currentUser._id ===  appointments[appointmentIndex].customer._id">
+          The original appointment time has passed, this appointment can no longer be updated. If you would like
+          to reschedule you can
+          schedule a new appointment via the Business' home page.
+          Thank you.</h4>
+        <h4 class="text-danger"
+            ng-if="datePassed && appointments[appointmentIndex].status !== 'paid' && currentUser._id !==  appointments[appointmentIndex].customer._id">
+          The original appointment time has passed, this appointment can no longer be updated.
+        </h4>
+        <h4 class="text-danger" ng-if=" appointments[appointmentIndex].status === 'paid' && datePassed">This service has
+          been
+          fulfilled and paid for, therefore it can no longer be updated. Thank you. </h4>
 
-        <button class="button button-block button-positive" ng-click="switchState('reschedule')">
+        <button ng-if="!datePassed" class="button button-block button-positive" ng-click="switchState('reschedule')">
           Reschedule
         </button>
-        <button class="button button-block button-assertive">
+        <button ng-if="!datePassed" class="button button-block button-assertive" ng-click="cancel()">
           Cancel
         </button>
       </div>
       <div class="" ng-if="appointmentState == 'reschedule'">
-        <h3 class="text-center">Select an Associate</h3>
-        <ion-scroll direction="x" style="width:110%; height:150px;">
-          <div class="row" style="width:5000px">
-            <div ng-repeat="employee in service.employees">
-              <img class="employeeAvatar" ng-if="employee.provider === 'facebook'"
-                   ng-src="{{facebookApi}}{{employee.providerId}}/picture?type=large"/>
-              <img class="employeeAvatar"
-                   ng-if="!employee.avatarVersion && employee.provider === 'bookd' || employee.provider === 'business'"
-                   ng-src="{{cloudinaryDefaultPic}}">
-              <img class="employeeAvatar"
-                   ng-if="employee.avatarVersion && employee.provider === 'bookd' || employee.provider === 'business'"
-                   ng-src="{{cloudinaryBaseUrl}}{{employee.avatarVersion}}/profile/{{employee._id}}">
-              <h5>{{employee.name}}</h5>
-            </div>
-          </div>
-        </ion-scroll>
+        <timer ng-show="showCount" countdown="countdown" max-time-unit="'minute'" interval="1000" auto-start="false"
+               finish-callback="timerFinished()">Appointment being held for: {{mminutes}} minute{{minutesS}},
+          {{sseconds}} second{{secondsS}}
+        </timer>
+        <button class="button button-block button-positive" ng-click="openDatePicker()">
+          Select a date to see {{employee.name}}'s availability.
+        </button>
+        <ion-spinner class="text-center" ng-if="calculatingAppointments" icon="spiral"></ion-spinner>
+        <div ng-if="availableTimes.length>0">
+          <h3 class="text-center">{{employee.name}}'s Available Times </h3>
+          <ion-item ng-repeat="time in availableTimes track by $index">
+            <button class="button button-block" ng-click="createAppointmentObj(time,$index)"
+                    ng-disabled="!time.available || time.status || time.toggled || time.hide"
+                    ng-class="{'btn-faded-green':time.hide,'btn-gradient-red': !time.available && !time.hide
+                             || time.status,'btn-gradient-green':time.available && !time.toggled && !time.hide,'btn-gradient-blue':time.toggled}"
+                    role="button" class="btn" style="margin-bottom:5px;">
+              {{time.time}}
+            </button>
+          </ion-item>
+        </div>
+        <button class="button button-block button-positive" ng-click="update()">
+          Update Appointment
+        </button>
         <button class="button button-block button-positive" ng-click="switchState('standard')">
           Back
         </button>
@@ -113,3 +133,22 @@
     </ion-content>
   </ion-modal-view>
 </script>
+<!--
+##
+## This is what picking an associate will looks liek for schedule appointments
+##
+##
+ -->
+<!--<div class="row" style="padding-left:60px;">-->
+<!--<div class="col" ng-repeat="employee in service.employees" ng-click="selectEmployee(employee)">-->
+<!--<img class="employeeAvatar" ng-if="employee.provider === 'facebook'"-->
+<!--ng-src="{{facebookApi}}{{employee.providerId}}/picture?type=large"/>-->
+<!--<img class="employeeAvatar"-->
+<!--ng-if="!employee.avatarVersion && employee.provider === 'bookd' || employee.provider === 'business'"-->
+<!--ng-src="{{cloudinaryDefaultPic}}">-->
+<!--<img class="employeeAvatar"-->
+<!--ng-if="employee.avatarVersion && employee.provider === 'bookd' || employee.provider === 'business'"-->
+<!--ng-src="{{cloudinaryBaseUrl}}{{employee.avatarVersion}}/profile/{{employee._id}}">-->
+<!--<h5>{{employee.name}}</h5>-->
+<!--</div>-->
+<!--</div>-->

@@ -14,9 +14,7 @@ var browserify = require('browserify'),
   sass = require('gulp-sass'),
   rename = require('gulp-rename'),
   sh = require('shelljs'),
-  watchify = require('watchify'),
-  _ = require('underscore');
-
+  watchify = require('watchify');
 var paths = {
   sass: ['./scss/**/*.scss'],
   src: './www/js/**/*.js',         // Source path
@@ -51,7 +49,7 @@ gulp.task('browserify', function () {
   });
 });
 gulp.task('watch', function() {
-  gulp.watch(paths.sass, ['sass']);
+  gulp.watch(paths.sass, ['sass', 'browserify']);
 });
 
 gulp.task('install', ['git-check'], function() {
