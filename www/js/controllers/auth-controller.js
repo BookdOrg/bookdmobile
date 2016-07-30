@@ -32,7 +32,6 @@ module.exports = function ($scope, $ionicPopup, auth, $state, $cordovaOauth, $ht
     });
   };
   $scope.facebookLogin = function () {
-    $scope.authSpinner = true;
     $cordovaOauth.facebook("1652611575018107", ["email", "public_profile"])
       .then(function (result) {
         $http.get('https://graph.facebook.com/me?fields=id,name,picture.type(large),email', {
@@ -45,6 +44,7 @@ module.exports = function ($scope, $ionicPopup, auth, $state, $cordovaOauth, $ht
             'username': success.data.email,
             'provider': 'facebook'
           };
+          $scope.authSpinner = true;
           auth.logIn(user, success.data.picture.data.url)
             .then(function (response) {
               if (response === 'Success') {
@@ -77,6 +77,7 @@ module.exports = function ($scope, $ionicPopup, auth, $state, $cordovaOauth, $ht
 
       }, function (error) {
         $scope.error = error;
+        $scope.authSpinner = false;
         $ionicPopup.alert({
           title: 'Oops!',
           template: $scope.error
