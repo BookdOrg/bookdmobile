@@ -34,7 +34,7 @@ require('./controllers');
 //require('./filters');
 window._ = require('underscore');
 
-app.run(function ($ionicPlatform, $rootScope) {
+app.run(function ($ionicPlatform, $rootScope, auth, CLOUDINARY_Default, CLOUDINARY_BASE, facebookApi) {
     $ionicPlatform.ready(function () {
       // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
       // for form inputs)
@@ -47,6 +47,13 @@ app.run(function ($ionicPlatform, $rootScope) {
         StatusBar.styleDefault();
       }
     });
+
+  if (auth.getUser()) {
+    $rootScope.currentUser = auth.currentUser();
+  }
+  $rootScope.cloudinaryDefaultPic = CLOUDINARY_Default;
+  $rootScope.cloudinaryBaseUrl = CLOUDINARY_BASE;
+  $rootScope.facebookApi = facebookApi;
 });
 
 app.constant('CLOUDINARY_BASE', 'https://res.cloudinary.com/dvvtn4u9h/image/upload/c_thumb,h_300,w_300/v');
@@ -151,10 +158,11 @@ app.config(function ($stateProvider, $urlRouterProvider, ionicDatePickerProvider
       })
 
       .state('app.profile', {
-        url: '/profile',
+        url: '/user/:id/profile',
         views: {
           'menuContent': {
-            templateUrl: 'templates/profile.html'
+            templateUrl: 'templates/profile.html',
+            controller: 'profileCtrl'
           }
         }
       })

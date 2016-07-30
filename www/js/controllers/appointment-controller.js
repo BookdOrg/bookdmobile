@@ -11,6 +11,10 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
   $scope.cloudinaryDefaultPic = CLOUDINARY_Default;
   $scope.appointmentState = 'standard';
 
+  $scope.goToProfile = function (id) {
+    $state.go('app.profile', {id: id})
+    $scope.modalCtrl.hide();
+  };
   $scope.switchState = function (state) {
     $scope.appointmentState = state;
   };

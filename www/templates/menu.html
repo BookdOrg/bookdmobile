@@ -14,7 +14,8 @@
     <ion-side-menu side="left" class="main-menu" expose-aside-when="large">
         <ion-content>
             <ion-list>
-                <ion-item class="heading-item item item-avatar" nav-clear menu-close ui-sref="app.profile">
+              <ion-item class="heading-item item item-avatar" nav-clear menu-close
+                        ui-sref="app.profile({id:currentUser._id})">
                     <div class="user-image-container">
                         <pre-img ratio="_1_1" helper-class="rounded-image">
                             <img class="user-image" ng-if="currentUser.provider === 'facebook'"

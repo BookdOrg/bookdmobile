@@ -71,16 +71,20 @@
         <p>Time: {{appointments[appointmentIndex].start.time}}</p>
 
         <p>Associate</p>
-        <img class="employeeAvatar" ng-if="employee.provider === 'facebook'"
-             ng-src="{{facebookApi}}{{employee.providerId}}/picture?type=large"/>
-        <img class="employeeAvatar"
-             ng-if="!employee.avatarVersion && employee.provider === 'bookd' || employee.provider === 'business'"
-             ng-src="{{cloudinaryDefaultPic}}">
-        <img class="employeeAvatar"
-             ng-if="employee.avatarVersion && employee.provider === 'bookd' || employee.provider === 'business'"
-             ng-src="{{cloudinaryBaseUrl}}{{employee.avatarVersion}}/profile/{{employee._id}}">
 
-        <p>{{employee.name}}</p>
+        <div ng-click="goToProfile(employee._id)">
+          <img class="employeeAvatar" ng-if="employee.provider === 'facebook'"
+               ng-src="{{facebookApi}}{{employee.providerId}}/picture?type=large"/>
+          <img class="employeeAvatar"
+               ng-if="!employee.avatarVersion && employee.provider === 'bookd' || employee.provider === 'business'"
+               ng-src="{{cloudinaryDefaultPic}}">
+          <img class="employeeAvatar"
+               ng-if="employee.avatarVersion && employee.provider === 'bookd' || employee.provider === 'business'"
+               ng-src="{{cloudinaryBaseUrl}}{{employee.avatarVersion}}/profile/{{employee._id}}">
+
+          <p>{{employee.name}}</p>
+        </div>
+
         <h4 class="text-danger"
             ng-if="datePassed && appointments[appointmentIndex].status !== 'paid' && currentUser._id ===  appointments[appointmentIndex].customer._id">
           The original appointment time has passed, this appointment can no longer be updated. If you would like

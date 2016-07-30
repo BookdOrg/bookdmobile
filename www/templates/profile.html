@@ -1,24 +1,45 @@
 <ion-view style="" view-title="Profile" hide-back-button="true" class="profile">
-
+  <ion-nav-bar>
+  </ion-nav-bar>
+  <ion-nav-buttons side="primary">
+    <button class="button" ng-if="lastView" ng-click="myGoBack()">
+      <i class="ion-arrow-left-c"></i> Back
+    </button>
+  </ion-nav-buttons>
     <ion-content class="has-header" overflow-scroll="true" padding="true">
-
 		<div class="content">
 			<div class="head-profile">
 				<ul class="table-view">
 					<li class="table-view-cell media text-center">
-						<div class="user-photo-frame">
-							<img ng-if="currentUser.provider === 'facebook'"
-								 ng-src="{{currentUser.providerInfo}}"/>
-							<img ng-if="currentUser.provider === 'bookd' || currentUser.provider === 'business'"
-								 ng-src="{{avatar}}"/>
+            <div class="user-photo-frame" ng-if="currentUser._id == user._id">
+              <img ng-if="!currentUser.avatarVersion && currentUser.provider === 'bookd'"
+                   ng-src="{{cloudinaryDefaultPic}}"/>
+              <img ng-if="currentUser.avatarVersion && currentUser.provider === 'bookd'"
+                   ng-src="{{cloudinaryBaseUrl}}{{currentUser.avatarVersion}}/profile/{{currentUser._id}}"/>
+              <!--<img class="provider-photo-radius" ng-if="currentUser.provider === 'google_plus'"-->
+              <!--ng-src="{{currentUser.providerInfo}}"/>-->
+              <img class="provider-photo-radius" ng-if="currentUser.provider === 'facebook'"
+                   ng-src="{{currentUser.providerInfo}}"/>
 						</div>
-						<h4>{{currentUser.name}}</h4>
-						<a href="#" class="btn btn-outlined">FOLLOW</a>
+            <div class="user-photo-frame" ng-if="currentUser._id !== user._id">
+              <img ng-if="!user.avatarVersion && user.provider =='bookd'" ng-src="{{cloudinaryDefaultPic}}"/>
+              <img ng-if="user.avatarVersion && user.provider == 'bookd'"
+                   ng-src="{{cloudinaryBaseUrl}}{{user.avatarVersion}}/profile/{{user._id}}"/>
+              <!--<img class="provider-photo-radius" ng-if="user.provider === 'google_plus'" ng-src="{{user.photo}}"/>-->
+              <!--<img class="provider-photo-radius" ng-if="user.provider === 'google_plus' && !user.photo"-->
+              <!--ng-src="{{cloudinaryDefaultPic}}"/>-->
+              <img class="provider-photo-radius" ng-if="user.provider === 'facebook'"
+                   ng-src="{{facebookApi}}{{user.providerId}}/picture?type=large"/>
+            </div>
+            <h4 ng-if="currentUser._id !== user._id">{{user.name}}'s Profile</h4>
+            <h4 ng-if="currentUser._id == user._id"> Your Profile</h4>
+            <!--<a href="#" class="btn btn-outlined">FOLLOW</a>-->
+            <h4>{{user.associateDescription}}</h4>
 					</li>
 					<li class="table-view-cell media text-center no-padding backdrop-background">
 						<section class="social-panel">
 							<div class="social-info backdrop-background-6">
-								<h3>{{currentUser.appointments.length}}</h3>
+                <h3>{{user.appointments.length}}</h3>
 								<p>Appointments</p>
 							</div>
 							<div class="social-info backdrop-background-5">
@@ -37,20 +58,20 @@
 					</li>
 				</ul>
 			</div>
-			<section id="photos">
-				<img src="img/profile/people.png" />
-				<img src="img/profile/puppy.png" />
-				<img src="img/profile/white-pup.png" />
-				<img src="img/profile/on_a_boat.png" />
-				<img src="img/profile/dog.png" />
-				<img src="img/profile/in-nature.png" />
-				<img src="img/profile/hat.png" />
-				<img src="img/profile/forest.png" />
-				<img src="img/profile/drinks.png" />
-				<img src="img/profile/drinking.png" />
-				<img src="img/profile/leaf.png" />
-				<img src="img/profile/strawberries.png" />
-			</section>
+      <!--<section id="photos">-->
+      <!--<img src="img/profile/people.png" />-->
+      <!--<img src="img/profile/puppy.png" />-->
+      <!--<img src="img/profile/white-pup.png" />-->
+      <!--<img src="img/profile/on_a_boat.png" />-->
+      <!--<img src="img/profile/dog.png" />-->
+      <!--<img src="img/profile/in-nature.png" />-->
+      <!--<img src="img/profile/hat.png" />-->
+      <!--<img src="img/profile/forest.png" />-->
+      <!--<img src="img/profile/drinks.png" />-->
+      <!--<img src="img/profile/drinking.png" />-->
+      <!--<img src="img/profile/leaf.png" />-->
+      <!--<img src="img/profile/strawberries.png" />-->
+      <!--</section>-->
 		</div>
 
     </ion-content>
