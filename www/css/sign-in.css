@@ -1,4 +1,8 @@
-.sign-in { font-family: 'Open Sans', sans-serif; background-image: url(../img/sign-in/masc.jpg); background-repeat: no-repeat; background-size: cover; }
+.sign-in {
+  font-family: 'Open Sans', sans-serif;
+  background: url(../img/sign-in/masc.jpg) no-repeat;
+  background-size: cover;
+}
 .sign-in .title{ color: transparent; }
 .sign-in .content, .sign-in .bar { background-color: transparent; border-bottom: none;}
 .sign-in .wrapper{ margin: 47px 1em; text-align: center; }

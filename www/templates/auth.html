@@ -18,7 +18,8 @@
               <span ng-if="!authSpinner">sign in</span>
               <ion-spinner ng-if="authSpinner" icon="spiral"></ion-spinner>
             </button>
-            <a ng-click="switchState('createAccount')">Create an Account</a> | <a ng-click="switchState('lostPass')">Lost
+            <a ng-click="switchState('createAccount')" href="">Create an Account</a> | <a
+            ng-click="switchState('lostPass')" href="">Lost
             Password?</a>
 					</form>
           <form class="input-group sign-in-form" ng-if="state == 'createAccount'">
@@ -33,7 +34,8 @@
               <span ng-if="!authSpinner">sign up</span>
               <ion-spinner ng-if="authSpinner" icon="spiral"></ion-spinner>
             </button>
-            <a ng-click="switchState('signIn')">Login</a> | <a ng-click="switchState('lostPass')">Lost Password?</a>
+            <a ng-click="switchState('signIn')" href="">Login</a> | <a ng-click="switchState('lostPass')" href="">Lost
+            Password?</a>
           </form>
           <form class="input-group sign-in-form" ng-if="state =='lostPass'">
             <p>Enter your email address below and we'll send you a link to reset your password.</p>
@@ -49,7 +51,8 @@
                   your password.</p>
               </div>
             </div>
-            <a ng-click="switchState('signIn')">Login</a> | <a ng-click="switchState('createAccount')">Create An
+            <a ng-click="switchState('signIn')" href="">Login</a> | <a ng-click="switchState('createAccount')" href="">Create
+            An
             Account</a>
           </form>
 				</div>

@@ -6,7 +6,7 @@ module.exports = function ($scope, $ionicPopup, auth, $state, $cordovaOauth, $ht
   $scope.user = {};
   $scope.switchState = function (state) {
     $scope.state = state;
-  }
+  };
   $scope.doLogIn = function (user) {
     user.provider = 'bookd';
     $scope.authSpinner = true;
