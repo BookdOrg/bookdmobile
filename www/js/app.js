@@ -54,6 +54,10 @@ app.run(function ($ionicPlatform, $rootScope, auth, CLOUDINARY_Default, CLOUDINA
   $rootScope.cloudinaryDefaultPic = CLOUDINARY_Default;
   $rootScope.cloudinaryBaseUrl = CLOUDINARY_BASE;
   $rootScope.facebookApi = facebookApi;
+  $rootScope.logOut = function () {
+    auth.logOut();
+
+  }
 });
 
 app.constant('CLOUDINARY_BASE', 'https://res.cloudinary.com/dvvtn4u9h/image/upload/c_thumb,h_300,w_300/v');

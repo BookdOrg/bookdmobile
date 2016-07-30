@@ -3,7 +3,7 @@
 module.exports = function ($scope, $ionicPopup, auth, $state, $cordovaOauth, $http, $rootScope, CLOUDINARY_BASE, CLOUDINARY_Default) {
   $scope.state = 'signIn';
   $scope.authSpinner = false;
-
+  $scope.user = {};
   $scope.switchState = function (state) {
     $scope.state = state;
   }
@@ -117,5 +117,4 @@ module.exports = function ($scope, $ionicPopup, auth, $state, $cordovaOauth, $ht
         }
       });
   };
-  $scope.user = {};
 };

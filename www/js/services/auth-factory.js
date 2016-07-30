@@ -105,10 +105,11 @@ module.exports = function ($http, $window, $rootScope, $state, remoteHost) {
       $window.localStorage.removeItem('monthYearArray');
       $window.localStorage.removeItem('providerInfo');
       $window.localStorage.removeItem('previousBusiness');
+      $window.localStorage.removeItem('user');
       $window.localStorage.removeItem('previousPersonalMonthYear');
       $window.localStorage.removeItem('oauthio_provider_google_plus');
       $rootScope.currentUser = null;
-      $state.go('landing');
+      $state.go('auth');
     },
     reset: function (email) {
       var data = {
