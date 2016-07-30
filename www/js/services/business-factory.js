@@ -105,6 +105,12 @@ module.exports = function ($http, auth, $q, remoteHost) {
         //angular.copy(data.data, o.service);
         return data.data;
       }, handleError);
+    },
+    getPhotos: function (reference) {
+      return $http.get('https://maps.googleapis.com/maps/api/place/photo?minwidth=75&maxwidth=75&minheight=75&maxheight=75&key=AIzaSyB-hJk0rUSYf1V_Yf_XXxdOJPpeTiodFTo&photoreference=' + reference)
+        .then(function (data) {
+          return data.data;
+        }, handleError)
     }
   };
 
@@ -122,4 +128,4 @@ module.exports = function ($http, auth, $q, remoteHost) {
     return ( $q.reject(response.data.message) );
   }
 
-}
+};

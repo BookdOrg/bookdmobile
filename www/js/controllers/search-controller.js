@@ -1,7 +1,7 @@
 /**
  * Created by khalilbrown on 7/18/16.
  */
-'user strict';
+'use strict';
 
 module.exports = function ($scope, businessFactory, search, locationFactory, $ionicPopup) {
   var vm = this;
@@ -27,21 +27,35 @@ module.exports = function ($scope, businessFactory, search, locationFactory, $io
           }
         });
       }
-    });
+    }).then(function () {
+      navigator.geolocation.getCurrentPosition(function (position) {
+        var lat = position.coords.latitude;
+        var lng = position.coords.longitude;
 
-    navigator.geolocation.getCurrentPosition(function (position) {
-      var lat = position.coords.latitude;
-      var lng = position.coords.longitude;
-
-      // This returns an 8 part array where the 0th index is the most accurate and the 7th is least accurate.
-      search.getLocationInfo(lat, lng).then(
-        function (data) {
-          vm.query.location = data['results'][0]['formatted_address'];
-        }, function (err) {
-          console.log(err);
-        });
-    }, function (err) {
+        // This returns an 8 part array where the 0th index is the most accurate and the 7th is least accurate.
+        search.getLocationInfo(lat, lng).then(
+          function (data) {
+            vm.query.location = data['results'][0]['formatted_address'];
+          }, function (err) {
+            console.log(err);
+          });
+      }, function (err) {
+        console.log(err);
+      });
+    }).catch(function (err) {
       console.log(err);
+      var confirmPopup = $ionicPopup.confirm({
+        title: 'Enable GPS',
+        template: 'Please enable high accuracy location tracking.'
+      });
+
+      confirmPopup.then(function (res) {
+        if (res) {
+          cordova.plugins.diagnostic.switchToLocationSettings();
+        } else {
+          //TODO Prompt for address
+        }
+      });
     });
   } else {
     //TODO HANDLE THIS CASE
@@ -56,6 +70,13 @@ module.exports = function ($scope, businessFactory, search, locationFactory, $io
       .then(function (data) {
         vm.loading = false;
         vm.locations = data;
+
+        return data;
+      })
+      .then(function (data) {
+        businessFactory.getPhotos(data[0].photos[0].photo_reference).then(function (data) {
+          vm.image = data;
+        });
       });
   };
 };

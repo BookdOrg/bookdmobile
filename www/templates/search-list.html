@@ -25,7 +25,7 @@
           singles near you!</h4></li>
         <li class="table-view-cell media" ng-repeat="location in vm.locations">
           <!--TODO GET IMAGES FOR THE BUSINESS-->
-          <img class="media-object pull-left" src="img/shop-list/glitter_photo.png">
+          <img class="media-object pull-left" ng-src="{{location.image}}">
           <div class="media-body">
             <h4><a ng-href="{{location.website}}">{{location.name}}</a></h4>
             <h5>
