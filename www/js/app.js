@@ -12,12 +12,26 @@
 //require('ionic');
 //require('ng-cordova');
 //require('ngRoute');
+window._ = require('underscore');
+window.io = require('socket.io-client');
+window.moment = require('moment');
+window.humanizeDuration = require('humanize-duration');
+require('angular-socket-io');
+require('moment-range');
+require('angular-timer');
 
-var app = angular.module('bookd', ['ionic', 'ngCordovaOauth']);
+var app = angular.module('bookd', [
+  'ionic',
+  'ngCordovaOauth',
+  'ionic-datepicker',
+  'btford.socket-io',
+  'timer'
+]);
+
 require('./services');
 require('./controllers');
+
 //require('./filters');
-window._ = require('underscore');
 
 app.run(function ($ionicPlatform, $rootScope) {
     $ionicPlatform.ready(function () {
@@ -42,7 +56,25 @@ app.constant('devPort', '8112');
 app.constant('facebookApi', 'https://graph.facebook.com/');
 app.constant('googleApi', 'https://www.googleapis.com/plus/v1/people/');
 app.constant('remoteHost', 'https://dev.bookd.me'); // https://dev.bookd.me https://bookd.me http://localhost:3002
-app.config(function ($stateProvider, $urlRouterProvider) {
+app.constant('remoteSocketPort', ':8112'); //DEV: :8112 LOCAL:  :3002
+app.config(function ($stateProvider, $urlRouterProvider, ionicDatePickerProvider) {
+  //var datePickerObj = {
+  //  inputDate: new Date(),
+  //  setLabel: 'Set',
+  //  todayLabel: 'Today',
+  //  closeLabel: 'Close',
+  //  mondayFirst: false,
+  //  weeksList: ["S", "M", "T", "W", "T", "F", "S"],
+  //  monthsList: ["Jan", "Feb", "March", "April", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"],
+  //  templateType: 'popup',
+  //  from: new Date(),
+  //  showTodayButton: true,
+  //  dateFormat: 'dd MMMM yyyy',
+  //  closeOnSelect: true
+  //  //disableWeekdays: [6]
+  //};
+  //ionicDatePickerProvider.configDatePicker(datePickerObj);
+
     $stateProvider
       .state('auth', {
         url: '/auth',

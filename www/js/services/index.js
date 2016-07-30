@@ -10,3 +10,4 @@ app.factory('businessFactory', require('./business-factory'));
 app.factory('search', require('./search-factory'));
 app.factory('notificationFactory', require('./notification-factory'));
 app.factory('locationFactory', require('./location-factory'));
+app.factory('socketService', require('./socket-service'));
