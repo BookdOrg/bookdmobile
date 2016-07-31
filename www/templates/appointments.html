@@ -16,35 +16,34 @@
         </div>
       </div>
     </div>
-    <div ng-repeat="appointment in appointments track by $index">
-      <ul class="table-view" ng-if="appointment.status !== 'canceled'">
-          <li class="table-view-cell media">
-            <div class="media-body">
-              <h3 class="text-center">{{appointment.title}}</h3>
+    <div class="card" ng-repeat="appointment in appointments track by $index">
+      <div class="item item-text-wrap">
+        <h2 class="text-center">{{appointment.title}} -
+            <span
+              ng-class="{'text-canceled':appointment.status == 'canceled','text-paid':appointment.status == 'paid','text-active':appointment.status == 'active','text-pending':appointment.status == 'pending'}">
+              {{appointment.status | uppercase}}
+            </span>
+        </h2>
 
-              <p>Status: {{appointment.status | uppercase}}</p>
+        <h3 class="text-center" style="margin-top:15px;">{{appointment.start.day}}, {{appointment.start.date}}
+          {{appointment.start.time}} - {{appointment.end.time}}</h3>
 
-              <p>Date: {{appointment.start.date}}</p>
-
-              <p>Time: {{appointment.start.time}}</p>
-            </div>
-            <table class="media-foot">
-              <tr>
-                <td>
-                  <button class="btn btn-default btn-block" ng-click="appointmentClicked($index)">
-                    <span class="icon ion-ios-calendar-outline"></span> View
-                  </button>
-                </td>
-              </tr>
-            </table>
-          </li>
-        </ul>
+      </div>
+      <table class="media-foot">
+        <tr>
+          <td>
+            <button class="btn btn-default btn-block" ng-click="appointmentClicked($index)">
+              View Details
+            </button>
+          </td>
+        </tr>
+      </table>
     </div>
     <ion-infinite-scroll
       immediate-check="false"
       on-infinite="loadMore()"
       spinner="spiral"
-      distance="1%"
+      distance="10%"
       ng-if="moreDataCanBeLoaded()">
     </ion-infinite-scroll>
   </ion-content>
@@ -99,11 +98,13 @@
           been
           fulfilled and paid for, therefore it can no longer be updated. Thank you. </h4>
 
-        <button ng-if="!datePassed" class="button button-block button-positive" ng-click="switchState('reschedule')">
-          Reschedule
+        <button ng-if="!datePassed" ng-hide="appointments[appointmentIndex].status =='canceled'"
+                class="button button-block button-positive" ng-click="switchState('reschedule')">
+          Re-schedule
         </button>
-        <button ng-if="!datePassed" class="button button-block button-assertive" ng-click="cancel()">
-          Cancel
+        <button ng-if="!datePassed" ng-hide="appointments[appointmentIndex].status =='canceled'"
+                class="button button-block button-assertive" ng-click="confirmCancel()">
+          Cancel Appointment
         </button>
       </div>
       <div class="" ng-if="appointmentState == 'reschedule'">

@@ -10,7 +10,7 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
   $scope.cloudinaryBaseUrl = CLOUDINARY_BASE;
   $scope.cloudinaryDefaultPic = CLOUDINARY_Default;
   $scope.appointmentState = 'standard';
-
+  var stateChanged = false;
   $scope.goToProfile = function (id) {
     $state.go('app.profile', {id: id})
     $scope.modalCtrl.hide();
@@ -25,7 +25,7 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
   $scope.doRefresh = function () {
     $ionicLoading.show({
       template: 'Updating Appointments..'
-    })
+    });
     appointmentFactory.getInfiniteAppointment(0)
       .then(function (response) {
         $scope.appointments = response;
@@ -479,46 +479,69 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
   };
   //If the appointment is being updated
   $scope.update = function (rescheduled) {
-    if (!$scope.appointment) {
-      $scope.appointment = data.appointment;
-    }
-    /**
-     * Update the appointment, send a message to sockets who need to know
-     *
-     * Pass the new appointment back to the controller that called this modal.
-     *
-     */
-    businessFactory.updateAppointment($scope.appointment)
-      .then(function (appointment) {
-        var socketData = {
-          'from': $rootScope.currentUser._id,
-          'appointment': appointment,
-          'roomId': $scope.newRoomDate.toString() + $scope.employee._id
-        };
-        socketService.emit('apptUpdated', socketData);
-        notifyReschedule(appointment, rescheduled);
+    var confirmUpdatePopup = $ionicPopup.confirm({
+      title: 'Re-Schedule Appointment',
+      template: 'Are you sure you want to re-schedule this appointment?'
+    });
+
+    confirmUpdatePopup.then(function (res) {
+      if (res) {
+        stateChanged = true;
+        if (!$scope.appointment) {
+          $scope.appointment = data.appointment;
+        }
+        /**
+         * Update the appointment, send a message to sockets who need to know
+         *
+         * Pass the new appointment back to the controller that called this modal.
+         *
+         */
+        businessFactory.updateAppointment($scope.appointment)
+          .then(function (appointment) {
+            var socketData = {
+              'from': $rootScope.currentUser._id,
+              'appointment': appointment,
+              'roomId': $scope.newRoomDate.toString() + $scope.employee._id
+            };
+            socketService.emit('apptUpdated', socketData);
+            notifyReschedule(appointment, rescheduled);
+            if ($scope.activeTime) {
+              socketService.emit('timeDestroyed', $scope.activeTime);
+            }
+            $scope.closeModal();
+          });
+      } else {
+        console.log("canceled")
+      }
+    });
+  };
+  //Cancel the appointment
+  $scope.confirmCancel = function () {
+    var confirmCancelPopup = $ionicPopup.confirm({
+      title: 'Cancel Appointment',
+      template: 'Are you sure you want to cancel this appointment? You won\'t be able to undo this action.'
+    });
+    confirmCancelPopup.then(function (res) {
+      if (res) {
+        stateChanged = true;
         if ($scope.activeTime) {
           socketService.emit('timeDestroyed', $scope.activeTime);
         }
-        $scope.closeModal();
-      });
-  };
-  //Cancel the appointment
-  $scope.cancel = function () {
-    if ($scope.activeTime) {
-      socketService.emit('timeDestroyed', $scope.activeTime);
-    }
-    businessFactory.cancelAppointment($scope.appointments[$scope.appointmentIndex])
-      .then(function () {
-        notifyCancel($scope.appointments[$scope.appointmentIndex]);
-        var socketData = {
-          'from': $rootScope.currentUser._id,
-          'appointment': $scope.appointments[$scope.appointmentIndex],
-          'roomId': $scope.newRoomDate.toString() + $scope.employee._id
-        };
-        socketService.emit('apptCanceled', socketData);
-        $scope.closeModal();
-      });
+        businessFactory.cancelAppointment($scope.appointments[$scope.appointmentIndex])
+          .then(function () {
+            notifyCancel($scope.appointments[$scope.appointmentIndex]);
+            var socketData = {
+              'from': $rootScope.currentUser._id,
+              'appointment': $scope.appointments[$scope.appointmentIndex],
+              'roomId': $scope.newRoomDate.toString() + $scope.employee._id
+            };
+            socketService.emit('apptCanceled', socketData);
+            $scope.closeModal();
+          });
+      } else {
+        console.log('Canceled');
+      }
+    });
   };
   /**
    *
@@ -542,7 +565,9 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
     $scope.modalCtrl.hide();
   };
   $scope.$on('modal.hidden', function () {
-    $scope.doRefresh();
+    if (stateChanged) {
+      $scope.doRefresh();
+    }
   });
   function notifyReschedule(appointment, rescheduled) {
     var customerNotification = 'Your ' + $scope.service.name + ' scheduled for  ' + moment($scope.appointments[$scope.appointmentIndex].start.full).format('MMM Do YYYY, h:mm a')

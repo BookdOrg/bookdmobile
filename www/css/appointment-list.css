@@ -146,15 +146,18 @@
 }
 
 .appointment-list .btn-block {
-  border-radius: 0px !important;
+  border-radius: 5px !important;
+  margin-bottom: 0px !important;
 }
 
 .appointment-list .btn-default {
-  color: #666;
-  background-color: #e9e9e9;
+  color: white;
+  background: -moz-linear-gradient(top, #0f87e2 0%, #7db9e8 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #0f87e2 0%, #7db9e8 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #0f87e2 0%, #7db9e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
   border: 1px solid #e9e9e9;
   text-transform: uppercase;
-  font-size: 12px !important;
+  font-size: 15px !important;
 }
 
 .appointment-list .btn-default:active, .btn-default.active {
@@ -292,6 +295,22 @@
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#cf0404', endColorstr='#cf0404', GradientType=0); /* IE6-9 */
 }
 
-ion-scroll[direction=y] {
-  height: 100vh;
+.text-paid {
+  color: #0f87e2 !important;
 }
+
+.text-active {
+  color: #24af24 !important;
+}
+
+.text-canceled {
+  color: #cf0404 !important;
+}
+
+.text-pending {
+  color: #f1da36 !important;
+}
+
+/*ion-scroll[direction=y] {*/
+/*height: 100vh;*/
+/*}*/
