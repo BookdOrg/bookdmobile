@@ -12,7 +12,7 @@
 //require('ionic');
 //require('ng-cordova');
 //require('ngRoute');
-window._ = require('underscore');
+window._ = require('lodash');
 window.io = require('socket.io-client');
 window.moment = require('moment');
 window.humanizeDuration = require('humanize-duration');
@@ -32,7 +32,7 @@ require('./services');
 require('./controllers');
 
 //require('./filters');
-window._ = require('underscore');
+//window._ = require('underscore');
 
 app.run(function ($ionicPlatform, $rootScope, auth, CLOUDINARY_Default, CLOUDINARY_BASE, facebookApi) {
     $ionicPlatform.ready(function () {
@@ -99,70 +99,6 @@ app.config(function ($stateProvider, $urlRouterProvider, ionicDatePickerProvider
         abstract: true,
         templateUrl: 'templates/menu.html'
       })
-
-      .state('app.article', {
-        url: '/article',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/article.html'
-          }
-        }
-      })
-
-      .state('app.articlelist', {
-        url: '/article-list',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/articles-list.html'
-          }
-        }
-      })
-
-      .state('app.chat', {
-        url: '/chat',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/chat.html'
-          }
-        }
-      })
-
-      .state('app.contactlist', {
-        url: '/contact-list',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/contact-list.html'
-          }
-        }
-      })
-
-      .state('app.photogrid', {
-        url: '/photo-grid',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/photo-grid.html'
-          }
-        }
-      })
-
-      .state('app.photolist', {
-        url: '/photo-list',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/photo-list.html'
-          }
-        }
-      })
-
-      .state('app.product', {
-        url: '/product',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/product.html'
-          }
-        }
-      })
-
       .state('app.profile', {
         url: '/user/:id/profile',
         views: {
@@ -172,18 +108,6 @@ app.config(function ($stateProvider, $urlRouterProvider, ionicDatePickerProvider
           }
         }
       })
-
-      .state('app.searchgrid', {
-        url: '/search-grid',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/search-grid.html',
-            controller: 'SearchCtrl',
-            controllerAs: 'vm'
-          }
-        }
-      })
-
       .state('app.searchlist', {
         url: '/search-list',
         views: {
@@ -191,15 +115,6 @@ app.config(function ($stateProvider, $urlRouterProvider, ionicDatePickerProvider
             templateUrl: 'templates/search-list.html',
             controller: 'SearchCtrl',
             controllerAs: 'vm'
-          }
-        }
-      })
-
-      .state('app.shoplist', {
-        url: '/shop-list',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/shop-list.html'
           }
         }
       })
@@ -225,14 +140,6 @@ app.config(function ($stateProvider, $urlRouterProvider, ionicDatePickerProvider
           'menuContent': {
             templateUrl: 'templates/appointments.html',
             controller: 'appointmentCtrl'
-          }
-        }
-      })
-      .state('app.todolist', {
-        url: '/todo-list',
-        views: {
-          'menuContent': {
-            templateUrl: 'templates/todo-list.html'
           }
         }
       });

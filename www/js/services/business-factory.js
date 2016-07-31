@@ -2,7 +2,7 @@
  * Created by khalilbrown on 7/25/16.
  */
 'use strict';
-module.exports = function ($http, auth, $q, remoteHost) {
+module.exports = function ($http, auth, $q, remoteHost, utilService) {
   return {
     /**
      *   Queries & returns google places for a business based on a
@@ -16,7 +16,8 @@ module.exports = function ($http, auth, $q, remoteHost) {
         },
         headers: {Authorization: 'Bearer ' + auth.getToken()}
       }).then(function (data) {
-        return data.data;
+        data = utilService.selectPhotos(data.data);
+        return data;
       }, function (err) {
         handleError(err);
       });

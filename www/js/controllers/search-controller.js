@@ -10,7 +10,7 @@ module.exports = function ($scope, businessFactory, search, locationFactory, $io
     location: null,
     term: null
   };
-
+  vm.searchTouched = false;
   if (navigator.geolocation) {
     locationFactory.checkLocationAvailable().then(function (isEnabled) {
       if (!isEnabled) {
@@ -28,6 +28,7 @@ module.exports = function ($scope, businessFactory, search, locationFactory, $io
         });
       }
     }).then(function () {
+      $scope.fetchingLocation = true;
       navigator.geolocation.getCurrentPosition(function (position) {
         var lat = position.coords.latitude;
         var lng = position.coords.longitude;
@@ -36,6 +37,7 @@ module.exports = function ($scope, businessFactory, search, locationFactory, $io
         search.getLocationInfo(lat, lng).then(
           function (data) {
             vm.query.location = data['results'][0]['formatted_address'];
+            $scope.fetchingLocation = false;
           }, function (err) {
             console.log(err);
           });
@@ -73,10 +75,10 @@ module.exports = function ($scope, businessFactory, search, locationFactory, $io
 
         return data;
       })
-      .then(function (data) {
-        businessFactory.getPhotos(data[0].photos[0].photo_reference).then(function (data) {
-          vm.image = data;
-        });
-      });
+    //.then(function (data) {
+    //  businessFactory.getPhotos(data[0].photos[0].photo_reference).then(function (image) {
+    //    vm.image = image;
+    //  });
+    //});
   };
 };

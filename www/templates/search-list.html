@@ -10,24 +10,36 @@
                  g-places-autocomplete options="autocompleteOptions">
         </div>
       </form>
+      <form class="input-group" ng-submit="vm.search()">
+        <div class="input-row">
+          <span class="icon ion-ios-location pull-left" ng-if="!fetchingLocation"></span>
+          <ion-spinner icon="dots" ng-if="fetchingLocation"></ion-spinner>
+          <input type="text" ng-model="vm.query.location"
+                 g-places-autocomplete options="autocompleteOptions">
+        </div>
+      </form>
     </div>
     <div class="content">
-      <div class="bar-button">
-        <button class="btn btn-primary">
-          <span class="icon icon-list"></span>
-        </button>
-        <button class="btn btn-primary btn-outlined">
-          <span class="icon icon-grid"></span>
-        </button>
-      </div>
+      <!--<div class="bar-button">-->
+      <!--<button class="btn btn-primary">-->
+      <!--<span class="icon icon-list"></span>-->
+      <!--</button>-->
+      <!--<button class="btn btn-primary btn-outlined">-->
+      <!--<span class="icon icon-grid"></span>-->
+      <!--</button>-->
+      <!--</div>-->
       <ul class="table-view">
-        <li ng-show="!vm.locations.length && !vm.loading"><h4 class="empty-list text-center">Start searching to find hot
-          singles near you!</h4></li>
+        <li ng-show="!vm.locations.length && !vm.loading"><h4 class="empty-list text-center">Go ahead, try searching for
+          businesses.</h4></li>
         <li class="table-view-cell media" ng-repeat="location in vm.locations">
           <!--TODO GET IMAGES FOR THE BUSINESS-->
-          <img class="media-object pull-left" ng-src="{{location.image}}">
+          <!--<img  ng-src="{{location.image}}">-->
+          <span ng-if="location.photos.length > 1" ng-repeat="photo in location.photos">
+              <img class="media-object pull-left"
+                   ng-src="https://maps.googleapis.com/maps/api/place/photo?minwidth=75&maxwidth=75&minheight=75&maxheight=75&photoreference={{photo.photo_reference}}&key=AIzaSyAK1BOzJxHB8pOFmPFufYdcVdAuLr_6z2U">
+          </span>
           <div class="media-body">
-            <h4><a ng-href="{{location.website}}">{{location.name}}</a></h4>
+            <h4><a>{{location.name}}</a></h4>
             <h5>
               <span class="icon icon-star-filled"></span>
               <span class="icon icon-star-filled"></span>
