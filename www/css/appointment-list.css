@@ -311,6 +311,45 @@
   color: #f1da36 !important;
 }
 
-/*ion-scroll[direction=y] {*/
-/*height: 100vh;*/
-/*}*/
+ion-scroll[direction=y] {
+  height: 100vh;
+}
+
+.ionic_datepicker_modal .month_select, .ionic_datepicker_modal .year_select {
+  height: 35px;
+}
+
+.ionic_datepicker_popup .popup-body .month_select, .ionic_datepicker_popup .popup-body .year_select {
+  border-bottom-color: #0f87e2 !important;
+}
+
+.ionic_datepicker_popup .popup-body .month_select select, .ionic_datepicker_popup .popup-body .year_select select {
+  height: 30px;
+
+}
+
+.ionic_datepicker_popup .popup-body .month_select:after, .ionic_datepicker_popup .popup-body .year_select:after {
+  color: #0f87e2 !important;
+}
+
+.ionic_datepicker_popup .popup-body .selected_date_full {
+  background: -moz-linear-gradient(top, #0f87e2 0%, #7db9e8 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #0f87e2 0%, #7db9e8 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #0f87e2 0%, #7db9e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.ionic_datepicker_popup .popup-buttons button {
+  background: -moz-linear-gradient(top, #0f87e2 0%, #7db9e8 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #0f87e2 0%, #7db9e8 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #0f87e2 0%, #7db9e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}
+
+.ionic_datepicker_popup .popup-body .button-clear {
+  color: #0f87e2 !important;
+}
+
+.ionic_datepicker_popup .selected_date {
+  background: -moz-linear-gradient(top, #0f87e2 0%, #7db9e8 100%); /* FF3.6-15 */
+  background: -webkit-linear-gradient(top, #0f87e2 0%, #7db9e8 100%); /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(to bottom, #0f87e2 0%, #7db9e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+}

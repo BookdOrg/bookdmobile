@@ -16,6 +16,9 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
     $scope.modalCtrl.hide();
   };
   $scope.switchState = function (state) {
+    if (state == 'reschedule') {
+      $scope.selectedDate = new Date($scope.appointments[$scope.appointmentIndex].start.date);
+    }
     $scope.appointmentState = state;
   };
   /**
@@ -23,18 +26,22 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
    *
    */
   $scope.doRefresh = function () {
+    $scope.loading = true;
     $ionicLoading.show({
-      template: 'Updating Appointments..'
+      template: 'Updating Appointments <br> <ion-spinner icon="dots"></ion-spinner>'
     });
     appointmentFactory.getInfiniteAppointment(0)
       .then(function (response) {
         $scope.appointments = response;
         $scope.lastIndex = $scope.appointments.length;
         $scope.$broadcast('scroll.refreshComplete');
+        $scope.loading = false;
         $ionicLoading.hide();
+
       }, function (error) {
         alert(error);
         $scope.$broadcast('scroll.refreshComplete');
+        $scope.loading = false;
         $ionicLoading.hide();
       });
   };
@@ -81,26 +88,29 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
    * @param index
    */
   $scope.appointmentClicked = function (index) {
+    $scope.service = null;
     $scope.appointmentIndex = index;
-    $scope.modalCtrl.show().then(function () {
-      businessFactory.serviceDetails($scope.appointments[index].service)
-        .then(function (data) {
-          //set the service to the $scope property
-          $scope.service = data;
-          //grab the employee details from the services list of employees based on the appointments employeeID
-          if ($scope.appointments[index].employee._id) {
-            $scope.employee = _.findWhere($scope.service.employees, {_id: $scope.appointments[index].employee._id});
-          } else {
-            $scope.employee = _.findWhere($scope.service.employees, {_id: $scope.appointments[index].employee});
-          }
+    $scope.requestingService = true;
+    businessFactory.serviceDetails($scope.appointments[index].service)
+      .then(function (data) {
+        $scope.requestingService = false;
+        //set the service to the $scope property
+        $scope.service = data;
+        //grab the employee details from the services list of employees based on the appointments employeeID
+        if ($scope.appointments[index].employee._id) {
+          $scope.employee = _.findWhere($scope.service.employees, {_id: $scope.appointments[index].employee._id});
+        } else {
+          $scope.employee = _.findWhere($scope.service.employees, {_id: $scope.appointments[index].employee});
+        }
 
-          //if there's no employee we set this flag to true
-          if (!$scope.employee) {
-            $scope.showNoEmployee = true;
-          }
-          $scope.stripePrice = $scope.service.price * 100;
-          $scope.selectedDate = new Date($scope.appointments[index].start.date);
-        });
+        //if there's no employee we set this flag to true
+        if (!$scope.employee) {
+          $scope.showNoEmployee = true;
+        }
+        $scope.stripePrice = $scope.service.price * 100;
+      });
+    $scope.modalCtrl.show().then(function () {
+
     });
     var dateSelected = moment().set({
       'date': moment(new Date($scope.appointments[$scope.appointmentIndex].start.date)).date(),
@@ -246,6 +256,9 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
    * @param employeeId - the employee who's availability we need to check
    */
   function getAvailableTimes(date, employeeId) {
+    $ionicLoading.show({
+      template: 'Updating Availability <br> <ion-spinner icon="dots"></ion-spinner>'
+    });
     $scope.newRoomDate = moment(new Date(date)).format('MM/DD/YYYY');
     $scope.monthYear = moment(new Date($scope.newRoomDate)).format('MM/YYYY');
     $scope.availableTimes = [];
@@ -263,7 +276,6 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
     //} else {
     //  employeeApptObj.personal = false;
     //}
-    $scope.calculatingAppointments = true;
     $scope.availableTimes = [];
     //Join the socket room with all the other users who are looking at this date for the given employee.
     socketService.emit('joinApptRoom', employeeApptObj);
@@ -277,7 +289,7 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
         //If an employee has been selected calculate the time slots available for the day
         if (employeeAvailability !== null) {
           $scope.availableTimes = appointmentFactory.createAvailableTimes(employeeAvailability, appointmentsArray, $scope.service.duration, $rootScope.currentUser._id);
-          $scope.calculatingAppointments = false;
+          $ionicLoading.hide();
         }
         /**
          * Auto-select the current appointments start time if the user/employee
@@ -476,6 +488,7 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
     } else if ($scope.appointments[$scope.appointmentIndex].customer !== null) {
       $scope.appointment.customer = $scope.appointments[$scope.appointmentIndex].customer._id
     }
+    $scope.update();
   };
   //If the appointment is being updated
   $scope.update = function (rescheduled) {
