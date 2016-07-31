@@ -56,8 +56,8 @@
     }
   ],
   "cordovaPlatforms": [
-    "ios",
-    "android"
+    "android",
+    "ios"
   ],
   "browser": {
     "ionic": "./node_modules/ionic/js/ionic.min.js",

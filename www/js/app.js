@@ -42,12 +42,14 @@ app.run(function ($ionicPlatform, $rootScope, auth, CLOUDINARY_Default, CLOUDINA
         //cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
         cordova.plugins.Keyboard.disableScroll(true);
       }
+      if (window.cordova && window.cordova.logger) {
+        window.cordova.logger.__onDeviceReady();
+      }
       if (window.StatusBar) {
         // org.apache.cordova.statusbar required
         StatusBar.styleDefault();
       }
     });
-
   if (auth.getUser()) {
     $rootScope.currentUser = auth.currentUser();
   }

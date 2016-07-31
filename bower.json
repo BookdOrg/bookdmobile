@@ -5,6 +5,7 @@
     "ionic": "driftyco/ionic-bower#1.2.4"
   },
   "dependencies": {
-    "ionic-datepicker": "~1.2.0"
+    "ionic-datepicker": "~1.2.0",
+    "facebook-connect-plugin": "https://cdn.rawgit.com/Wizcorp/phonegap-facebook-plugin/master/facebookConnectPlugin.js"
   }
 }
