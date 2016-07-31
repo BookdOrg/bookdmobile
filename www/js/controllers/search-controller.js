@@ -74,7 +74,7 @@ module.exports = function ($scope, businessFactory, search, locationFactory, $io
         vm.locations = data;
 
         return data;
-      })
+      });
     //.then(function (data) {
     //  businessFactory.getPhotos(data[0].photos[0].photo_reference).then(function (image) {
     //    vm.image = image;

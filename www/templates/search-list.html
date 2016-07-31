@@ -42,7 +42,7 @@
                uib-tooltip="Photos coming soon..." tooltip-placement="right"
                style="border-radius:20%">
 
-          <div class="media-body text-center">
+          <div class="media-body text-center" ui-sref="app.business({businessid:location.place_id})">
             <h3><a>{{location.name}}</a></h3>
             <h5 ng-if="!business.rating">This Business has not been rated yet.</h5>
             <h5><i class="icon ion-ios-location"></i> {{location.formatted_address}}</h5>
@@ -58,7 +58,7 @@
                 </a>
               </td>
               <td>
-                <button class="btn btn-default btn-block">
+                <button class="btn btn-default btn-block" ui-sref="app.business({businessid:location.place_id})">
                   <span class="icon icon-bell"></span> Book
                 </button>
               </td>

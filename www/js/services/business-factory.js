@@ -3,13 +3,15 @@
  */
 'use strict';
 module.exports = function ($http, auth, $q, remoteHost, utilService) {
-  return {
+  var o = {
+    business: null
+  };
     /**
      *   Queries & returns google places for a business based on a
      *   text search.
      *
      **/
-    search: function (query) {
+    o.search = function (query) {
       return $http.get(remoteHost + '/business/search', {
         params: {
           'query': query
@@ -21,7 +23,7 @@ module.exports = function ($http, auth, $q, remoteHost, utilService) {
       }, function (err) {
         handleError(err);
       });
-    },
+    };
     /**
      *   Creates a new appointment for both the Employee and Customer.
      *   Takes in the appointment object.
@@ -36,7 +38,7 @@ module.exports = function ($http, auth, $q, remoteHost, utilService) {
      *  timestamp -
      *  card -
      **/
-    addAppointment: function (appt) {
+    o.addAppointment = function (appt) {
       return $http.post(remoteHost + '/business/appointments/create', appt, {
         headers: {Authorization: 'Bearer ' + auth.getToken()}
       }).then(function (response) {
@@ -44,8 +46,8 @@ module.exports = function ($http, auth, $q, remoteHost, utilService) {
       }, function (err) {
         return err.data;
       });
-    },
-    updateAppointment: function (appt) {
+    };
+  o.updateAppointment = function (appt) {
       return $http.post(remoteHost + '/business/appointments/update', appt, {
         headers: {Authorization: 'Bearer ' + auth.getToken()}
       }).then(function (response) {
@@ -53,8 +55,8 @@ module.exports = function ($http, auth, $q, remoteHost, utilService) {
       }, function (err) {
         return err.data;
       });
-    },
-    cancelAppointment: function (appt) {
+  };
+  o.cancelAppointment = function (appt) {
       return $http.post(remoteHost + '/business/appointments/cancel', appt, {
         headers: {Authorization: 'Bearer ' + auth.getToken()}
       }).then(function (response) {
@@ -62,18 +64,19 @@ module.exports = function ($http, auth, $q, remoteHost, utilService) {
       }, function (err) {
         return err.data;
       });
-    },
-    getBusiness: function (id) {
+  };
+  o.getBusiness = function (id) {
       return $http.get(remoteHost + '/business/details', {
         params: {
           'placesId': id
         },
         headers: {Authorization: 'Bearer ' + auth.getToken()}
       }).then(function (data) {
+        data = utilService.selectPhoto(data.data);
         //angular.copy(data.data, o.business);
-        return data.data;
+        return data;
       }, handleError);
-    },
+  };
     /**
      *   Returns all Bookd information about a specific Business.
      *
@@ -81,7 +84,7 @@ module.exports = function ($http, auth, $q, remoteHost, utilService) {
      *  placeId -
      *
      **/
-    getBusinessInfo: function (id) {
+    o.getBusinessInfo = function (id) {
       return $http.get(remoteHost + '/business/info', {
         params: {
           'id': id
@@ -90,13 +93,13 @@ module.exports = function ($http, auth, $q, remoteHost, utilService) {
       }).then(function (data) {
         return data.data;
       }, handleError);
-    },
+    };
     /**
      *
      * Get the details for a specific service
      *
      */
-    serviceDetails: function (serviceId) {
+    o.serviceDetails = function (serviceId) {
       return $http.get(remoteHost + '/business/service-detail', {
         params: {
           'service': serviceId
@@ -106,14 +109,14 @@ module.exports = function ($http, auth, $q, remoteHost, utilService) {
         //angular.copy(data.data, o.service);
         return data.data;
       }, handleError);
-    },
-    getPhotos: function (reference) {
+    };
+  o.getPhotos = function (reference) {
       return $http.get('https://maps.googleapis.com/maps/api/place/photo?minwidth=75&maxwidth=75&minheight=75&maxheight=75&key=AIzaSyB-hJk0rUSYf1V_Yf_XXxdOJPpeTiodFTo&photoreference=' + reference)
         .then(function (data) {
           return data.data;
         }, handleError)
-    }
   };
+  return o;
 
   // I transform the error response, unwrapping the application dta from
   // the API response payload.

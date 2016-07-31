@@ -37,8 +37,13 @@ module.exports = function (userFactory) {
     return businessArray;
   }
 
+  function selectPhoto(business) {
+    business.photos = _.pullAt(business.photos, 0);
+    return business;
+  };
   return {
     //getGooglePlusPhotos: getGooglePlusPhotos,
-    selectPhotos: selectPhotos
+    selectPhotos: selectPhotos,
+    selectPhoto: selectPhoto
   };
 };

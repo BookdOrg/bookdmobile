@@ -118,6 +118,25 @@ app.config(function ($stateProvider, $urlRouterProvider, ionicDatePickerProvider
           }
         }
       })
+      .state('app.business', {
+        url: '/business/:businessid',
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/business.html',
+            controller: 'businessCtrl'
+          }
+        },
+        resolve: {
+          business: ['$stateParams', 'businessFactory', function ($stateParams, businessFactory) {
+            if (businessFactory.business === null) {
+              return businessFactory.getBusiness($stateParams.businessid);
+            } else {
+              return businessFactory.business;
+            }
+
+          }]
+        }
+      })
       .state('app.favorites', {
         url: '/favorites',
         views: {

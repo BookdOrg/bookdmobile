@@ -1,0 +1,35 @@
+<ion-view view-title="{{business.name}}" class="">
+  <ion-nav-buttons side="right">
+  </ion-nav-buttons>
+
+  <ion-content class="has-header" overflow-scroll="true" padding="true">
+    <div class="row">
+      <div class="col-100">
+        <span ng-if="business.photos.length > 0" ng-repeat="photo in business.photos">
+              <img class="media-object"
+                   ng-src="https://maps.googleapis.com/maps/api/place/photo?minwidth=300&maxwidth=300&minheight=300&maxheight=300&photoreference={{photo.photo_reference}}&key=AIzaSyAK1BOzJxHB8pOFmPFufYdcVdAuLr_6z2U">
+          </span>
+        <img ng-if="!location.photos" ng-src="{{location.icon}}"
+             uib-tooltip="Photos coming soon..." tooltip-placement="right"
+             style="border-radius:20%">
+      </div>
+    </div>
+    <div class="list card">
+      <a href="#" class="item item-icon-right" ng-repeat="service in business.info.services">
+        {{service.name}} - $ {{service.price}}
+        <i class="icon ion-ios-arrow-right"></i>
+      </a>
+    </div>
+    <div class="row">
+      <div class="col">
+        <div class="card" ng-repeat="review in business.reviews">
+          <div class="item item-text-wrap">
+            <h3>{{review.author_name}}</h3>
+            {{review.text}}
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </ion-content>
+</ion-view>
