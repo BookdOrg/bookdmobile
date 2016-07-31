@@ -12,6 +12,7 @@
 //require('ionic');
 //require('ng-cordova');
 //require('ngRoute');
+window.underscore = require('underscore');
 window._ = require('lodash');
 window.io = require('socket.io-client');
 window.moment = require('moment');

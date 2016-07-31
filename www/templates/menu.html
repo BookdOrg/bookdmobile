@@ -20,8 +20,10 @@
                         <pre-img ratio="_1_1" helper-class="rounded-image">
                             <img class="user-image" ng-if="currentUser.provider === 'facebook'"
                                  ng-src="{{currentUser.providerInfo}}"/>
-                            <img class="user-image" ng-if="currentUser.provider === 'bookd' || currentUser.provider === 'business'"
-                                 ng-src="{{avatar}}"/>
+                          <img class="user-image" ng-if="!currentUser.avatarVersion && currentUser.provider === 'bookd'"
+                               ng-src="{{cloudinaryDefaultPic}}"/>
+                          <img class="user-image" ng-if="currentUser.avatarVersion && currentUser.provider === 'bookd'"
+                               ng-src="{{cloudinaryBaseUrl}}{{currentUser.avatarVersion}}/profile/{{currentUser._id}}"/>
                         </pre-img>
                     </div>
                     <h2 class="greeting">Hi {{currentUser.name}}</h2>

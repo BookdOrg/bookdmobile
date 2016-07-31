@@ -98,9 +98,9 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
         $scope.service = data;
         //grab the employee details from the services list of employees based on the appointments employeeID
         if ($scope.appointments[index].employee._id) {
-          $scope.employee = _.findWhere($scope.service.employees, {_id: $scope.appointments[index].employee._id});
+          $scope.employee = window.underscore.findWhere($scope.service.employees, {_id: $scope.appointments[index].employee._id});
         } else {
-          $scope.employee = _.findWhere($scope.service.employees, {_id: $scope.appointments[index].employee});
+          $scope.employee = window.underscore.findWhere($scope.service.employees, {_id: $scope.appointments[index].employee});
         }
 
         //if there's no employee we set this flag to true

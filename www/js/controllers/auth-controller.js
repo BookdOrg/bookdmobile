@@ -1,9 +1,12 @@
 'use strict';
 
-module.exports = function ($scope, $ionicPopup, auth, $q, $state, $cordovaOauth, $http, $rootScope, CLOUDINARY_BASE, CLOUDINARY_Default, $ionicLoading) {
+module.exports = function ($scope, $ionicPopup, auth, $q, $state, $cordovaOauth, $http, $rootScope, CLOUDINARY_BASE, CLOUDINARY_Default, facebookApi, $ionicLoading) {
   $scope.state = 'signIn';
   $scope.authSpinner = false;
   $scope.user = {};
+  $scope.facebookApi = facebookApi;
+  $scope.cloudinaryBaseUrl = CLOUDINARY_BASE;
+  $scope.cloudinaryDefaultPic = CLOUDINARY_Default;
   $scope.switchState = function (state) {
     $scope.state = state;
   };
