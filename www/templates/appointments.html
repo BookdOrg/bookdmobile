@@ -85,7 +85,7 @@
         </h1>
       </div>
       <div class="list card" ng-if="appointmentState == 'standard' && !requestingService">
-        <div class="item item-avatar">
+        <div class="item item-avatar" ng-click="goToProfile(employee._id)">
           <img class="employeeAvatar" ng-if="employee.provider === 'facebook'"
                ng-src="{{facebookApi}}{{employee.providerId}}/picture?type=large"/>
           <img class="employeeAvatar"

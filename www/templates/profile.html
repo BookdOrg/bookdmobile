@@ -33,7 +33,7 @@
               <img class="user-photo" ng-if="user.provider === 'facebook'"
                    ng-src="{{facebookApi}}{{user.providerId}}/picture?type=large"/>
             </div>
-            <h4 ng-if="currentUser._id !== user._id">{{user.name}}'s Profile</h4>
+            <h4 ng-if="currentUser._id !== user._id">{{user.firstName}}'s Profile</h4>
             <h4 ng-if="currentUser._id == user._id"> Your Profile</h4>
             <!--<a href="#" class="btn btn-outlined">FOLLOW</a>-->
             <h4>{{user.associateDescription}}</h4>
