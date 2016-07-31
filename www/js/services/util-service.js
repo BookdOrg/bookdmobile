@@ -32,7 +32,7 @@ module.exports = function (userFactory) {
   //};
   function selectPhotos(businessArray) {
     _.forEach(businessArray, function (business) {
-      business.photos = _.pullAt(business.photos, 0, 1, 2)
+      business.photos = _.pullAt(business.photos, 0)
     });
     return businessArray;
   }

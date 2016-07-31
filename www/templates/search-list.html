@@ -34,28 +34,28 @@
         <li class="table-view-cell media" ng-repeat="location in vm.locations">
           <!--TODO GET IMAGES FOR THE BUSINESS-->
           <!--<img  ng-src="{{location.image}}">-->
-          <span ng-if="location.photos.length > 1" ng-repeat="photo in location.photos">
+          <span ng-if="location.photos.length > 0" ng-repeat="photo in location.photos">
               <img class="media-object pull-left"
-                   ng-src="https://maps.googleapis.com/maps/api/place/photo?minwidth=75&maxwidth=75&minheight=75&maxheight=75&photoreference={{photo.photo_reference}}&key=AIzaSyAK1BOzJxHB8pOFmPFufYdcVdAuLr_6z2U">
+                   ng-src="https://maps.googleapis.com/maps/api/place/photo?minwidth=150&maxwidth=150&minheight=150&maxheight=150&photoreference={{photo.photo_reference}}&key=AIzaSyAK1BOzJxHB8pOFmPFufYdcVdAuLr_6z2U">
           </span>
-          <div class="media-body">
-            <h4><a>{{location.name}}</a></h4>
-            <h5>
-              <span class="icon icon-star-filled"></span>
-              <span class="icon icon-star-filled"></span>
-              <span class="icon icon-star-filled"></span>
-              <span class="icon icon-star-filled"></span>
-              <span class="icon icon-star"></span>
-            </h5>
-            <p>{{location.rating}}</p>
-            <p>{{location.formatted_phone_number}}</p>
+          <img ng-if="!location.photos" ng-src="{{location.icon}}"
+               uib-tooltip="Photos coming soon..." tooltip-placement="right"
+               style="border-radius:20%">
+
+          <div class="media-body text-center">
+            <h3><a>{{location.name}}</a></h3>
+            <h5 ng-if="!business.rating">This Business has not been rated yet.</h5>
+            <h5><i class="icon ion-ios-location"></i> {{location.formatted_address}}</h5>
+            <h5>{{location.formatted_phone_number}}</h5>
           </div>
           <table class="media-foot">
             <tr>
               <td>
-                <button class="btn btn-default btn-block">
-                  <span class="icon icon-mobile"></span> Call
-                </button>
+                <a ng-href="tel:{{location.international_phone_number}}">
+                  <button class="btn btn-default btn-block">
+                    <span class="icon icon-mobile"></span> Call
+                  </button>
+                </a>
               </td>
               <td>
                 <button class="btn btn-default btn-block">
