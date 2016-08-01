@@ -5,8 +5,14 @@
 module.exports = function ($scope, $state, businessFactory, socketService, $ionicSideMenuDelegate,
                            $ionicHistory, userFactory, appointmentFactory, notificationFactory, facebookApi, CLOUDINARY_BASE,
                            CLOUDINARY_Default, ionicDatePicker, $ionicLoading, $rootScope, $ionicPopup) {
+  $scope.appointment = null;
   $scope.myGoBack = function () {
-    $ionicHistory.goBack();
+    if ($scope.appointmentState !== 'reschedule') {
+      $ionicHistory.goBack();
+    } else {
+      $scope.switchState('standard');
+    }
+    $scope.clearSockets();
   };
   $scope.toggleMenu = function () {
     $ionicSideMenuDelegate.toggleLeft();
@@ -19,7 +25,6 @@ module.exports = function ($scope, $state, businessFactory, socketService, $ioni
   var stateChanged = false;
   $scope.goToProfile = function (id) {
     $state.go('app.profile', {id: id})
-    //$scope.modalCtrl.hide();
   };
   $scope.switchState = function (state) {
     if (state == 'reschedule') {
@@ -424,7 +429,6 @@ module.exports = function ($scope, $state, businessFactory, socketService, $ioni
     } else if ($scope.currAppointment.customer !== null) {
       $scope.appointment.customer = $scope.currAppointment.customer._id
     }
-    $scope.update();
   };
   //If the appointment is being updated
   $scope.update = function (rescheduled) {
@@ -457,7 +461,7 @@ module.exports = function ($scope, $state, businessFactory, socketService, $ioni
             if ($scope.activeTime) {
               socketService.emit('timeDestroyed', $scope.activeTime);
             }
-            $scope.closeModal();
+            $scope.close();
           });
       } else {
         console.log("canceled")
@@ -485,7 +489,7 @@ module.exports = function ($scope, $state, businessFactory, socketService, $ioni
               'roomId': $scope.newRoomDate.toString() + $scope.employee._id
             };
             socketService.emit('apptCanceled', socketData);
-            $scope.closeModal();
+            $scope.close();
           });
       } else {
         console.log('Canceled');
@@ -496,12 +500,20 @@ module.exports = function ($scope, $state, businessFactory, socketService, $ioni
    *
    *
    */
-  $scope.closeModal = function () {
+  $scope.close = function () {
     $scope.appointmentState = 'standard';
     $scope.selectedDate = null;
     $scope.showCount = false;
     $scope.$broadcast('timer-clear');
+    $scope.clearSockets();
 
+    $state.go('app.appointments');
+  };
+
+  $scope.clearSockets = function () {
+    if ($scope.activeTime) {
+      socketService.emit('timeDestroyed', $scope.activeTime);
+    }
     if ($scope.selectedDate) {
       var roomId = $scope.newRoomDate.toString() + $scope.employee._id;
       socketService.emit('leaveApptRoom', roomId);
@@ -511,13 +523,7 @@ module.exports = function ($scope, $state, businessFactory, socketService, $ioni
     socketService.removeListener('newHold');
     socketService.removeListener('update');
     socketService.removeListener('newRoomAppt');
-    //$scope.modalCtrl.hide();
   };
-  $scope.$on('modal.hidden', function () {
-    if (stateChanged) {
-      $scope.doRefresh();
-    }
-  });
   function notifyReschedule(appointment, rescheduled) {
     var customerNotification = 'Your ' + $scope.service.name + ' scheduled for  ' + moment($scope.currAppointment.start.full).format('MMM Do YYYY, h:mm a')
       + ' was rescheduled to ';

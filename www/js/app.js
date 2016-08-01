@@ -20,13 +20,13 @@ window.humanizeDuration = require('humanize-duration');
 require('angular-socket-io');
 require('moment-range');
 require('angular-timer');
-
 var app = angular.module('bookd', [
   'ionic',
   'ngCordovaOauth',
   'ionic-datepicker',
   'btford.socket-io',
   'timer'
+
 ]);
 
 require('./services');

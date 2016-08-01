@@ -4,23 +4,8 @@
 'use strict';
 
 module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_BASE, CLOUDINARY_Default, appointmentFactory,
-                           $ionicModal, businessFactory, facebookApi, ionicDatePicker, socketService, userFactory, notificationFactory, $ionicLoading) {
+                           businessFactory, facebookApi, ionicDatePicker, socketService, userFactory, notificationFactory, $ionicLoading) {
   $scope.appointments = $rootScope.currentUser.appointments;
-  $scope.facebookApi = facebookApi;
-  $scope.cloudinaryBaseUrl = CLOUDINARY_BASE;
-  $scope.cloudinaryDefaultPic = CLOUDINARY_Default;
-  $scope.appointmentState = 'standard';
-  var stateChanged = false;
-  $scope.goToProfile = function (id) {
-    $state.go('app.profile', {id: id})
-    //$scope.modalCtrl.hide();
-  };
-  $scope.switchState = function (state) {
-    if (state == 'reschedule') {
-      $scope.selectedDate = new Date($scope.appointments[$scope.appointmentIndex].start.date);
-    }
-    $scope.appointmentState = state;
-  };
   /**
    *
    *
@@ -76,12 +61,6 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
       return false;
     }
   };
-  //$ionicModal.fromTemplateUrl('appointment-modal.html', function (modal) {
-  //  $scope.modalCtrl = modal;
-  //}, {
-  //  scope: $scope,  /// GIVE THE MODAL ACCESS TO PARENT SCOPE
-  //  animation: 'slide-in-up'//'slide-left-right', 'slide-in-up', 'slide-right-left'
-  //});
   /**
    *
    *
@@ -89,11 +68,9 @@ module.exports = function ($scope, $ionicPopup, $state, $rootScope, CLOUDINARY_B
    */
   $scope.appointmentClicked = function (index) {
     $scope.service = null;
-    $scope.appointmentIndex = index;
-    $scope.requestingService = true;
     $state.go('app.appointments-detail', {
-      appointmentId: $scope.appointments[$scope.appointmentIndex]._id,
-      appointment: $scope.appointments[$scope.appointmentIndex]
+      appointmentId: $scope.appointments[index]._id,
+      appointment: $scope.appointments[index]
     });
 
   };
