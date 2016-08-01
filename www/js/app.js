@@ -162,6 +162,17 @@ app.config(function ($stateProvider, $urlRouterProvider, ionicDatePickerProvider
             controller: 'appointmentCtrl'
           }
         }
+      })
+      .state('app.appointments-detail', {
+        url: '/appointments/:appointmentId',
+        params: {appointment: null},
+        views: {
+          'menuContent': {
+            templateUrl: 'templates/appointment-detail.html',
+            controller: 'appointment-detailCtrl'
+
+          }
+        }
       });
     // if none of the above states are matched, use this as the fallback
   $urlRouterProvider.otherwise('/auth');

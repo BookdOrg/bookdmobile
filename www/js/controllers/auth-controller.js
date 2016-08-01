@@ -22,15 +22,9 @@ module.exports = function ($scope, $ionicPopup, auth, $q, $state, $cordovaOauth,
     $scope.authSpinner = true;
     auth.logIn(user).then(function (response) {
       if (response === 'Success') {
-        $scope.authSpinner = false;
-        if ($rootScope.currentUser.avatarVersion) {
-          $rootScope.avatar = CLOUDINARY_BASE + $rootScope.currentUser.avatarVersion + '/profile/' + $rootScope.currentUser._id;
-        } else {
-          $rootScope.avatar = CLOUDINARY_Default;
-
-        }
         $state.go('app.searchlist');
       }
+      $scope.authSpinner = false;
       if (response.status) {
         $scope.authSpinner = false;
         $scope.error = response.data.message;

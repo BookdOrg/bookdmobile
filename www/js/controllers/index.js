@@ -8,3 +8,4 @@ app.controller('SearchCtrl', require('./search-controller'));
 app.controller('appointmentCtrl', require('./appointment-controller'));
 app.controller('profileCtrl', require('./profile-controller'));
 app.controller('businessCtrl', require('./business-controller'));
+app.controller('appointment-detailCtrl', require('./appointment-detail-controller'));

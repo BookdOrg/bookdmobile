@@ -1,0 +1,120 @@
+<ion-view view-title="{{currAppointment.title}}">
+  <ion-nav-bar>
+  </ion-nav-bar>
+  <ion-nav-buttons side="primary">
+    <button class="button" ng-if="lastView" ng-click="myGoBack()">
+      <i class="ion-arrow-left-c"></i> Back
+    </button>
+    <button class="button button-icon button-clear ion-ios-drag" ng-if="!lastView" ng-click="toggleMenu()"></button>
+  </ion-nav-buttons>
+  <!-- ###############################################################
+  #
+  #                Appointment/Service Details
+  #
+  #################################################################### -->
+  <ion-content>
+    <div class="text-center" ng-if="requestingService">
+      <h1>
+        <ion-spinner icon="dots"></ion-spinner>
+      </h1>
+    </div>
+    <div class="list card" ng-if="appointmentState == 'standard' && !requestingService">
+      <div class="item item-avatar" ng-click="goToProfile(employee._id)">
+        <img class="employeeAvatar" ng-if="employee.provider === 'facebook'"
+             ng-src="{{facebookApi}}{{employee.providerId}}/picture?type=large"/>
+        <img class="employeeAvatar"
+             ng-if="!employee.avatarVersion && employee.provider === 'bookd' || employee.provider === 'business'"
+             ng-src="{{cloudinaryDefaultPic}}">
+        <img class="employeeAvatar"
+             ng-if="employee.avatarVersion && employee.provider === 'bookd' || employee.provider === 'business'"
+             ng-src="{{cloudinaryBaseUrl}}{{employee.avatarVersion}}/profile/{{employee._id}}">
+
+        <h2>{{employee.firstName}}</h2>
+
+        <p>{{employee.associateDescription}}</p>
+      </div>
+
+      <div class="item item-body text-center">
+        <h2 style="font-size:25px;">{{service.description}}</h2>
+
+        <h3 style="font-size:25px;">Duration - {{service.duration}} minutes</h3>
+
+        <h3 style="font-size:25px;">Price - ${{service.price}}</h3>
+
+        <h3 style="font-size:25px;">Date - {{currAppointment.start.date}}</h3>
+
+        <h3 style="font-size:25px;">Time - {{currAppointment.start.time}}</h3>
+      </div>
+      <div class="button-bar" ng-if="!datePassed">
+        <a class="button btn-gradient-blue" ng-if="!datePassed"
+           ng-hide="currAppointment.status =='canceled'" ng-click="switchState('reschedule')">
+          Re-schedule
+        </a>
+        <a class="button btn-gradient-danger" ng-if="!datePassed"
+           ng-hide="currAppointment.status =='canceled'" ng-click="confirmCancel()">
+          Cancel
+        </a>
+      </div>
+      <div
+        ng-if="datePassed && currAppointment.status !== 'paid' && currentUser._id ===  currAppointment.customer._id">
+        <h4 class="text-danger" style="font-size:25px;">
+          The original appointment time has passed, this appointment can no longer be updated. If you would like
+          to reschedule you can
+          schedule a new appointment via the Business' home page.
+          Thank you.</h4>
+      </div>
+      <div style="padding:20px;"
+           ng-if="datePassed && currAppointment.status !== 'paid' && currentUser._id !==  currAppointment.customer._id">
+        <h4 class="text-danger" style="font-size:25px;">
+          The original appointment time has passed, this appointment can no longer be updated.
+        </h4>
+      </div>
+      <div style="padding:20px;" ng-if=" currAppointment.status === 'paid' && datePassed">
+        <h4 class="text-danger" style="font-size:25px;">
+          This service hasbeenfulfilled and paid for, therefore it can no longer be updated. Thank you.
+        </h4>
+      </div>
+    </div>
+    <!-- ###############################################################
+    #
+    #                 Select Date & Time
+    #
+    #################################################################### -->
+    <div ng-if="appointmentState == 'reschedule'">
+      <div class="row text-center">
+        <div class="col">
+          <!--<ion-spinner ng-if="calculatingAppointments" icon="spiral"></ion-spinner>-->
+          <timer class="text-canceled" ng-show="showCount" countdown="countdown" max-time-unit="'minute'"
+                 interval="1000" auto-start="false"
+                 finish-callback="timerFinished()">Appointment being held for: {{mminutes}} minute{{minutesS}},
+            {{sseconds}} second{{secondsS}}
+          </timer>
+          <div ng-if="availableTimes.length>0">
+            <h3>{{employee.firstName}}'s Available Times </h3>
+            <h4>{{selectedDate | date}}</h4>
+            <button class="button btn-gradient-blue" ng-click="openDatePicker()">
+              <i class="icon ion-ios-calendar-outline"></i> Change Date
+            </button>
+            <div class="row responsive-sm" style="width:100%">
+              <div class="col">
+                <button class="button" ng-click="createAppointmentObj(time,$index)"
+                        ng-repeat="time in availableTimes track by $index"
+                        ng-disabled="!time.available || time.status || time.toggled || time.hide"
+                        ng-class="{'btn-faded-green':time.hide,'btn-gradient-red': !time.available && !time.hide
+                               || time.status,'btn-gradient-green':time.available && !time.toggled && !time.hide,'btn-gradient-blue':time.toggled}"
+                        role="button" class="btn" style="margin-bottom:5px;">
+                  {{time.time}}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <button class="button button-block btn-gradient-blue" ng-click="switchState('standard')">
+          Back
+        </button>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
