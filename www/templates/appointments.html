@@ -26,29 +26,56 @@
     #                Appointments List
     #
     #################################################################### -->
-    <div class="card" ng-repeat="appointment in appointments track by $index" ng-hide="loading">
-      <div class="item item-text-wrap">
-        <h2 class="text-center">{{appointment.title}} -
-            <span
-              ng-class="{'text-canceled':appointment.status == 'canceled','text-paid':appointment.status == 'paid','text-active':appointment.status == 'active','text-pending':appointment.status == 'pending'}">
-              {{appointment.status | uppercase}}
-            </span>
-        </h2>
+    <timeline>
+      <timeline-event ng-repeat="appointment in appointments track by $index" ng-hide="loading" side="right">
+        <timeline-badge ng-if="appointment.status == 'active'" class="info">
+          <i class="ion ion-ios-calendar-outline"></i>
+        </timeline-badge>
+        <timeline-badge ng-if="appointment.status == 'canceled'" class="danger">
+          <i class="ion ion-ios-close-empty"></i>
+        </timeline-badge>
+        <timeline-badge ng-if="appointment.status == 'pending'" class="warning">
+          <i class="ion ion-ios-help-outline"></i>
+        </timeline-badge>
+        <timeline-badge ng-if="appointment.status == 'paid'" class="success">
+          <i class="ion ion-ios-pricetag-outline"></i>
+        </timeline-badge>
+        <timeline-panel class="{{event.badgeClass}}">
+          <timeline-heading>
+            <h4>{{appointment.title}}</h4>
+            <h5>{{appointment.start.full | notificationDateFilter}} until {{appointment.end.time | uppercase}}</h5>
+            <h5>Bookd {{appointment.timestamp | timeStampFilter}}</h5>
+          </timeline-heading>
+          <button class="btn btn-default btn-block" ng-click="appointmentClicked($index)">
+            View Details
+          </button>
+        </timeline-panel>
+      </timeline-event>
+    </timeline>
 
-        <h3 class="text-center" style="margin-top:15px;">{{appointment.start.day}}, {{appointment.start.date}}
-          {{appointment.start.time}} - {{appointment.end.time}}</h3>
+    <!--<div class="card" ng-repeat="appointment in appointments track by $index" ng-hide="loading">-->
+    <!--<div class="item item-text-wrap">-->
+    <!--<h2 class="text-center">{{appointment.title}} - -->
+    <!--<span-->
+    <!--ng-class="{'text-canceled':appointment.status == 'canceled','text-paid':appointment.status == 'paid','text-active':appointment.status == 'active','text-pending':appointment.status == 'pending'}">-->
+    <!--{{appointment.status | uppercase}}-->
+    <!--</span>-->
+    <!--</h2>-->
 
-      </div>
-      <table class="media-foot">
-        <tr>
-          <td>
-            <button class="btn btn-default btn-block" ng-click="appointmentClicked($index)">
-              View Details
-            </button>
-          </td>
-        </tr>
-      </table>
-    </div>
+    <!--<h3 class="text-center" style="margin-top:15px;">{{appointment.start.day}}, {{appointment.start.date}}-->
+    <!--{{appointment.start.time}} - {{appointment.end.time}}</h3>-->
+
+    <!--</div>-->
+    <!--<table class="media-foot">-->
+    <!--<tr>-->
+    <!--<td>-->
+    <!--<button class="btn btn-default btn-block" ng-click="appointmentClicked($index)">-->
+    <!--View Details-->
+    <!--</button>-->
+    <!--</td>-->
+    <!--</tr>-->
+    <!--</table>-->
+    <!--</div>-->
     <ion-infinite-scroll
       immediate-check="false"
       on-infinite="loadMore()"
@@ -58,133 +85,8 @@
     </ion-infinite-scroll>
   </ion-content>
 </ion-view>
-<!-- ###############################################################
-#
-#                Appointment Modal
-#
-#################################################################### -->
-<script id="appointment-modal.html" type="text/ng-template">
-  <ion-modal-view>
-    <ion-header-bar>
-      <h1 class="title">{{appointments[appointmentIndex].title}}</h1>
 
-      <div class="buttons">
-        <button style="bottom:10px;height:50px;" class="button button-icon icon ion-ios-close"
-                ng-click="closeModal()"></button>
-      </div>
-    </ion-header-bar>
-    <!-- ###############################################################
-    #
-    #                Appointment/Service Details
-    #
-    #################################################################### -->
-    <ion-content>
-      <div class="text-center" ng-if="requestingService">
-        <h1>
-          <ion-spinner icon="dots"></ion-spinner>
-        </h1>
-      </div>
-      <div class="list card" ng-if="appointmentState == 'standard' && !requestingService">
-        <div class="item item-avatar" ng-click="goToProfile(employee._id)">
-          <img class="employeeAvatar" ng-if="employee.provider === 'facebook'"
-               ng-src="{{facebookApi}}{{employee.providerId}}/picture?type=large"/>
-          <img class="employeeAvatar"
-               ng-if="!employee.avatarVersion && employee.provider === 'bookd' || employee.provider === 'business'"
-               ng-src="{{cloudinaryDefaultPic}}">
-          <img class="employeeAvatar"
-               ng-if="employee.avatarVersion && employee.provider === 'bookd' || employee.provider === 'business'"
-               ng-src="{{cloudinaryBaseUrl}}{{employee.avatarVersion}}/profile/{{employee._id}}">
 
-          <h2>{{employee.firstName}}</h2>
-
-          <p>{{employee.associateDescription}}</p>
-        </div>
-
-        <div class="item item-body text-center">
-          <h2 style="font-size:25px;">{{service.description}}</h2>
-
-          <h3 style="font-size:25px;">Duration - {{service.duration}} minutes</h3>
-
-          <h3 style="font-size:25px;">Price - ${{service.price}}</h3>
-
-          <h3 style="font-size:25px;">Date - {{appointments[appointmentIndex].start.date}}</h3>
-
-          <h3 style="font-size:25px;">Time - {{appointments[appointmentIndex].start.time}}</h3>
-        </div>
-        <div class="button-bar" ng-if="!datePassed">
-          <a class="button btn-gradient-blue" ng-if="!datePassed"
-             ng-hide="appointments[appointmentIndex].status =='canceled'" ng-click="switchState('reschedule')">
-            Re-schedule
-          </a>
-          <a class="button btn-gradient-danger" ng-if="!datePassed"
-             ng-hide="appointments[appointmentIndex].status =='canceled'" ng-click="confirmCancel()">
-            Cancel
-          </a>
-        </div>
-        <div
-          ng-if="datePassed && appointments[appointmentIndex].status !== 'paid' && currentUser._id ===  appointments[appointmentIndex].customer._id">
-          <h4 class="text-danger" style="font-size:25px;">
-            The original appointment time has passed, this appointment can no longer be updated. If you would like
-            to reschedule you can
-            schedule a new appointment via the Business' home page.
-            Thank you.</h4>
-        </div>
-        <div style="padding:20px;"
-             ng-if="datePassed && appointments[appointmentIndex].status !== 'paid' && currentUser._id !==  appointments[appointmentIndex].customer._id">
-          <h4 class="text-danger" style="font-size:25px;">
-            The original appointment time has passed, this appointment can no longer be updated.
-          </h4>
-        </div>
-        <div style="padding:20px;" ng-if=" appointments[appointmentIndex].status === 'paid' && datePassed">
-          <h4 class="text-danger" style="font-size:25px;">
-            This service hasbeenfulfilled and paid for, therefore it can no longer be updated. Thank you.
-          </h4>
-        </div>
-      </div>
-      <!-- ###############################################################
-      #
-      #                 Select Date & Time
-      #
-      #################################################################### -->
-      <div ng-if="appointmentState == 'reschedule'">
-        <div class="row text-center">
-          <div class="col">
-            <!--<ion-spinner ng-if="calculatingAppointments" icon="spiral"></ion-spinner>-->
-            <timer class="text-canceled" ng-show="showCount" countdown="countdown" max-time-unit="'minute'"
-                   interval="1000" auto-start="false"
-                   finish-callback="timerFinished()">Appointment being held for: {{mminutes}} minute{{minutesS}},
-              {{sseconds}} second{{secondsS}}
-            </timer>
-            <div ng-if="availableTimes.length>0">
-              <h3>{{employee.firstName}}'s Available Times </h3>
-              <h4>{{selectedDate | date}}</h4>
-              <button class="button btn-gradient-blue" ng-click="openDatePicker()">
-                <i class="icon ion-ios-calendar-outline"></i> Change Date
-              </button>
-              <div class="row responsive-sm" style="width:100%">
-                <div class="col">
-                  <button class="button" ng-click="createAppointmentObj(time,$index)"
-                          ng-repeat="time in availableTimes track by $index"
-                          ng-disabled="!time.available || time.status || time.toggled || time.hide"
-                          ng-class="{'btn-faded-green':time.hide,'btn-gradient-red': !time.available && !time.hide
-                               || time.status,'btn-gradient-green':time.available && !time.toggled && !time.hide,'btn-gradient-blue':time.toggled}"
-                          role="button" class="btn" style="margin-bottom:5px;">
-                    {{time.time}}
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <button class="button button-block btn-gradient-blue" ng-click="switchState('standard')">
-            Back
-          </button>
-        </div>
-      </div>
-    </ion-content>
-  </ion-modal-view>
-</script>
 <!--
 ##
 ## This is what picking an associate will looks liek for schedule appointments

@@ -25,14 +25,15 @@ var app = angular.module('bookd', [
   'ngCordovaOauth',
   'ionic-datepicker',
   'btford.socket-io',
-  'timer'
+  'timer',
+  'angular-timeline'
 
 ]);
 
 require('./services');
 require('./controllers');
 
-//require('./filters');
+require('./filters');
 //window._ = require('underscore');
 
 app.run(function ($ionicPlatform, $rootScope, auth, CLOUDINARY_Default, CLOUDINARY_BASE, facebookApi) {
@@ -71,7 +72,7 @@ app.constant('devPort', '8112');
 app.constant('facebookApi', 'https://graph.facebook.com/');
 app.constant('googleApi', 'https://www.googleapis.com/plus/v1/people/');
 app.constant('remoteHost', 'https://dev.bookd.me'); // https://dev.bookd.me https://bookd.me http://localhost:3002
-app.constant('remoteSocketPort', ':8112'); //DEV: :8112 LOCAL:  :3002
+app.constant('remoteSocketPort', ':8112'); //DEV: :8112 LOCAL:  :3001
 app.config(function ($stateProvider, $urlRouterProvider, ionicDatePickerProvider) {
   //var datePickerObj = {
   //  inputDate: new Date(),

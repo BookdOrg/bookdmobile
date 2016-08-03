@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "ionic-datepicker": "~1.2.0",
-    "facebook-connect-plugin": "https://cdn.rawgit.com/Wizcorp/phonegap-facebook-plugin/master/facebookConnectPlugin.js"
+    "facebook-connect-plugin": "https://cdn.rawgit.com/Wizcorp/phonegap-facebook-plugin/master/facebookConnectPlugin.js",
+    "angular-timeline": "~1.7.0"
   }
 }

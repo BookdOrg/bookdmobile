@@ -72,7 +72,9 @@ module.exports = function ($scope, businessFactory, search, locationFactory, $io
       .then(function (data) {
         vm.loading = false;
         vm.locations = data;
-
+        if (cordova.plugins.Keyboard.isVisible) {
+          cordova.plugins.Keyboard.close();
+        }
         return data;
       });
     //.then(function (data) {
