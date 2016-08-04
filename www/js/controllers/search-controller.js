@@ -36,7 +36,8 @@ module.exports = function ($scope, businessFactory, search, locationFactory, $io
         // This returns an 8 part array where the 0th index is the most accurate and the 7th is least accurate.
         search.getLocationInfo(lat, lng).then(
           function (data) {
-            vm.query.location = data['results'][0]['formatted_address'];
+            vm.query.location = data.results[0].address_components[2].long_name;
+            //['results'][0]['formatted_address']['address_components'][2]['long_name'];
             $scope.fetchingLocation = false;
           }, function (err) {
             console.log(err);
