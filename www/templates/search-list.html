@@ -1,13 +1,4 @@
-<ion-view hide-back-button="true" class="search-list">
-  <div class="bar bar-header item-input-inset">
-    <label class="item-input-wrapper">
-      <i class="icon ion-ios-search placeholder-icon"></i>
-      <input type="search" placeholder="Search">
-    </label>
-    <button class="button button-clear">
-      Cancel
-    </button>
-  </div>
+<ion-view title="Search" hide-back-button="true" class="search-list">
   <ion-content class="has-header" overflow-scroll="true" padding="true">
     <div class="bar bar-standard bar-header-secondary">
       <form class="input-group" ng-submit="vm.search()">
@@ -27,20 +18,10 @@
       </form>
     </div>
     <div class="content">
-      <!--<div class="bar-button">-->
-      <!--<button class="btn btn-primary">-->
-      <!--<span class="icon icon-list"></span>-->
-      <!--</button>-->
-      <!--<button class="btn btn-primary btn-outlined">-->
-      <!--<span class="icon icon-grid"></span>-->
-      <!--</button>-->
-      <!--</div>-->
       <ul class="table-view">
         <li ng-show="!vm.locations.length && !vm.loading"><h4 class="empty-list text-center">Go ahead, try searching for
           businesses.</h4></li>
         <li class="table-view-cell media" ng-repeat="location in vm.locations">
-          <!--TODO GET IMAGES FOR THE BUSINESS-->
-          <!--<img  ng-src="{{location.image}}">-->
           <span ng-if="location.photos.length > 0" ng-repeat="photo in location.photos">
               <img class="media-object pull-left"
                    ng-src="https://maps.googleapis.com/maps/api/place/photo?minwidth=150&maxwidth=150&minheight=150&maxheight=150&photoreference={{photo.photo_reference}}&key=AIzaSyAK1BOzJxHB8pOFmPFufYdcVdAuLr_6z2U">

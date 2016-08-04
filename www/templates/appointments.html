@@ -42,9 +42,11 @@
         </timeline-badge>
         <timeline-panel class="{{event.badgeClass}}">
           <timeline-heading>
-            <h4>{{appointment.title}}</h4>
-            <h5>{{appointment.start.full | notificationDateFilter}} until {{appointment.end.time | uppercase}}</h5>
-            <h5>Bookd {{appointment.timestamp | timeStampFilter}}</h5>
+            <h4>{{$index +1}} - {{appointment.title}}</h4>
+            <h5><i class="ion ion-ios-alarm-outline"></i> {{appointment.start.full | notificationDateFilter}} until
+              {{appointment.end.time | uppercase}}</h5>
+
+            <p class="subdued">Bookd {{appointment.timestamp | timeStampFilter}}</p>
           </timeline-heading>
           <button class="btn btn-default btn-block" ng-click="appointmentClicked($index)">
             View Details

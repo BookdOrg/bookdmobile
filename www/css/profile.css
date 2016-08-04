@@ -1,4 +1,7 @@
-.profile {font-family: 'Open Sans', sans-serif;}
+.profile {
+  font-family: 'Open Sans', sans-serif;
+  background-color: rgba(232, 232, 232, 0.51);
+}
 .profile .title, .bar-nav>a{ color: #fff; text-transform: uppercase;}
 .profile .bar{ border-bottom: 0px; }
 .profile .blue-nav{ background-color: #3481b3;}

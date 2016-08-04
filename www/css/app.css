@@ -1175,3 +1175,8 @@ select {
 .icon-right-tight-arrow:before{
   content: '\f280';
 }
+
+.ion-infinite-scroll {
+  z-index: 999;
+  color: black;
+}

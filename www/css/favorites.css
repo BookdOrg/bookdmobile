@@ -1,50 +1,61 @@
-.bookmarks-view {
-    background-color: #EAEAEA;
+.favorites {
+  background-color: rgba(232, 232, 232, 0.51);
 }
-.bookmarks-view .scroll-content .scroll,
-.bookmarks-view .bookmarks-container {
+
+.favorites .scroll-content .scroll,
+.favorites .bookmarks-container {
     height: 100%;
 }
-.bookmarks-view .empty-results {
+
+.favorites .empty-results {
     text-align: center;
 }
-.bookmarks-view .empty-results .icon {
+
+.favorites .empty-results .icon {
     font-size: 170px;
     color: white;
 }
-.bookmarks-view .empty-results .no-bookmarks {
+
+.favorites .empty-results .no-bookmarks {
     color: #d1d1d1;
     font-size: 22px;
 }
-.bookmarks-view .bookmarks-list {
+
+.favorites .bookmarks-list {
     overflow-y: scroll;
     height: 100%;
 }
-.bookmarks-view .bookmarks-list::-webkit-scrollbar {
+
+.favorites .bookmarks-list::-webkit-scrollbar {
     display: none !important;
     width: 0 !important;
 }
-.bookmarks-view .bookmark-item {
+
+.favorites .bookmark-item {
     padding: 10px 0px;
     border-bottom: 1px solid rgba(30, 30, 30, 0.2);
     margin: 0px 16px;
 }
-.bookmarks-view .bookmark-item * {
+
+.favorites .bookmark-item * {
     text-decoration: none;
     color: #444444;
 }
-.bookmarks-view .bookmark-item .post-title {
+
+.favorites .bookmark-item .post-title {
     margin: 0px;
     font-size: 20px;
     font-weight: 300;
     letter-spacing: -1px;
 }
-.bookmarks-view .bookmark-item .post-date {
+
+.favorites .bookmark-item .post-date {
     margin: 0px;
     font-size: 12px;
     font-weight: 200;
     color: rgba(94, 94, 94, 0.7);
 }
-.bookmarks-view .bookmark-item .post-time {
+
+.favorites .bookmark-item .post-time {
     color: rgba(43, 43, 43, 0.9);
 }

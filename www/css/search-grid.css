@@ -1,4 +1,7 @@
-.search-grid { font-family: 'Open Sans', sans-serif;}
+.search-grid {
+  font-family: 'Open Sans', sans-serif;
+  background-color: rgba(232, 232, 232, 0.51);
+}
 .search-grid input[type="text"]{ height: 30px;}
 .search-grid .title, .bar-nav>a{ color: #fff; text-transform: uppercase;}
 .search-grid .text-center{ text-align: center; }

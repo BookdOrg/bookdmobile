@@ -1,5 +1,6 @@
 .appointment-list {
   font-family: 'Open Sans', sans-serif;
+  background-color: rgba(232, 232, 232, 0.51);
 }
 
 .appointment-list input[type="text"] {
@@ -353,3 +354,4 @@ ion-scroll[direction=y] {
   background: -webkit-linear-gradient(top, #0f87e2 0%, #7db9e8 100%); /* Chrome10-25,Safari5.1-6 */
   background: linear-gradient(to bottom, #0f87e2 0%, #7db9e8 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
 }
+
