@@ -18,47 +18,52 @@
       </form>
     </div>
     <div class="content">
-      <ul class="table-view">
-        <li ng-show="!vm.locations.length && !vm.loading"><h4 class="empty-list text-center">Go ahead, try searching for
-          businesses.</h4></li>
-        <li class="table-view-cell media" ng-repeat="location in vm.locations">
-          <span ng-if="location.photos.length > 0" ng-repeat="photo in location.photos">
-              <img class="media-object pull-left"
-                   ng-src="https://maps.googleapis.com/maps/api/place/photo?minwidth=150&maxwidth=150&minheight=150&maxheight=150&photoreference={{photo.photo_reference}}&key=AIzaSyAK1BOzJxHB8pOFmPFufYdcVdAuLr_6z2U">
-          </span>
-          <img ng-if="!location.photos" ng-src="{{location.icon}}"
-               uib-tooltip="Photos coming soon..." tooltip-placement="right"
-               style="border-radius:20%">
+      <ion-scroll direction="y" style="height:500px;">
+        <ul class="list">
+          <li style="list-style:none;" ng-show="!vm.locations.length && !vm.loading"><h4 class="empty-list text-center">
+            Go ahead, try searching for
+            businesses.</h4></li>
+          <li class="item item-thumbnail-left" ng-repeat="location in vm.locations" href="#">
+            <img ng-if="location.photos.length > 0" ng-repeat="photo in location.photos"
+                 ng-src="https://maps.googleapis.com/maps/api/place/photo?minwidth=400&maxwidth=400&minheight=400&maxheight=400&photoreference={{photo.photo_reference}}&key=AIzaSyAK1BOzJxHB8pOFmPFufYdcVdAuLr_6z2U">
+            <img ng-if="!location.photos" ng-src="{{location.icon}}"
+                 uib-tooltip="Photos coming soon..." tooltip-placement="right"
+                 style="border-radius:20%">
 
-          <div class="media-body text-center" ui-sref="app.business({businessid:location.place_id})">
-            <h3><a>{{location.name}}</a></h3>
-            <h5 ng-if="!business.rating">This Business has not been rated yet.</h5>
-            <h5><i class="icon ion-ios-location"></i> {{location.formatted_address}}</h5>
-            <h5>{{location.formatted_phone_number}}</h5>
-          </div>
-          <table class="media-foot">
-            <tr>
-              <td>
-                <a ng-href="tel:{{location.international_phone_number}}">
-                  <button class="btn btn-default btn-block">
-                    <span class="icon icon-mobile"></span> Call
+            <div ui-sref="app.business({businessid:location.place_id})">
+              <div>
+                <h2 id="businessName" class="">{{location.name}}</h2>
+                <h4 class="" ng-if="!location.rating">This Business has not been rated yet.</h4>
+                <h5 class=""><i style="font-size:10px;" class="icon ion-ios-location"></i>
+                  {{location.formatted_address}}</h5>
+                <h5 id="phoneNumber" class=""><i style="font-size:10px;" class="icon ion-ios-telephone-outline"></i>
+                  {{location.formatted_phone_number}}</h5>
+              </div>
+            </div>
+            <table class="media-foot">
+              <tr>
+                <td>
+                  <a ng-href="tel:{{location.international_phone_number}}">
+                    <button class="btn btn-default btn-block">
+                      <span class="icon ion-ios-telephone-outline"></span> Call
+                    </button>
+                  </a>
+                </td>
+                <td>
+                  <button class="btn btn-default btn-block" ui-sref="app.business({businessid:location.place_id})">
+                    <span class="icon ion-ios-calendar-outline"></span> Book
                   </button>
-                </a>
-              </td>
-              <td>
-                <button class="btn btn-default btn-block" ui-sref="app.business({businessid:location.place_id})">
-                  <span class="icon icon-bell"></span> Book
-                </button>
-              </td>
-              <td>
-                <button class="btn btn-default btn-block">
-                  <span class="icon icon-plus-rounded"></span> Save
-                </button>
-              </td>
-            </tr>
-          </table>
-        </li>
-      </ul>
+                </td>
+                <td>
+                  <button class="btn btn-default btn-block">
+                    <span class="icon icon-plus-rounded"></span> Save
+                  </button>
+                </td>
+              </tr>
+            </table>
+          </li>
+        </ul>
+      </ion-scroll>
       <div class="image-container">
         <img ng-show="vm.loading" src="img/spin.svg">
       </div>

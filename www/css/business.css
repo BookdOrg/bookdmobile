@@ -1,3 +1,7 @@
 .business {
   background-color: rgba(232, 232, 232, 0.51);
 }
+
+[nav-view-transition="ios"][nav-view-direction="forward"], [nav-view-transition="ios"][nav-view-direction="back"] {
+  background-color: rgba(232, 232, 232, 0.51);
+}
