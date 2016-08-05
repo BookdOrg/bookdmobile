@@ -18,7 +18,7 @@
       </form>
     </div>
     <div class="content">
-      <ion-scroll direction="y" style="height:500px;">
+      <!--<ion-scroll direction="y" style="height:2000px;">-->
         <ul class="list">
           <li style="list-style:none;" ng-show="!vm.locations.length && !vm.loading"><h4 class="empty-list text-center">
             Go ahead, try searching for
@@ -44,26 +44,27 @@
               <tr>
                 <td>
                   <a ng-href="tel:{{location.international_phone_number}}">
-                    <button class="btn btn-default btn-block">
-                      <span class="icon ion-ios-telephone-outline"></span> Call
+                    <button class="btn btn-gradient-primary btn-block">
+                      Call
                     </button>
                   </a>
                 </td>
                 <td>
-                  <button class="btn btn-default btn-block" ui-sref="app.business({businessid:location.place_id})">
-                    <span class="icon ion-ios-calendar-outline"></span> Book
+                  <button class="btn btn-gradient-primary btn-block"
+                          ui-sref="app.business({businessid:location.place_id})">
+                    Book
                   </button>
                 </td>
                 <td>
-                  <button class="btn btn-default btn-block">
-                    <span class="icon icon-plus-rounded"></span> Save
+                  <button class="btn btn-gradient-primary btn-block">
+                    Save
                   </button>
                 </td>
               </tr>
             </table>
           </li>
         </ul>
-      </ion-scroll>
+      <!--</ion-scroll>-->
       <div class="image-container">
         <img ng-show="vm.loading" src="img/spin.svg">
       </div>

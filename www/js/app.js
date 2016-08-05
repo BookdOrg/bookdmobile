@@ -73,7 +73,8 @@ app.constant('facebookApi', 'https://graph.facebook.com/');
 app.constant('googleApi', 'https://www.googleapis.com/plus/v1/people/');
 app.constant('remoteHost', 'https://dev.bookd.me'); // https://dev.bookd.me https://bookd.me http://localhost:3002
 app.constant('remoteSocketPort', ':8112'); //DEV: :8112 LOCAL:  :3001
-app.config(function ($stateProvider, $urlRouterProvider, ionicDatePickerProvider) {
+app.config(function ($stateProvider, $urlRouterProvider, ionicDatePickerProvider, $ionicConfigProvider) {
+  //$ionicConfigProvider.views.transition('none');
   //var datePickerObj = {
   //  inputDate: new Date(),
   //  setLabel: 'Set',

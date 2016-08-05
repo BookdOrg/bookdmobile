@@ -1,6 +1,5 @@
 <ion-view view-title="Appointments" class="appointment-list">
   <ion-nav-buttons side="right">
-    <!--<button class="button button-icon button-clear ion-ios-search"></button>-->
   </ion-nav-buttons>
   <ion-content class="has-header" overflow-scroll="true" padding="true">
     <ion-refresher
@@ -54,30 +53,6 @@
         </timeline-panel>
       </timeline-event>
     </timeline>
-
-    <!--<div class="card" ng-repeat="appointment in appointments track by $index" ng-hide="loading">-->
-    <!--<div class="item item-text-wrap">-->
-    <!--<h2 class="text-center">{{appointment.title}} - -->
-    <!--<span-->
-    <!--ng-class="{'text-canceled':appointment.status == 'canceled','text-paid':appointment.status == 'paid','text-active':appointment.status == 'active','text-pending':appointment.status == 'pending'}">-->
-    <!--{{appointment.status | uppercase}}-->
-    <!--</span>-->
-    <!--</h2>-->
-
-    <!--<h3 class="text-center" style="margin-top:15px;">{{appointment.start.day}}, {{appointment.start.date}}-->
-    <!--{{appointment.start.time}} - {{appointment.end.time}}</h3>-->
-
-    <!--</div>-->
-    <!--<table class="media-foot">-->
-    <!--<tr>-->
-    <!--<td>-->
-    <!--<button class="btn btn-default btn-block" ng-click="appointmentClicked($index)">-->
-    <!--View Details-->
-    <!--</button>-->
-    <!--</td>-->
-    <!--</tr>-->
-    <!--</table>-->
-    <!--</div>-->
     <ion-infinite-scroll
       immediate-check="false"
       on-infinite="loadMore()"
